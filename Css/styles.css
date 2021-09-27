@@ -1,134 +1,304 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
+/* STARTING CSS */
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
-nav{
-    /* makes its child item to be aligned horizontally */
-    display: flex;
-    /* makes spacing with each horizontal items to be spaced */
-    justify-content: space-around;
-    /* align vertically the horizontal items */
-    align-items: center;
-    min-height: 8vh;
-    font-family: 'Poppins', serif;
-    background-color: rgb(37, 37, 37);
+body {
+  overflow-x: hidden;
 }
 
-.logo{
-    color: rgb(226, 226, 226);
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 20px;
+/* STARTING CSS END -------------------------- */
+
+/* Place import fonts here */
+@import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+
+/* ----------------------------------- */
+
+/* NAV CSS */
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 9vh;
+  font-family: "Alata", sans-serif;
+  background-color: #c8b8b2;
 }
 
-.nav-links{
-    /* makes its child item to be aligned horizontally */
-    display: flex;
-    width: 30%;
-    /* makes spacing with each horizontal items to be spaced */
-    justify-content: space-around;
+.dropdown-content {
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+  top: 40px;
+  background-color: #f1f1f1;
+  min-width: 180px;
+  z-index: 1;
 }
 
-.nav-links li{
-    /* remove li's bullet form style */
-    list-style: none;
+.dropdown-user-control {
+  border-radius: 5px;
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 8px;
+  background-color: #f1f1f1;
+  min-width: 180px;
+  z-index: 1;
 }
 
-.nav-links a{
-    color: rgb(226, 226, 226);
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 3px;
+.dropdown-items {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  border: 0;
+  text-align: left;
+  font-size: 18px;
 }
 
-.burger{
-    /* display none so it wont be displayed on the page */
+.nav-home {
+  padding: 10px;
+}
+
+.nav-home-link {
+  display: flex;
+}
+
+.nav-user:hover .dropdown-user-control {
+  display: block;
+}
+
+.dropdown-user-control:hover {
+  display: block;
+}
+
+.nav-home:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content:hover {
+  display: block;
+}
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  content: URL();
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-field {
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d4cecd;
+  outline: none;
+}
+
+.search-field-responsive {
+  background-color: #e2e2e2;
+  outline: none;
+  width: 100%;
+  padding: 10px 35px 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+}
+
+.logo li {
+  list-style: none;
+  display: flex;
+}
+
+.logo a {
+  color: rgb(226, 226, 226);
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.logo img {
+  width: 30%;
+}
+
+.search {
+  display: flex;
+  width: 30%;
+  justify-content: flex-start;
+}
+
+.search li {
+  list-style: none;
+  padding: 0px 20px;
+}
+
+.search a {
+  color: rgb(226, 226, 226);
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.user-nav-links {
+  display: flex;
+  width: 30%;
+  justify-content: flex-end;
+}
+
+.user-nav-links li {
+  list-style: none;
+  margin: 0px 20px;
+}
+
+.user-nav-links a {
+  color: rgb(226, 226, 226);
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.user-nav-links img {
+  width: 35px;
+}
+
+.nav-links {
+  display: none;
+  width: 30%;
+}
+
+.nav-links li {
+  list-style: none;
+  margin: 30px 0 0 0;
+}
+
+.nav-links a {
+  color: #fbfdfe;
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.burger {
+  display: none;
+  margin: 0px 30px 0px 10px;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: rgb(226, 226, 226);
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 906px) {
+  .logo {
+    width: 36%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .search {
     display: none;
-}
+  }
 
-.burger div{
-    width: 25px;
-    height: 3px;
-    background-color: rgb(226, 226, 226);
-    margin: 5px;
-    /* Adds animation on hamburger toggle */
-    transition: all 0.3s ease;
-}
+  .user-nav-links {
+    width: 20%;
+  }
 
-/* Setting breakpoint when the screen width reaches 1024px it will make the nav width to 60% */
-@media screen and (max-width:1024px){
-    .nav-links{
-        width: 60%;
-    }
-}
+  .user-nav-links li {
+    margin: 0px 10px;
+  }
 
-/* Setting breakpoint when the screen width reaches 768px it will turn the nav into mobile view*/
-@media screen and (max-width:768px){
-    body{
-        /* will disable overflowing horizontally */
-        overflow-x: hidden;
-    }
-    .nav-links{
-        /* position the mobile nav */
-        position: absolute;
-        /* position values right left top bottom */
-        right: 0px;
-        height: 92vh;
-        top: 8vh;
-        background-color: rgb(37, 37, 37);
-        /* makes its child item to be aligned vertically with flex direction column */
-        display: flex;
-        flex-direction: column;
-        /*  aligns the items in the center horizontally*/
-        align-items: center;
-        /* set width of the mobile navbar */
-        width: 50%;
-        /* moves mobile navbar 100% horizontally to the right, if negative values it will go to the left*/
-        transform: translateX(100%);
-        /* add animation transition when activated */
-        transition: transform 0.5s ease-in;
-    }
-    .nav-links li{
-        /* makes li items to be invisible: preparation for animation */
-        opacity: 0;
-    }
-    .burger{
-        /* enables the burger icon to be displayed once again */
-        display: block;
-        /* turns cursor to pointer upon hovering */
-        cursor: pointer;
-    }
-}
-.nav-active{
-    /* set with javascript: upon toggling this class to the nav, it will go back to original position (before it was on translateX(100%)) */
-    transform: translateX(0%);
-}
+  .logo li {
+    display: none;
+  }
 
-/* Specifies the animation code: sets the opacity of the li's to 1 from 0, and makes a mini transition of 50px */
-@keyframes navLinkFade{
-    from{
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to{
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
+  .logo {
+    width: 50%;
+  }
 
-/* Transforms the hamburger icon to an exit button */
-.hamburger-toggle .line1{
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
+  .logo img {
+    width: 50%;
+  }
 
-.hamburger-toggle .line2{
+  .nav-links {
+    position: absolute;
+    left: 0px;
+    height: 92vh;
+    top: 9vh;
+    background-color: #d4cecd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-in;
+  }
+  .nav-links li {
     opacity: 0;
+  }
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+}
+.nav-active {
+  transform: translateX(0%);
 }
 
-.hamburger-toggle .line3{
-    transform: rotate(45deg) translate(-5px, -6px);
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
+
+.hamburger-toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-toggle .line2 {
+  opacity: 0;
+}
+
+.hamburger-toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* NAV CSS END ----------------------------------------------- */
