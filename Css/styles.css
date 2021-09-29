@@ -132,3 +132,81 @@ nav{
 .hamburger-toggle .line3{
     transform: rotate(45deg) translate(-5px, -6px);
 }
+
+
+/*Checkout Portion*/
+body{
+    background-color: #C8B8B2;
+}
+
+h4{
+    color: white;
+    font-family: Verdana;
+}
+
+input, label {
+display:block;
+}
+
+label{
+    color: white;
+}
+
+.page-header{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url("mixedbread-backgroung-or-header.jpg");
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+
+.header-text{
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    text-align: center;
+    font-family: verdana;
+    color: white;
+}
+
+.container-main{
+    display:  flex;
+    flex-wrap: wrap;
+    border: 15px;
+}
+
+.flex-box{
+    flex-direction: column;
+    border: 10px;
+    padding: 10px;
+    
+}
+
+.sub-container{
+    float: left;
+    margin-right: 5px;
+}
+
+.flex-box-content{
+    border: 10px;
+    padding: 10px;
+    min-width: fit-content;
+    background-color: #D4CECD;
+    height: 230px;
+}
+
+.textBox-type-1{
+
+    border: 20px;
+    width: 160px;
+    height: 20px;
+}
+
+.radio-button{
+    display: inline;
+}
+
+.textBox-type-2{
+    border: 20px;
+    width: 330px;
+    height: 20px;
+}
