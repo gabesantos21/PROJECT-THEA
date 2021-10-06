@@ -20,8 +20,9 @@
     <title>Landing Page</title>
   </head>
   <body onload="onload()">
-  
+
   <?php 
+  
      $carousel_slider1_header = "Try our bestseller!";
      $carousel_slider1_text = "CHOCOLATE BANANA BREAD";
      $carousel_slider2_header = "Try our Tasty Cookies!";
@@ -32,19 +33,19 @@
      $section_header_about = "About us";
      $header_about = "Quality is our recipe";
      $text_about = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus doloremque in non? Autem nemo, voluptatum, sequi aliquam eligendi dolore quibusdam a perferendis fugit provident, nesciunt dignissimos neque corporis quo labore?
-     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, quia facere sint, minus explicabo ut modi! Ea, nesciunt minima.
-     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, ";
+     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, quia facere sint, minus explicabo ut modi! Ea, nesciunt minima";
+     $header_contact2 = "Lets Work Together";
+     $contact2_text = "Help us improve your experience by providing feedback.";
+     $contact2_email = "email@email.com";
+     $contact2_number = "999-999-999";
+     $contact2_address = "123 Street, Manila, Metro Manila";
      $section_header_contact = "Contact us";
      $header_contact1 = "Shoot us a Message";
      $contact_name = "Name";
      $contact_email = "Email";
      $contact_message = "Message";
      $cta_submit = "Submit";
-     $header_contact2 = "Lets Work Together";
-     $contact2_text = "Help us improve your experience by providing feedback.";
-     $contact2_email = "email@email.com";
-     $contact2_number = "999-999-999";
-     $contact2_address = "123 Street, Manila, Metro Manila";
+
   ?>
 
     <div class="section-page">

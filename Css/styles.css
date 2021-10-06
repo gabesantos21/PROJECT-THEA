@@ -131,7 +131,6 @@ nav {
   display: block;
 }
 
-
 .search-bar {
   display: flex;
   flex-direction: row;
@@ -659,7 +658,7 @@ main {
   display: flex;
   align-items: stretch;
   /* border: 1px solid purple; */
-  font-size: 30px;
+  font-size: 25px;
   height: 80%;
   padding: 20px 30px;
   background: #c8b8b2;
