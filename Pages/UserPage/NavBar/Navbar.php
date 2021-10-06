@@ -62,9 +62,9 @@
               <img src="../../../Assets/img/icons/search2.svg">
             </button>
         </form>
-          <li><a href="#AboutUs" class="home-link-about"><?php echo $nav_link_about?></a></li>
-          <li><a href="#ContactUs" class="home-link-contact"><?php echo $nav_link_contact?></a></li>
-          <li><a href="" class="nav-home-link"><img src="../../../Assets/img/icons/storefront.svg" alt="">&nbsp;<?php echo $nav_link_store?></a></li>
+          <li><a href="../Main/index.php#AboutUs" class="home-link-about"><?php echo $nav_link_about?></a></li>
+          <li><a href="../Main/index.php#ContactUs" class="home-link-contact"><?php echo $nav_link_contact?></a></li>
+          <li><a href="../Main/Store.php" class="nav-home-link"><img src="../../../Assets/img/icons/storefront.svg" alt="">&nbsp;<?php echo $nav_link_store?></a></li>
       </ul>
 
         <ul class="search">
@@ -78,19 +78,19 @@
 
         <div class="logo">
           <div style="position: relative" class="nav-home">
-              <li><a href="" class="nav-home-link"><?php echo $nav_link_home ?><img src="../../../Assets/img/icons/dropdown.svg" alt=""> |</a></li>
+              <li><a href="../../UserPage/Main/index.php" class="nav-home-link"><?php echo $nav_link_home ?><img src="../../../Assets/img/icons/dropdown.svg" alt=""> |</a></li>
               <div class="dropdown-content">
-                  <a href="#AboutUs" class="dropdown-items" style="letter-spacing: 1px;"><?php echo $nav_link_about?></a>
-                  <a href="#ContactUs" class="dropdown-items" style="letter-spacing: 1px;"><?php echo $nav_link_contact?></a>
+                  <a href="../Main/index.php#AboutUs" class="dropdown-items" style="letter-spacing: 1px;"><?php echo $nav_link_about?></a>
+                  <a href="../Main/index.php#ContactUs" class="dropdown-items" style="letter-spacing: 1px;"><?php echo $nav_link_contact?></a>
               </div>
           </div>
           <img src="../../../Assets/img/logo/text-logo.png" alt="Heavenly Baked By Ningning">
-          <li><a href="">| <?php echo $nav_link_store?></a></li>
+          <li><a href="../Main/Store.php">| <?php echo $nav_link_store?></a></li>
         </div>
 
         <ul class="user-nav-links" style="display: relative">
           <li>
-            <a href="">
+            <a href="" data-toggle="modal" data-target=".cart-modal-container">
               <img src="../../../Assets/img/icons/cart.svg" alt="">
             </a>
           </li>
@@ -112,6 +112,35 @@
           </li>
         </ul>
     </nav>
+
+     <!-- Cart Modal -->
+     <div class="modal fade bd-example-modal-lg cart-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content modal-container">
+          <div class="modal-header modal-header-center">
+            <h5 class="modal-title modal-title-size">Cart</h5>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post">
+              <div class="user-form">
+                <div class="form-group">
+                  <label for="inputEmail"><?php echo $modal_email ?></label>
+                  <input type="email" class="form-control" id="inputEmail" name="email" placeholder="" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword"><?php echo $modal_password ?></label>
+                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="submit-btn" name="submit"><?php echo  $modal_submit ?></button>
+                <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
      <!-- Login Modal -->
      <div class="modal fade bd-example-modal login-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
