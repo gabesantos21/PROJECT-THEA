@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/37cafce672.js" crossorigin="anonymous"></script>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>test</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');  
+	</style>
 </head>
 <body>
-<div class="page-header"><div class="header-text"><h2>CHECKOUT</h2></div></div>
+<div class="page-header"><div class="header-text">CHECKOUT</div></div>
 	<form>
 		<div class="container-main">		
-    		<div class="flex-box">
-    			<h4 class="contain-header">Billing Address</h4>
+    		<div class="flex-box-1">
+    			<h4>Billing Address</h4>
     			<div class ="flex-box-content">
     				<div class="sub-container">
     					<label for="given-Name">Given Name</label>
@@ -48,24 +57,71 @@
     					
     			</div>
     		</div>
-    		<div class="flex-box">
-    			<h4 class="contain-header">Payment</h4>
+    		<div class="flex-box-2">
+    			<h4>Payment</h4>
     			<div class ="flex-box-content">
     				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
-    				<label for="paymet-type-cash-on-delivery">Cash of Delivery</label>
+					Cash on Delivery<br>
     				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
-    				<label for="paymet-type-gcash">GCash</label>
+    				GCash<br>
     				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
-    				<label for="paymet-type-paymaya">Paymaya</label>
+    				Paymaya<br>
 
     				<br>
     				<label for="zip">Account Name</label>
     				<input class="textBox-type-1" type="text" name="zip">
+    				<p style="font-size: 10px;">Name as displayed on <br>	Paymaya/GCash account</p>
     				<label for="phone-Number">Account Number</label>
     				<input class="textBox-type-1" type="number" name="phone-Number">		
+    			</div>
+    		</div>	
+    		<div class="flex-box-3">		
+    			<div class ="flex-box-content-table" style="background-color: #C8B8B2;">
+    				<table class="summary-table">
+    				<th class="tc-1">Name:</th>
+    				<th>Qty.</th>
+    				<th>Price.</th>
+    				<tr>	
+    					<td>
+    					test		
+    					</td>
+    					<td>
+    						2
+    					</td>
+    					<td>
+    						300	
+    					</td>
+    				</tr>
+    				<tr>	
+    					<td>
+    					test		
+    					</td>
+    					<td>
+    						2
+    					</td>
+    					<td>
+    						300	
+    					</td>
+    				</tr>
+    			</table>
+    			</div>
+    			<div>
+    				
+    			</div>
+    			<div class="submit-field">	
+    					<p style="	display: inline;">Total Price: </p><input type="button" name="cancel" value="Cancel" class="button" style="	 background-color: white; color: #120B0A;"><input type="Submit" name="Checkout" value="Checkout" class="button">			
     			</div>
     		</div>
     	</div>
     </form>
+
+
+
+    <div class="footer" style="padding-right:5px;">
+    <i class="fas fa-phone-alt"></i> <i class="fab fa-viber"></i> <i class="fab fa-facebook"></i><br>
+    <div class="bottom-line"></div>
+    <div><p>email@email.com 999-999-999<br>123 Street,  Manila, Metro Manila</p></div>
+ 	</div>
+
 </body>
 </html>
