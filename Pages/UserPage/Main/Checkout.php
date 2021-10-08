@@ -1,3 +1,4 @@
+<?php include '../NavBar/Navbar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
