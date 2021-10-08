@@ -10,7 +10,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>test</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="../../../Css/styles-for-checkout.css">
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');  
 	</style>
