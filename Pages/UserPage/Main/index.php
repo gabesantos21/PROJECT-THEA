@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php include '../NavBar/Navbar.php' ?>
 
 <!DOCTYPE html>
@@ -16,13 +17,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../../Css/styles.css?v=<?php echo time(); ?>">
-    <title>Landing Page</title>
+    <link rel="stylesheet" href="../../../Css/styles.css">
+    <title>Home</title>
   </head>
   <body onload="onload()">
 
   <?php 
-  
+
      $carousel_slider1_header = "Try our bestseller!";
      $carousel_slider1_text = "CHOCOLATE BANANA BREAD";
      $carousel_slider2_header = "Try our Tasty Cookies!";
@@ -46,6 +47,17 @@
      $contact_message = "Message";
      $cta_submit = "Submit";
 
+     if (isset($_GET["action"])) {
+      if ($_GET["action"] == "delete") {
+        echo "<script>
+        $('#success-remove-alert')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#success-remove-alert').slideUp(500);
+        });
+              </script>";
+      }
+    }
   ?>
 
     <div class="section-page">
@@ -89,7 +101,7 @@
             </div>
             <div class="cta">
               <form action="" method>
-                  <button class="cta-add" type="submit"><?php echo $cta_store ?></button>
+                  <a class="cta-add" type="submit" href="store.php"><?php echo $cta_store ?></a>
               </form>
               <div class="slider-select">
                 <span class="dot active" onclick="currentSlide(1)"></span>

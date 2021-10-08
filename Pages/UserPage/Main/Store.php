@@ -1,4 +1,8 @@
-<?php include '../NavBar/Navbar.php' ?>
+<?php session_start(); ?>
+<?php 
+include '../NavBar/Navbar.php';
+include '../../../Sql/dbConnection.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,111 +20,89 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../../Css/styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../../Css/styles.css">
     <title>Store</title>
   </head>
   <body onload="onload()">
   <?php 
-    $store_header = "Shop"
+    $store_header = "Shop";
+
+  //   if (isset($_SESSION["shopping_cart"])) {
+  //     $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+  //     if (in_array(@$_GET["id"], $item_array_id)) {
+  //       echo "<script>
+  //         $('#duplicate-item-alert')
+  //           .fadeTo(2000, 500)
+  //           .slideUp(500, function () {
+  //             $('#duplicate-item-alert').slideUp(500);
+  //           });
+  //             </script>";
+  //     } 
+  //     foreach ($item_array_id as $keys => $values) {
+  //       echo "<br>SESSION : " .$values;
+  //     }
+
+
+  // }
+     if (isset($_GET["action"])) {
+      if ($_GET["action"] == "add") {
+        echo "<script>$('#success-alert')
+                .fadeTo(2000, 500)
+                .slideUp(500, function () {
+                  $('#success-alert').slideUp(500);
+                });
+              </script>";
+      }
+    }
+      
   ?>
 
-<div class="section-page">
+    <div class="section-page">
       <div class="container-fluid about-header header-division">Store</div>
       <div class="products-container">
-          <div class="card">
-            <img
-              class="card-img-top product-image"
-              src="../../../Assets/img/backgrounds/Chocobananabread.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body card-product-container">
-              <h3 class="card-title center-title">Choco Banana Bread</h3>
-              <div class="card-text center-title">
-                <h5>PHP 100</h5>
-              </div>
-              <p class="card-text justify-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore, aut deserunt? Minima ipsa, ab iusto perferendis
-                repellendus sequi nesciunt dolor numquam veniam praesentium
-                error accusamus, eum delectus dignissimos natus nisi?
-              </p>
-              <div class="action-container">
-                <input
-                  type="submit"
-                  class="cta-product add-to-cart-btn"
-                  value="Add to Cart"
-                />
-                <input
-                  type="submit"
-                  class="cta-product checkout-btn"
-                  value="Checkout"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              class="card-img-top product-image"
-              src="../../../Assets/img/backgrounds/chococookies.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body card-product-container">
-              <h3 class="card-title center-title">Chocolate Cookies</h3>
-              <div class="card-text center-title">
-                <h5>PHP 100</h5>
-              </div>
-              <p class="card-text justify-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore, aut deserunt? Minima ipsa, ab iusto perferendis
-                repellendus sequi nesciunt dolor numquam veniam praesentium
-                error accusamus, eum delectus dignissimos natus nisi?
-              </p>
-              <div class="action-container">
-                <input
-                  type="submit"
-                  class="cta-product add-to-cart-btn"
-                  value="Add to Cart"
-                />
-                <input
-                  type="submit"
-                  class="cta-product checkout-btn"
-                  value="Checkout"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              class="card-img-top product-image"
-              src="../../../Assets/img/backgrounds/nuttyOats.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body card-product-container">
-              <h3 class="card-title center-title">Nutty Oats</h3>
-              <div class="card-text center-title">
-                <h5>PHP 100</h5>
-              </div>
-              <p class="card-text justify-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore, aut deserunt? Minima ipsa, ab iusto perferendis
-                repellendus sequi nesciunt dolor numquam veniam praesentium
-                error accusamus, eum delectus dignissimos natus nisi?
-              </p>
-              <div class="action-container">
-                <input
-                  type="submit"
-                  class="cta-product add-to-cart-btn"
-                  value="Add to Cart"
-                />
-                <input
-                  type="submit"
-                  class="cta-product checkout-btn"
-                  value="Checkout"
-                />
-              </div>
-            </div>
-          </div>
-      </div>
+        <?php
+            $sql = "SELECT * FROM product_list";
+            $result = mysqli_query($conn, $sql);
+            $row_size = mysqli_num_rows($result);
+            while ($row = mysqli_fetch_array($result)) {
+                    echo "          <div class='card'>";
+                    echo "            <div class='product-image-container'> ";
+                    echo "              <img";
+                    echo "                class='card-img-top product-image'";
+                    echo "                src='../../../Assets/img/backgrounds/". $row['image']."'";
+                    echo "                alt='Card image cap'";
+                    echo "               />";
+                    echo "             </div>";
+                    echo "            <div class='card-body card-product-container'>";
+                    echo "              <h3 class='card-title center-title'>".$row['name']."</h3>";
+                    echo "              <div class='card-text center-title'>";
+                    echo "                <h5>PHP ".$row['price']."</h5>";
+                    echo "              </div>";
+                    echo "              <p class='card-text justify-text'>";
+                    echo "                 ".$row['description']."";
+                    echo "              </p>";
+                    echo "              <div class='action-container'>";
+                    echo "                  <form action='store.php?action=add&id=".$row['id']."' method='post' class='form-add-to-cart'>";
+                    echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                    echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
+                    echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
+                    echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
+                    echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
+                    echo "                  </form>";
+                    echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
+                    echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                    echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
+                    echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
+                    echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
+                    echo "                    <input type='submit' class='cta-product checkout-btn' value='Checkout' name='checkout'/>";
+                    echo "                  </form>";
+                    echo "              </div>";
+                    echo "            </div>";
+                    echo "          </div>";
+                }
+                ?>
+        </div>
     </div>
+    <div class="bottom-border"></div>
   </body>
 </html>

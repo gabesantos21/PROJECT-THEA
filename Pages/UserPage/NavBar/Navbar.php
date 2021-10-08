@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../../Css/styles.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -16,6 +16,7 @@
   <body>
 
       <?php 
+
       // if true loads registered user navbar else guest navbar
       $_SESSION['userLogged'] = "true";
 
@@ -36,8 +37,9 @@
       $modal_email = "Email";
       $modal_password = "Password";
       $modal_submit = "Submit";
+      $modal_checkout = "Checkout";
       $modal_close = "Close";
-      $modal_givenName = "Given Name";
+      $modal_givenName = "Name";
       $modal_surname = "Surname";
       $modal_CPassword = "Confirm Password";
       $modal_number = "Phone Number";
@@ -47,8 +49,47 @@
       $modal_city = "City";
       $modal_barangay = "Barangay";
       $modal_zip = "ZIP";
+
+      if (isset($_POST["add_to_cart"])) {
+        if (isset($_SESSION["shopping_cart"])) {
+            $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+            if (!in_array($_GET["id"], $item_array_id)) {
+                $count = count($_SESSION["shopping_cart"]);
+                $item_array = array(
+                    'item_id'           =>    $_GET["id"],
+                    'item_name'         =>    $_POST["productName"],
+                    'item_price'        =>    $_POST["productPrice"],
+                    'item_quantity'     =>    $_POST["productQuantity"],
+                    'item_image'        =>    $_POST["productImage"],
+                );
+                $_SESSION["shopping_cart"][$count] = $item_array;
+            } else{
+            echo '<script>alert("Item Already Added")</script>';
+            }
+        } else {
+            $item_array = array(
+                'item_id'           =>    $_GET["id"],
+                'item_name'         =>    $_POST["productName"],
+                'item_price'        =>    $_POST["productPrice"],
+                'item_quantity'     =>    $_POST["productQuantity"],
+                'item_image'        =>    $_POST["productImage"],
+            );
+            $_SESSION["shopping_cart"][0] = $item_array;
+        }
+    }
+  
+    if (isset($_GET["action"])) {
+        if ($_GET["action"] == "delete") {
+            foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+                if ($values["item_id"] == $_GET["id"]) {
+                    unset($_SESSION["shopping_cart"][$keys]);
+                }
+            }
+        }
+    } 
+
       ?>
- 
+      
     <nav>
       <div class="burger">
             <div class="line1"></div>
@@ -84,8 +125,12 @@
                   <a href="../Main/index.php#ContactUs" class="dropdown-items" style="letter-spacing: 1px;"><?php echo $nav_link_contact?></a>
               </div>
           </div>
-          <img src="../../../Assets/img/logo/text-logo.png" alt="Heavenly Baked By Ningning">
-          <li><a href="../Main/Store.php">| <?php echo $nav_link_store?></a></li>
+          <div class=logo-img-container>
+            <a href="../Main/index.php"><img src="../../../Assets/img/logo/text-logo.png" alt="Heavenly Baked By Ningning"></a>
+          </div>
+          <li>
+            <a href="../Main/Store.php">| <?php echo $nav_link_store?></a>
+          </li>
         </div>
 
         <ul class="user-nav-links" style="display: relative">
@@ -113,30 +158,78 @@
         </ul>
     </nav>
 
-     <!-- Cart Modal -->
-     <div class="modal fade bd-example-modal-lg cart-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="alert-container-nav" id="success-alert">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully added to cart!
+      </div>
+    </div>
+
+    <div class="alert-container-nav" id="success-remove-alert">
+      <div class="alert alert-success alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully removed from cart!
+      </div>
+    </div>
+
+    <!-- <div class="alert-container-nav" id="duplicate-item-alert">
+      <div class="alert alert-danger alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Uh oh! That item has already been added to the cart!
+      </div>
+    </div> -->
+
+    <script>$("#success-alert").hide();</script>
+    <script>$("#success-remove-alert").hide();</script>
+    <script>$("#duplicate-item-alert").hide();</script>
+
+      <!-- Cart Modal -->
+  <div class="modal fade bd-example-modal-lg cart-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content modal-container">
           <div class="modal-header modal-header-center">
             <h5 class="modal-title modal-title-size">Cart</h5>
           </div>
           <div class="modal-body">
-            <form action="" method="post">
-              <div class="user-form">
-                <div class="form-group">
-                  <label for="inputEmail"><?php echo $modal_email ?></label>
-                  <input type="email" class="form-control" id="inputEmail" name="email" placeholder="" required>
+            <table class="table table-sm table-hover">
+              <thead class="dark">
+                <?php if (!empty($_SESSION["shopping_cart"])) {
+                  $total = 0;?>
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody> <?php foreach ($_SESSION["shopping_cart"] as $keys => $values) { ?>
+                <tr>
+                  <td scope="row" style="vertical-align: middle;"><?php echo $values["item_name"]; ?></td>
+                  <td><?php echo $values["item_quantity"]; ?></td>
+                  <td>Php <?php echo $values["item_price"]; ?></td>
+                  <td>Php <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
+                  <td><a href="../Main/index.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span style="color: #281816;">Remove</span></a></td>
+                </tr><?php @$total = @$total + ($values["item_quantity"] * $values["item_price"]); 
+                      }?>
+                <tr>
+                  <td colspan="3"></td>
+                  <td style="color: rgb(67 53 52); font-weight: bold;">Php <?php echo number_format(@$total, 2); ?></td>
+                  <td colspan="1"></td>
+                </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+            <?php
+              if (empty($_SESSION["shopping_cart"])){ ?>
+                <div class="no-item-cart">
+                  You have nothing in your cart. Click <a href="../Main/Store.php">store</a> to add items to your cart!
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword"><?php echo $modal_password ?></label>
-                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="submit-btn" name="submit"><?php echo  $modal_submit ?></button>
-                <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
-              </div>
-            </form>
+            <?php } ?>
+            <div class="modal-footer">
+                  <button type="submit" class="submit-btn" name="submit"><?php echo  $modal_checkout ?></button>
+                  <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
+            </div>
           </div>
         </div>
       </div>
