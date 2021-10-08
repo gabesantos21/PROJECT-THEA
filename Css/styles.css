@@ -19,6 +19,14 @@ input::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Place import fonts here */
 @import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
 @font-face {
@@ -36,6 +44,39 @@ input::-webkit-search-cancel-button {
 
 /* NAV CSS */
 
+.alert-container-nav {
+  text-align: center;
+}
+
+.success-alert-gold {
+  background: #fccd12;
+  color: white;
+  border: #fccd12;
+}
+
+.alert {
+  text-align: center;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.dark {
+  background: #433534;
+}
+
+.no-item-cart {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0 35px 0;
+  font-size: 18px;
+  color: #433534;
+}
+
+.no-item-cart a {
+  color: #a99237;
+}
 nav {
   display: flex;
   justify-content: space-evenly;
@@ -186,10 +227,16 @@ nav {
   text-decoration: none;
   font-size: 18px;
   letter-spacing: 3px;
+  flex-shrink: 0;
 }
 
 .logo img {
-  width: 30%;
+  width: 60%;
+}
+
+.logo-img-container {
+  text-align: center;
+  width: 300px;
 }
 
 .search {
@@ -516,6 +563,7 @@ main {
   border: none;
   color: #433534;
   margin: 30px 0px;
+  padding: 10px;
   font-family: "Alata", sans-serif;
 }
 
@@ -863,6 +911,11 @@ main {
   flex-wrap: wrap;
 }
 
+.product-image-container {
+  background: #281816;
+  height: 62%;
+}
+
 .card {
   width: 32%;
   margin: 0 0 30px 0;
@@ -904,11 +957,12 @@ main {
 
 .cta-product {
   margin: 10px 0;
-  width: 40%;
+  width: 100%;
   padding: 10px 0;
   border: 0;
   border-radius: 10px;
   cursor: pointer;
+  text-align: center;
 }
 
 .add-to-cart-btn {
@@ -916,9 +970,23 @@ main {
   color: #281816;
 }
 
+.add-to-cart-btn:hover {
+  color: #fbfdfe;
+  background: #281816;
+}
+
 .checkout-btn {
   background: #281816;
   color: #fbfdfe;
+}
+
+.checkout-btn:hover {
+  color: #281816;
+  background: #fbfdfe;
+}
+
+.form-add-to-cart {
+  width: 40%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -938,3 +1006,5 @@ main {
     width: 100%;
   }
 }
+
+/* Cart */
