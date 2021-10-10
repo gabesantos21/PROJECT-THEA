@@ -1,5 +1,12 @@
+html{
+	height: 100%;
+}
 
-	body{
+html,body{
+	overflow-x: hidden;
+}
+
+body{
 		background-color: #C8B8B2;
 		height: 100%;
 	}
@@ -10,28 +17,25 @@
 	}
 
 	input, label {
-    display:block;
+	display:block;
 	}
 
 	label{
 		color: white;
 		font-family: 'Alata', sans-serif;
 	}
-
+	
+	/*implementing lovelo*/
 	@font-face {
-    font-family: "Lovelo";
-    src: url("Lovelo-black.ttf");
+	font-family: "Lovelo";
+	src: url(../Assets/fonts/Lovelo-Black.ttf);
 	}
 
 	input, label {
-    display:block;
+	display:block;
 	}
 
-	tr{
-		border-bottom: solid;
-		border-width: 2px;
-		border-color: white;
-	}
+	/*table design*/
 
 	tr:last-of-type{
 		border-bottom: solid;
@@ -39,22 +43,46 @@
 		border-color: white;
 	}
 
+	.summary-table{
+		background-color: #C8B8B2;
+		border: 15px;
+		width: 100%;
+		border-collapse: collapse;
+
+	}
+
+	.submit-field{
+		display: inline;
+		text-align: right;
+		padding: 5px;
+	}
+
+
+	/*header*/
 	.page-header{
-		background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url("mixedbread-backgroung-or-header.jpg");
+		background-image:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url("../Assets/img/backgrounds/mixedbread-backgroung-or-header.jpg");
 		width: 100%;
 		height: 90px;
 		overflow: hidden;
 	}
 
 	.header-text{
-		position: Absolute;
-		top: 5%;
+		position: static;
+		margin-top: 20px;
 		font-size: 30px;
 		font-weight: bold;
-		left: 50%;
-		right: 50%;
+		margin-left: 46%;
 		font-family: 'Lovelo', sans-serif;
 		color: white;
+	}
+
+	/*main body*/
+
+	.checkout-border{
+		border: solid;
+		border-width: 30px;
+		color: white;
+		width: 100%;
 	}
 
 	.container-main{
@@ -62,6 +90,7 @@
 		flex-wrap: wrap;
 		border: 15px;
 		justify-content: center;
+		height: 100%;
 	}
 
 	.flex-box-1{
@@ -104,17 +133,19 @@
 		height: 260px;
 		color: white;
 		font-family: 'Alata', sans-serif;
+		line-height: 1;
 	}
 
 	.flex-box-content-table{
 		padding: 10px;
 		min-width: 100%;
-		background-color: #D4CECD;
+		background-color: transparent;
 		height: 250px;
 		color: white;
 		font-family: 'Alata', sans-serif;
 	}
-
+	
+	/*inputs*/
 	.textBox-type-1{
 		border: 20px;
 		width: 160px;
@@ -132,6 +163,7 @@
 		height: 30px;
 		margin: 3px;
 		border: 1px;
+		padding: 5px;
 		background-color: #120B0A;
 		display: inline	;
 		font-family:  'Alata', sans-serif;
@@ -148,25 +180,12 @@
 		border-width: 2px;
 	}
 
-	.summary-table{
-		background-color: #C8B8B2;
-		border: 15px;
-		width: 100%;
-		border-collapse: collapse;
-
-	}
-
-	.submit-field{
-		display: inline;
-		text-align: right;
-	}
-
+	/*Footer*/
 	.footer{
-		position: absolute;
-		right: 5px; 
-		width: 1000px; 
+		position: static; 
+		width: 100%; 
 		text-align:right;
-		margin-top: 110px;
+		margin-top: 150px;
 	}
 
 	.fa-phone-alt{
@@ -185,25 +204,14 @@
 	}
 
 	th{
- 		border-bottom: 2px solid white;
+		 border-bottom: 2px solid white;
 	}
 
 	.tc-1{
 		width: 70%;
 		text-align: left;
-	}
-
-
-	.table-bottom-line{
-		width: 100%;
-		background-color: white;
-		color: white;
-		border: solid;
-		border-width: 1px;
-		margin-top: 280px;
-		display: inline-block;
-	}
-
+	}	
+	
 	.bottom-line{
 		width: 260px;
 		height: 1px;
@@ -214,30 +222,59 @@
 		display: inline-block;
 		bottom: 1px;
 	}
+	
 
+	/*media adjustments*/
 	@media all and (max-width: 500px) {
-	.textBox-type-1{
+		.textBox-type-1{
 		border: 20px;
-		width: 120px;
+		width: 119px;
 		height: 20px;
 		border: solid;
 		border-color: #C8B8B2;
 		border-width: 2px;
-	}
+		}
 
-	.textBox-type-2{
+		.textBox-type-2{
 		border: 20px;
-		width: 249px;
+		width: 248px;
 		height: 20px;
 		border: solid;
 		border-color: #C8B8B2;
 		border-width: 2px;
-	}
+		}
 
-	.summary-table{
+		.summary-table{
 		background-color: #C8B8B2;
 		border: 15px;
 		width: 250px;
+
+		}
+
+		.header-text{
+			position: static;
+			margin-top: 20px;
+			font-size: 30px;
+			font-weight: bold;
+			margin-left: 27%;
+			font-family: 'Lovelo', sans-serif;
+			color: white;
+		}
+
+		.checkout-border{
+			border: solid;
+			border-width: 30px;
+			color: white;
+			height: auto;
+		}
+
+		.footer{
+			position: relative;
+			right: 0px; 
+			width: 1000px; 
+			text-align:right;
+			bottom: 0px;
+		}
 
 	}
 
@@ -245,7 +282,7 @@
 
 	.textBox-type-1{
 		border: 20px;
-		width: 110px;
+		width: 100px;
 		height: 20px;
 		border: solid;
 		border-color: #C8B8B2;
@@ -254,7 +291,7 @@
 
 	.textBox-type-2{
 		border: 20px;
-		width: 230px;
+		width: 219px;
 		height: 20px;
 		border: solid;
 		border-color: #C8B8B2;
@@ -268,20 +305,38 @@
 
 	}
 
-	.table-bottom-line{
-		width: 250px;
-		background-color: white;
+	.header-text{
+		top: 15%;
+		font-size: 30px;
+		font-weight: bold;
+		left: 15%;
+		font-family: 'Lovelo', sans-serif;
 		color: white;
-		border: solid;
-		border-width: 1px;
-		margin-top: 280px;
-		display: inline-block;
 	}
+
+	.checkout-border{
+		border: solid;
+		border-width: 30px;
+		color: white;
+		height: auto;
+		width: 100%;
+	}
+
+	.footer{
+		position: relative;
+		right: 0px; 
+		width: 1000px; 
+		text-align:right;
+		bottom: 0px;
+	}
+
+	}
+
 
 	@media all and (max-width: 280px) {
 	.textBox-type-1{
 		border: 20px;
-		width: 108px;
+		width: 75px;
 		height: 20px;
 		border: solid;
 		border-color: #C8B8B2;
@@ -290,7 +345,7 @@
 
 	.textBox-type-2{
 		border: 20px;
-		width: 230px;
+		width: 193px;
 		height: 20px;
 		border: solid;
 		border-color: #C8B8B2;
@@ -300,21 +355,37 @@
 	.summary-table{
 		background-color: #C8B8B2;
 		border: 15px;
-		width: 250px;
+		width: 200px;
 
 	}
 
-	.table-bottom-line{
-		width: 250px;
-		background-color: white;
+	.header-text{
+		top: 15%;
+		font-size: 30px;
+		font-weight: bold;
+		left: 5%;
+		font-family: 'Lovelo', sans-serif;
 		color: white;
+	}
+	
+	.checkout-border{
 		border: solid;
-		border-width: 1px;
-		margin-top: 280px;
-		display: inline-block;
+		border-width: 30px;
+		color: white;
+		height: auto;
 	}
 
+	.footer{
+		position: relative;
+		right: 0px; 
+		width: 150px; 
+		text-align:right;
+		bottom: 0px;
+		font-size: 8px;
+	}
+
+	.bottom-line{
+		width: 150px;
+	}
 		
 	}
-}
-}

@@ -16,7 +16,8 @@
 	</style>
 </head>
 <body>
-<div class="page-header"><div class="header-text">CHECKOUT</div></div>	
+<div class = "checkout-border">
+	<div class="page-header"><div class="header-text">CHECKOUT</div></div>	
 	<form>
 		<div class="container-main">		
     		<div class="flex-box-1">
@@ -77,7 +78,7 @@
     			</div>
     		</div>	
     		<div class="flex-box-3">		
-    			<div class ="flex-box-content-table" style="background-color: #C8B8B2;">
+    			<div class ="flex-box-content-table">
     				<table class="summary-table">
     				<th class="tc-1">Name:</th>
     				<th>Qty.</th>
@@ -113,16 +114,16 @@
     					<p style="	display: inline;">Total Price: </p><input type="button" name="cancel" value="Cancel" class="button" style="	 background-color: white; color: #120B0A;"><input type="Submit" name="Checkout" value="Checkout" class="button">			
     			</div>
     		</div>
+
+		<div class="footer" style="padding-right:5px;">
+   		<i class="fas fa-phone-alt"></i> <i class="fab fa-viber"></i> <i class="fab fa-facebook"></i><br>
+   		<div class="bottom-line"></div>
+   		<div><p>email@email.com 999-999-999<br>123 Street,  Manila, Metro Manila</p></div>
+ 		</div>
+		
     	</div>
     </form>
-
-
-
-    <div class="footer" style="padding-right:5px;">
-    <i class="fas fa-phone-alt"></i> <i class="fab fa-viber"></i> <i class="fab fa-facebook"></i><br>
-    <div class="bottom-line"></div>
-    <div><p>email@email.com 999-999-999<br>123 Street,  Manila, Metro Manila</p></div>
- 	</div>
-
+	
+</div>
 </body>
 </html>
