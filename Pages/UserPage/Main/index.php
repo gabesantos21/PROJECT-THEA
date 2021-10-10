@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php include '../NavBar/Navbar.php' ?>
 
 <!DOCTYPE html>
@@ -46,7 +45,11 @@
      $contact_email = "Email";
      $contact_message = "Message";
      $cta_submit = "Submit";
+     $product1 = "Chocobananabread.jpg";
+     $product2 = "chococookies.jpg";
+     $product3 = "chococookies.jpg";
 
+    //  gets status and displays alert (alerts are stored in the navbar)
      if (isset($_GET["action"])) {
       if ($_GET["action"] == "delete") {
         echo "<script>
@@ -64,13 +67,13 @@
       <main>
         <section class="presentation">
           <div class="cover slider1">
-            <img src="../../../Assets/img/backgrounds/Chocobananabread.jpg" alt="" />
+            <img src="../../../Assets/img/products/<?php echo $product1 ?>" alt="" />
           </div>
           <div class="cover slider2">
-            <img src="../../../Assets/img/backgrounds/chococookies.jpg" alt=""/>
+            <img src="../../../Assets/img/products/<?php echo $product2 ?>" alt=""/>
           </div>
           <div class="cover slider3">
-            <img src="../../../Assets/img/backgrounds/nuttyOats.jpg" alt=""/>
+            <img src="../../../Assets/img/products/<?php echo $product3 ?>" alt=""/>
           </div>
           <div class="introduction">
             <div class="intro-text slider-info1">
@@ -129,12 +132,12 @@
       </div>
     </div>
 
-    <div class="section-page" id="ContactUs">
+    <div class="section-page last-section" id="ContactUs">
       <div class="container-fluid contact-header header-division">
       <?php echo $section_header_contact ?>
       </div>
       <div class="about-content">
-        <form action="" method="" class="contact-form-container">
+        <form action="mailto:homebakedbyningning@gmail.com" class="contact-form-container" method="POST" enctype=”multipart/form-data”>
           <h2><?php echo $header_contact1 ?></h2>
           <div class="contact-form">
             <label for="inputName"><?php echo $contact_name ?></label>
@@ -172,9 +175,15 @@
           <h2><?php echo $header_contact2 ?></h2>
           <h3><?php echo $contact2_text ?></h3>
           <div class="social-icons">
+            <a href="tel:+09156316975">
             <img src="../../../Assets/img/icons/call.svg" alt="" />
+            </a>
+            <a href="viber://add?number=09156316975">
             <img src="../../../Assets/img/icons/viber.svg" alt="" />
+            </a>
+            <a href="https://www.facebook.com/HeavenlyBakedByNingning" target="_blank">
             <img src="../../../Assets/img/icons/facebook.svg" alt="" />
+            </a>
           </div>
           <div class="contact-information">
             <h3><?php echo $contact2_email ?></h3>

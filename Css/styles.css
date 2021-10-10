@@ -464,8 +464,64 @@ main {
   font-family: "Alata", sans-serif;
 }
 
+.sticky-button {
+  height: 70px;
+  position: fixed;
+  bottom: 12%;
+  right: 4.5%;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgb(205, 185, 140);
+  border: 3px solid white;
+  z-index: 99;
+}
+
+.exit-edit-mode {
+  padding: 10px;
+  position: fixed;
+  bottom: 20%;
+  right: 5.1%;
+  border-radius: 50%;
+  background: rgb(225 136 136);
+  border: 3px solid white;
+  z-index: 99;
+}
+
+.width-img-submit {
+  width: 75%;
+}
+
+.white-border-cover {
+  border: 3px solid white;
+}
+
+.width-input {
+  width: 55%;
+}
+
+.file-slider {
+  align-self: center;
+  justify-content: center;
+}
+
+.image-submit {
+  width: 45px;
+}
+
+.margin-input {
+  margin: 15px 0;
+}
+
+.sticky-button img {
+  width: 45px;
+}
+
 .section-page {
   margin: 30px;
+}
+
+.last-section {
+  margin-bottom: 60px;
 }
 
 .presentation {
@@ -486,6 +542,7 @@ main {
 .intro-text {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .intro-text h1 {
@@ -721,6 +778,7 @@ main {
   background: #f4ede1;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 30px 0 0;
 }
 
@@ -897,6 +955,8 @@ main {
 }
 
 .bottom-border {
+  position: relative;
+  bottom: 0;
   width: 100%;
   height: 30px;
   background: #c8b8b2;
@@ -907,8 +967,17 @@ main {
 
 .products-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+}
+
+.column-direction {
+  flex-direction: column;
+  height: auto;
+}
+
+.column-margin {
+  margin: 10px;
 }
 
 .product-image-container {
@@ -989,11 +1058,15 @@ main {
   width: 40%;
 }
 
+.form-control {
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 1000px) {
   .action-container {
     flex-direction: column;
   }
-  .cta-product {
+  .form-add-to-cart {
     width: 100%;
   }
 }

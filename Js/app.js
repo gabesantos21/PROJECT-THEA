@@ -103,15 +103,7 @@ function showSlides(n) {
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex - 1].style.display = "block";
+  slides[slideIndex - 1].style.display = "flex";
   slideContent[slideIndex - 1].style.display = "flex";
   dots[slideIndex - 1].className += " active";
-}
-
-function showSuccessAlert() {
-  $("#success-remove-alert")
-    .fadeTo(2000, 500)
-    .slideUp(500, function () {
-      $("#success-remove-alert").slideUp(500);
-    });
 }

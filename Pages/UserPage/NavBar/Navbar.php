@@ -1,3 +1,6 @@
+<?php session_start(); ?>
+<?php include '../../../Sql/dbConnection.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +21,7 @@
       <?php 
 
       // if true loads registered user navbar else guest navbar
-      $_SESSION['userLogged'] = "true";
+      $_SESSION['userLogged'] = "false";
 
       $dropdown_user = "User"; 
       $dropdown_greet_user = "Hi, " . $dropdown_user;
@@ -97,8 +100,8 @@
             <div class="line3"></div>
       </div>
       <ul class="nav-links">
-        <form action="/" method="GET" class="search-bar" style="margin: 30px 0;">
-            <input type="search" placeholder="<?php echo $nav_search_placeholder?>" class="search-field-responsive"/>
+        <form action="store.php" method="GET" class="search-bar" style="margin: 30px 0;">
+            <input type="search" name="s" placeholder="<?php echo $nav_search_placeholder?>" class="search-field-responsive"/>
             <button type="submit" class="search-button">
               <img src="../../../Assets/img/icons/search2.svg">
             </button>
@@ -109,8 +112,8 @@
       </ul>
 
         <ul class="search">
-        <form action="/" method="GET" class="search-bar">
-          <input type="search" placeholder="<?php echo $nav_search_placeholder?>" name="search-item" class="search-field"/>
+        <form action="store.php" method="GET" class="search-bar">
+          <input type="search" placeholder="<?php echo $nav_search_placeholder?>" name="s" class="search-field"/>
           <button type="submit" class="search-button">
             <img src="../../../Assets/img/icons/search.svg">
           </button>
@@ -181,7 +184,7 @@
 
     <script>$("#success-alert").hide();</script>
     <script>$("#success-remove-alert").hide();</script>
-    <script>$("#duplicate-item-alert").hide();</script>
+    <!-- <script>$("#duplicate-item-alert").hide();</script> -->
 
       <!-- Cart Modal -->
   <div class="modal fade bd-example-modal-lg cart-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

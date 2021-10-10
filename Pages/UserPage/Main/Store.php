@@ -1,8 +1,4 @@
-<?php session_start(); ?>
-<?php 
-include '../NavBar/Navbar.php';
-include '../../../Sql/dbConnection.php';
-?>
+<?php include '../NavBar/Navbar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,27 +20,25 @@ include '../../../Sql/dbConnection.php';
     <title>Store</title>
   </head>
   <body onload="onload()">
+
   <?php 
     $store_header = "Shop";
 
-  //   if (isset($_SESSION["shopping_cart"])) {
-  //     $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-  //     if (in_array(@$_GET["id"], $item_array_id)) {
-  //       echo "<script>
-  //         $('#duplicate-item-alert')
-  //           .fadeTo(2000, 500)
-  //           .slideUp(500, function () {
-  //             $('#duplicate-item-alert').slideUp(500);
-  //           });
-  //             </script>";
-  //     } 
-  //     foreach ($item_array_id as $keys => $values) {
-  //       echo "<br>SESSION : " .$values;
-  //     }
+    // if (isset($_SESSION["shopping_cart"])) {
+    //   $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+    //   if (in_array(@$_GET["id"], $item_array_id)) {
+    //     echo "<script>
+    //       $('#duplicate-item-alert')
+    //         .fadeTo(2000, 500)
+    //         .slideUp(500, function () {
+    //           $('#duplicate-item-alert').slideUp(500);
+    //         });
+    //           </script>";
+    //   } 
+    // }
 
-
-  // }
-     if (isset($_GET["action"])) {
+    //  gets status and displays alert (alerts are stored in the navbar)
+    if (isset($_GET["action"])) {
       if ($_GET["action"] == "add") {
         echo "<script>$('#success-alert')
                 .fadeTo(2000, 500)
@@ -53,10 +47,74 @@ include '../../../Sql/dbConnection.php';
                 });
               </script>";
       }
-    }
-      
-  ?>
+    }?>
+    
+    <?php 
+    
+    if(isset($_GET["s"])){
+      $productName = $_GET["s"];
+      $productName = htmlspecialchars($productName);
+      $productName = mysqli_real_escape_string($conn, $productName); 
 
+      $sql = "SELECT * FROM product_list WHERE (`name` LIKE '%" . $productName . "%') OR (`Name` LIKE '%" . $productName . "%')";
+      $result = mysqli_query($conn, $sql);
+
+      $sql2 = "SELECT * FROM product_list WHERE (`name` LIKE '%" . $productName . "%') OR (`Name` LIKE '%" . $productName . "%')";
+      $ifExists = mysqli_query($conn, $sql2);
+
+    ?>
+    <div class="section-page">
+      <div class="container-fluid about-header header-division"><?php echo $store_header ?></div>
+      <div class="products-container">
+        <?php
+
+            if(!($row = mysqli_fetch_array($ifExists))){
+              echo "Product not found!";
+            }
+            else{
+              while ($row = mysqli_fetch_array($result)) {
+                      echo "          <div class='card'>";
+                      echo "            <div class='product-image-container'> ";
+                      echo "              <img";
+                      echo "                class='card-img-top product-image'";
+                      echo "                src='../../../Assets/img/products/". $row['image']."'";
+                      echo "                alt='Card image cap'";
+                      echo "               />";
+                      echo "             </div>";
+                      echo "            <div class='card-body card-product-container'>";
+                      echo "              <h3 class='card-title center-title'>".$row['name']."</h3>";
+                      echo "              <div class='card-text center-title'>";
+                      echo "                <h5>PHP ".$row['price']."</h5>";
+                      echo "              </div>";
+                      echo "              <p class='card-text justify-text'>";
+                      echo "                 ".$row['description']."";
+                      echo "              </p>";
+                      echo "              <div class='action-container'>";
+                      echo "                  <form action='store.php?action=add&id=".$row['id']."' method='post' class='form-add-to-cart'>";
+                      echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                      echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
+                      echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
+                      echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
+                      echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
+                      echo "                  </form>";
+                      echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
+                      echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                      echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
+                      echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
+                      echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
+                      echo "                    <input type='submit' class='cta-product checkout-btn' value='Checkout' name='checkout'/>";
+                      echo "                  </form>";
+                      echo "              </div>";
+                      echo "            </div>";
+                      echo "          </div>";
+                  }
+                }
+                ?>
+      </div>
+    </div>
+    <?php 
+    }
+    else{ ?>
     <div class="section-page">
       <div class="container-fluid about-header header-division">Store</div>
       <div class="products-container">
@@ -69,11 +127,11 @@ include '../../../Sql/dbConnection.php';
                     echo "            <div class='product-image-container'> ";
                     echo "              <img";
                     echo "                class='card-img-top product-image'";
-                    echo "                src='../../../Assets/img/backgrounds/". $row['image']."'";
+                    echo "                src='../../../Assets/img/products/". $row['image']."'";
                     echo "                alt='Card image cap'";
                     echo "               />";
                     echo "             </div>";
-                    echo "            <div class='card-body card-product-container'>";
+                    echo "            <di`v class='card-body card-product-container'>";
                     echo "              <h3 class='card-title center-title'>".$row['name']."</h3>";
                     echo "              <div class='card-text center-title'>";
                     echo "                <h5>PHP ".$row['price']."</h5>";
@@ -83,26 +141,28 @@ include '../../../Sql/dbConnection.php';
                     echo "              </p>";
                     echo "              <div class='action-container'>";
                     echo "                  <form action='store.php?action=add&id=".$row['id']."' method='post' class='form-add-to-cart'>";
-                    echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                    echo "                    <input type='number' class='form-control' value='1' min='1' name='productQuantity' required'>";
                     echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
                     echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
                     echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                     echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
                     echo "                  </form>";
                     echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
-                    echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                    echo "                    <input type='number' class='form-control' value='1' min='1' name='productQuantity' required>";
                     echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
                     echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
                     echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                     echo "                    <input type='submit' class='cta-product checkout-btn' value='Checkout' name='checkout'/>";
                     echo "                  </form>";
                     echo "              </div>";
-                    echo "            </div>";
+                    echo "            </di>";
                     echo "          </div>";
                 }
                 ?>
-        </div>
+      </div>
     </div>
+      <?php 
+    } ?>
     <div class="bottom-border"></div>
   </body>
 </html>
