@@ -97,7 +97,7 @@
         <?php
 
             if(!($row = mysqli_fetch_array($ifExists))){
-              echo "Product not found!";
+              echo "<div class='no-product'><p>The product '<span class='product-search'>". $productName."</span>' does not exist!</p></div>";
             }
             else{
                 echo "         <form action='ProductVerify.php?action=add' method='post' class='card'>";
@@ -113,7 +113,7 @@
                 echo "              <div class='column-direction card-text center-title' style='height:auto;'>";
                 echo "              <input type='text' class='column-margin form-control width-input' name='name' placeholder='Add Product Name'>";
                 echo "              <input type='number' class='column-margin form-control width-input' name='price' placeholder='Add Price'>";
-                echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value=''>Add Description</textarea>";
+                echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value='' placeholder='Add Description'></textarea>";
                 echo "              <div class='action-container' style='width: 40%;'>";
                 echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add' name='add_product'/>";
                 echo "              </div>";
@@ -211,7 +211,7 @@
                       echo "              <div class='column-direction card-text center-title' style='height:auto;'>";
                       echo "              <input type='text' class='column-margin form-control width-input' name='name' placeholder='Add Product Name'>";
                       echo "              <input type='number' class='column-margin form-control width-input' name='price' placeholder='Add Price'>";
-                      echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value=''>Add Description</textarea>";
+                      echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value='' placeholder='Add Description'></textarea>";
                       echo "              <div class='action-container' style='width: 40%;'>";
                       echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add' name='add_product'/>";
                       echo "              </div>";
@@ -264,6 +264,5 @@
     </div>
     <?php }
     }?>
-    <div class="bottom-border"></div>
   </body>
 </html>

@@ -343,6 +343,5 @@
     </div>
     </form>
     <?php }?>
-    <div class="bottom-border"></div>
   </body>
 </html>

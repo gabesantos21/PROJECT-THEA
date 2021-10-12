@@ -7,6 +7,8 @@
 
 body {
   overflow-x: hidden;
+  /* bottom footer */
+  border-bottom: 30px solid #c8b8b2;
 }
 
 html {
@@ -964,6 +966,22 @@ main {
 }
 
 /* Store Page */
+
+.no-product {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  height: 58vh;
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  color: #614d40;
+  background: #d4cecd;
+}
+
+.product-search {
+  color: #a99237;
+}
 
 .products-container {
   display: flex;

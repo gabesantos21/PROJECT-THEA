@@ -69,7 +69,7 @@
         <?php
 
             if(!($row = mysqli_fetch_array($ifExists))){
-              echo "Product not found!";
+              echo "<div class='no-product'><p>The product '<span class='product-search'>". $productName."</span>' does not exist!</p></div>";
             }
             else{
               while ($row = mysqli_fetch_array($result)) {
@@ -163,6 +163,5 @@
     </div>
       <?php 
     } ?>
-    <div class="bottom-border"></div>
   </body>
 </html>

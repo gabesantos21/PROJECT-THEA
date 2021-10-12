@@ -193,6 +193,5 @@
         </div>
       </div>
     </div>
-    <div class="bottom-border"></div>
   </body>
 </html>
