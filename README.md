@@ -29,7 +29,8 @@ Deleting a file:
  - When there is a need for a quick fix - fixes such as typo, white spaces, and the like.
  - When the owner of the repo is not present to Merge Pull requests but is in haste.
 
- CSS and JS : class/id and function naming convention - Written in PascalCase or TitleCase, Naming Convention:
- - ./#<PageName+ActualName>
+ CSS and JS : 
+ - CSS - Kebab Case
+ - JS - Capital Case
 
  Remember to always to Fetch and pull from remote repo before pushing.
