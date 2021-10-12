@@ -97,7 +97,7 @@
                       echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                       echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
                       echo "                  </form>";
-                      echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
+                      echo "                  <form action='Checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
                       echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
                       echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
                       echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
@@ -147,9 +147,10 @@
                     echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                     echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
                     echo "                  </form>";
-                    echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
+                    echo "                  <form action='Checkout.php?action=checkout&id=" . $row['id'] . "' method='post' class='form-add-to-cart'>";
                     echo "                    <input type='number' class='form-control' value='1' min='1' name='productQuantity' required>";
                     echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
+                    echo "                    <input type='hidden' name='id' value='" . $row['id'] . "'>";
                     echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
                     echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                     echo "                    <input type='submit' class='cta-product checkout-btn' value='Checkout' name='checkout'/>";
