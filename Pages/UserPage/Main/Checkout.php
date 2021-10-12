@@ -8,6 +8,7 @@
 	<script src="https://kit.fontawesome.com/37cafce672.js" crossorigin="anonymous"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Checkout</title>
 	<link rel="stylesheet" href="../../../Css/styles-for-checkout.css?v=<?php echo time(); ?>">
 	<link rel="stylesheet" href="../../../Css/styles.css?v=<?php echo time(); ?>">
@@ -16,8 +17,9 @@
 	</style>
 </head>
 <body>
-<div class = "checkout-border">
-	<div class="page-header"><div class="header-text">CHECKOUT</div></div>	
+<div class = "header-border">
+	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
+</div>
 	<form>
 		<div class="container-main">		
     		<div class="flex-box-1">
@@ -58,8 +60,8 @@
     				</div>
     					
     			</div>
-    		</div>
-    		<div class="flex-box-2">
+            </div>	
+    		<div class="flex-box-2">	
     			<h4>Payment</h4>
     			<div class ="flex-box-content">
     				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
@@ -76,13 +78,15 @@
     				<label for="phone-Number">Account Number</label>
     				<input class="textBox-type-1" type="number" name="phone-Number">		
     			</div>
-    		</div>	
+            </div>
+            
     		<div class="flex-box-3">		
     			<div class ="flex-box-content-table">
     				<table class="summary-table">
     				<th class="tc-1">Name:</th>
     				<th>Qty.</th>
     				<th>Price.</th>
+                    <th>Total.</th>
     				<tr>	
     					<td>
     					test		
@@ -114,16 +118,16 @@
     					<p style="	display: inline;">Total Price: </p><input type="button" name="cancel" value="Cancel" class="button" style="	 background-color: white; color: #120B0A;"><input type="Submit" name="Checkout" value="Checkout" class="button">			
     			</div>
     		</div>
-
-		<div class="footer" style="padding-right:5px;">
-   		<i class="fas fa-phone-alt"></i> <i class="fab fa-viber"></i> <i class="fab fa-facebook"></i><br>
-   		<div class="bottom-line"></div>
-   		<div><p>email@email.com 999-999-999<br>123 Street,  Manila, Metro Manila</p></div>
- 		</div>
+    </div>
+        <div class="flex-border-contact">
+		    <div class="footer" style="padding-right:5px;">
+   		        <i class="fas fa-phone-alt"></i> <i class="fab fa-viber"></i> <i class="fab fa-facebook"></i><br>
+   		        <div class="bottom-line"></div>
+   		        <div><p>email@email.com 999-999-999<br>123 Street,  Manila, Metro Manila</p></div>
+ 		    </div>
+        </div>
 		
-    	</div>
+    
     </form>
-	
-</div>
 </body>
 </html>
