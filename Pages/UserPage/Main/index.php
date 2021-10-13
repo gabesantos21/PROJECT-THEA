@@ -51,13 +51,15 @@
 
     //  gets status and displays alert (alerts are stored in the navbar)
      if (isset($_GET["action"])) {
-      if ($_GET["action"] == "delete") {
+      if ($_GET["action"] == "deleteCart") {
         echo "<script>
-        $('#success-remove-alert')
+        $(document).ready(function() {
+        $('#success-remove-alert-cart')
         .fadeTo(2000, 500)
         .slideUp(500, function () {
-          $('#success-remove-alert').slideUp(500);
+          $('#success-remove-alert-cart').slideUp(500);
         });
+      });
               </script>";
       }
     }

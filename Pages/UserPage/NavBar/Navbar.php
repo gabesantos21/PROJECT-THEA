@@ -38,6 +38,7 @@
       $modal_register_gmail = "Register with Gmail";
       $modal_register_facebook = "Register with Facebook";
       $modal_email = "Email";
+      $modal_username = "User Name";
       $modal_password = "Password";
       $modal_submit = "Submit";
       $modal_checkout = "Checkout";
@@ -79,10 +80,37 @@
             );
             $_SESSION["shopping_cart"][0] = $item_array;
         }
-    }
-  
+
+    }else if (isset($_POST["checkout"])) {
+      if (isset($_SESSION["shopping_cart"])) {
+          $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+          if (!in_array($_GET["id"], $item_array_id)) {
+              $count = count($_SESSION["shopping_cart"]);
+              $item_array = array(
+                  'item_id'           =>    $_GET["id"],
+                  'item_name'         =>    $_POST["productName"],
+                  'item_price'        =>    $_POST["productPrice"],
+                  'item_quantity'     =>    $_POST["productQuantity"],
+                  'item_image'        =>    $_POST["productImage"],
+              );
+              $_SESSION["shopping_cart"][$count] = $item_array;
+              header("Location: checkout.php" );
+          } else{
+          echo '<script>alert("Item Already Ready for checkout!")</script>';
+          }
+      } else {
+          $item_array = array(
+              'item_id'           =>    $_GET["id"],
+              'item_name'         =>    $_POST["productName"],
+              'item_price'        =>    $_POST["productPrice"],
+              'item_quantity'     =>    $_POST["productQuantity"],
+              'item_image'        =>    $_POST["productImage"],
+          );
+          $_SESSION["shopping_cart"][0] = $item_array;
+      }
+  }
     if (isset($_GET["action"])) {
-        if ($_GET["action"] == "delete") {
+        if ($_GET["action"] == "deleteCart" || $_GET["action"] == "delete") {
             foreach ($_SESSION["shopping_cart"] as $keys => $values) {
                 if ($values["item_id"] == $_GET["id"]) {
                     unset($_SESSION["shopping_cart"][$keys]);
@@ -171,7 +199,14 @@
     <div class="alert-container-nav" id="success-remove-alert">
       <div class="alert alert-success alert-dismissible ">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        Successfully removed from cart!
+        Successfully removed from Checkout!
+      </div>
+    </div>
+
+    <div class="alert-container-nav" id="success-remove-alert-cart">
+      <div class="alert alert-success alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully removed from Cart!
       </div>
     </div>
 
@@ -184,6 +219,8 @@
 
     <script>$("#success-alert").hide();</script>
     <script>$("#success-remove-alert").hide();</script>
+    <script>$("#success-remove-alert-cart").hide();</script>
+
     <!-- <script>$("#duplicate-item-alert").hide();</script> -->
 
       <!-- Cart Modal -->
@@ -212,7 +249,7 @@
                   <td><?php echo $values["item_quantity"]; ?></td>
                   <td>Php <?php echo $values["item_price"]; ?></td>
                   <td>Php <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
-                  <td><a href="../Main/index.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span style="color: #281816;">Remove</span></a></td>
+                  <td><a href="../Main/index.php?action=deleteCart&id=<?php echo $values["item_id"]; ?>"><span style="color: #281816;">Remove</span></a></td>
                 </tr><?php @$total = @$total + ($values["item_quantity"] * $values["item_price"]); 
                       }?>
                 <tr>
@@ -230,7 +267,9 @@
                 </div>
             <?php } ?>
             <div class="modal-footer">
+              <form action="Checkout.php" method="post">
                   <button type="submit" class="submit-btn" name="submit"><?php echo  $modal_checkout ?></button>
+              </form>
                   <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
             </div>
           </div>
@@ -251,8 +290,8 @@
             <form action="" method="post">
               <div class="user-form">
                 <div class="form-group">
-                  <label for="inputEmail"><?php echo $modal_email ?></label>
-                  <input type="email" class="form-control" id="inputEmail" name="email" placeholder="" required>
+                  <label for="inputUsername"><?php echo $modal_username ?></label>
+                  <input type="text" class="form-control" id="inputUsername" name="name" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
@@ -290,6 +329,10 @@
                     <label for="inputSurname"><?php echo $modal_surname ?></label>
                     <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="" required>
                   </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputUsername"><?php echo $modal_username ?></label>
+                  <input type="tel" class="form-control" id="inputUsername" name="username" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputNumber"><?php echo $modal_number ?></label>
@@ -375,6 +418,7 @@
     
    
     <script src="../../../Js/app.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

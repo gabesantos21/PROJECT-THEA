@@ -8,7 +8,7 @@ if (!$conn) {
 } else {
 
     if(isset($_GET["action"])){
-
+      
         if($_GET['action']=="edit"){
           // Code for updating latest page info
           header("Location: index.php?status=success" );
