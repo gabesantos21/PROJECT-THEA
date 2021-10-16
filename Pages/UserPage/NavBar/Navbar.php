@@ -196,6 +196,13 @@
       </div>
     </div>
 
+    <div class="alert-container-nav" id="checkout-alert">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully checked out!
+      </div>
+    </div>
+
     <div class="alert-container-nav" id="success-remove-alert">
       <div class="alert alert-success alert-dismissible ">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -218,6 +225,7 @@
     </div> -->
 
     <script>$("#success-alert").hide();</script>
+    <script>$("#checkout-alert").hide();</script>
     <script>$("#success-remove-alert").hide();</script>
     <script>$("#success-remove-alert-cart").hide();</script>
 

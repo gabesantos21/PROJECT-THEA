@@ -62,6 +62,17 @@
       });
               </script>";
       }
+      else if ($_GET["action"] == "checkout") {
+        echo "<script>
+        $(document).ready(function() {
+        $('#checkout-alert')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#checkout-alert').slideUp(500);
+        });
+      });
+              </script>";
+      }
     }
   ?>
 

@@ -34,7 +34,7 @@
 <div class = "header-border">
 	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
 </div>
-	<form action="" method="post" class="checkout-form">
+	<form action="CheckoutVerify.php?action=checkout" method="post" class="checkout-form">
 		<div class="container-main">		
     		<div class="flex-box-1">
     			<h4>Billing Address</h4>
@@ -125,7 +125,9 @@
     		<div>
     			</div>
     			<div class="submit-field">	
-					<p style="	display: inline; font-weight: bold;">Total Price: <span style="color: rgb(67 53 52);"><?php echo number_format(@$total, 2); ?></span></p>&nbsp;&nbsp;<input type="button" name="cancel" value="Cancel" class="button" style="	 background-color: white; color: #120B0A;"><input type="Submit" name="Checkout" value="Checkout" class="button">			
+					<p style="	display: inline; font-weight: bold;">Total Price: <span style="color: rgb(67 53 52);"><?php echo number_format(@$total, 2); ?></span></p>&nbsp;&nbsp;
+					<input type="button" name="cancel" value="Cancel" class="button" style="background-color: white; color: #120B0A;">
+					<input type="Submit" name="Checkout" value="Checkout" class="button">			
     			</div>
     		</div>
     	</div>

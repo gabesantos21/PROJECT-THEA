@@ -35,6 +35,7 @@ const navSlide = () => {
       }
     });
     // Burger Animation
+    
     burger.classList.toggle("hamburger-toggle");
   });
 
