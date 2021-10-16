@@ -40,11 +40,14 @@
     //  gets status and displays alert (alerts are stored in the navbar)
     if (isset($_GET["action"])) {
       if ($_GET["action"] == "add") {
-        echo "<script>$('#success-alert')
+        echo "<script>
+        $(document).ready(function() {
+          $('#success-alert')
                 .fadeTo(2000, 500)
                 .slideUp(500, function () {
                   $('#success-alert').slideUp(500);
                 });
+              });
               </script>";
       }
     }?>
@@ -69,7 +72,7 @@
         <?php
 
             if(!($row = mysqli_fetch_array($ifExists))){
-              echo "Product not found!";
+              echo "<div class='no-product'><p>The product '<span class='product-search'>". $productName."</span>' does not exist!</p></div>";
             }
             else{
               while ($row = mysqli_fetch_array($result)) {
@@ -91,14 +94,15 @@
                       echo "              </p>";
                       echo "              <div class='action-container'>";
                       echo "                  <form action='store.php?action=add&id=".$row['id']."' method='post' class='form-add-to-cart'>";
+                      echo "                    <input type='number' class='form-control' value='1' min='1' name='productQuantity' required>";
                       echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
                       echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
                       echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
                       echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                       echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
                       echo "                  </form>";
-                      echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
-                      echo "                    <input type='hidden' value='1' id='quantity' name='productQuantity'>";
+                      echo "                  <form action='Checkout.php?action=checkout&id=" . $row['id'] . "' method='post' class='form-add-to-cart'>";
+                      echo "                    <input type='number' class='form-control' value='1' min='1' name='productQuantity' required>";
                       echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
                       echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
                       echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
@@ -147,7 +151,7 @@
                     echo "                    <input type='hidden' name='productImage' value='" . $row['image'] . "'>";
                     echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add to Cart' name='add_to_cart'/>";
                     echo "                  </form>";
-                    echo "                  <form action='checkout.php?action=add&id='" . $row['id'] . "' method='post' class='form-add-to-cart'>";
+                    echo "                  <form action='Checkout.php?action=checkout&id=" . $row['id'] . "' method='post' class='form-add-to-cart'>";
                     echo "                    <input type='number' class='form-control' value='1' min='1' name='productQuantity' required>";
                     echo "                    <input type='hidden' name='productName' value='" . $row['name'] . "'>";
                     echo "                    <input type='hidden' name='productPrice' value='" . $row['price'] . "'>";
@@ -163,6 +167,5 @@
     </div>
       <?php 
     } ?>
-    <div class="bottom-border"></div>
   </body>
 </html>

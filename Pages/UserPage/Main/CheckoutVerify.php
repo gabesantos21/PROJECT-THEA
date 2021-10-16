@@ -9,9 +9,9 @@ if (!$conn) {
 
     if(isset($_GET["action"])){
       
-        if($_GET['action']=="edit"){
-          // Code for updating latest page info
-          header("Location: index.php?status=success" );
+        if($_GET['action']=="checkout"){
+          // Code for checkout
+          header("Location: index.php?action=checkout" );
         }
       }
     // else
