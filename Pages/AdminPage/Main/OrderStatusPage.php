@@ -49,6 +49,7 @@
         <?php if(isset($_GET["list"])){
             if ($_GET["list"] == "completed"){
         ?>
+
          <div class="orderPage-table-container">
             <h4>Completed Orders</h4>
             <table class="orderPage-table">
@@ -167,6 +168,43 @@
                             <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
 
                     </td>                   
+                        <td data-label="Order Status">Declined</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Order ID">2</td>
+                        <td data-label="Customer ID">2</td>
+                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
+                        <td data-label="Total Amount">2</td>
+                        <td data-label="Order Status">Declined</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Order ID">3</td>
+                        <td data-label="Customer ID">3</td>
+                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
+                        <td data-label="Total Amount">3</td>
+                        <td data-label="Order Status">Declined</td>
+                    </tr>
+            </table>
+        </div>
+        <?php }
+            }else{?>
+            <!-- Pending Orders Table -->
+        <div class="header-table">
+            <h3>Pending Orders</h3>
+        </div>
+        <div class="orderPage-table-container">
+            <table class="orderPage-table">
+                <th style="width:15%">Order ID</th>
+                <th style="width:15%">Customer ID</th>
+                <th style="width:40%">Order Date</th>
+                <th style="width:15%">Total Amount</th>
+                <th style="width:15%">Order Status</th>
+                    <tr>
+                        <td data-label="Order ID">1</td>
+                        <td data-label="Customer ID">1</td>
+                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
+                        <td data-label="Total Amount">1</td>
+                        <td data-label="Order Status">Pending</td>
                     </tr>
                     <tr>
                         <td data-label="Order ID">2</td>
@@ -213,6 +251,5 @@
             });
         };
     </script>
-
     </body>
 </html>
