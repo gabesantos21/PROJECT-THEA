@@ -99,7 +99,7 @@
 
         <ul class="user-nav-links" style="display: relative">
           <li>
-            <a href="" data-toggle="modal" data-target=".cart-modal-container">
+            <a href="OrderStatusPage.php">
               <img src="../../../Assets/img/icons/orders.svg" alt="">
             </a>
           </li>
