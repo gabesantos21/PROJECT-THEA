@@ -76,11 +76,11 @@
     		<div class="flex-box-2">	
     			<h4>Payment</h4>
     			<div class ="flex-box-content">
-    				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
+    				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
 					Cash on Delivery<br>
-    				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
+    				<input class="radio-button" type="radio" name="payment-type-gCash">
     				GCash<br>
-    				<input class="radio-button" type="radio" name="paymet-type-cash-on-delivery">
+    				<input class="radio-button" type="radio" name="payment-type-cash-paymaya">
     				Paymaya<br>
     				<br>
     				<label for="zip">Account Name</label>
