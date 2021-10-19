@@ -52,6 +52,7 @@
          <div class="orderPage-table-container">
             <h4>Completed Orders</h4>
             <table class="orderPage-table">
+                <form>
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
                 <th style="width:35%">Order Date</th>
@@ -65,7 +66,7 @@
                         <td data-label="Total Amount">1</td>
                         <td data-label="Order Status">Completed</td>
                         <td data-label="Update Status">
-                            <form><input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td></form>
+                            <input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td>
                     </tr>
                     <tr>
                         <td data-label="Order ID">2</td>
@@ -74,7 +75,7 @@
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Completed</td>
                         <td data-label="Update Status">
-                            <form><input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td></form>
+                            <input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td>
                     </tr>
                     <tr>
                         <td data-label="Order ID">3</td>
@@ -83,13 +84,14 @@
                         <td data-label="Total Amount">3</td>
                         <td data-label="Order Status">Completed</td>
                         <td data-label="Update Status">
-                            <form><input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td></form>
+                            <input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td>
                     </tr>
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
                 <div style="float:right">Reset Buttons:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderComplete');"></div>     
             </div>
+            </form>
         </div>
         <?php
             } else if ($_GET["list"] == "declined"){
@@ -97,7 +99,8 @@
             <!-- Declined Orders Table -->
         <div class="orderPage-table-container">
         <h4>Cancelled Orders</h4>
-        <table class="orderPage-table">
+            <table class="orderPage-table">
+                <form>
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
                 <th style="width:35%">Order Date</th>
@@ -111,7 +114,7 @@
                         <td data-label="Total Amount">1</td>
                         <td data-label="Order Status">Cancelled</td>
                         <td data-label="Update Status">
-                            <form><input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td></form>
+                            <input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td>
                     </tr>
                     <tr>
                         <td data-label="Order ID">2</td>
@@ -120,7 +123,7 @@
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Cancelled</td>
                         <td data-label="Update Status">
-                            <form><input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td></form>
+                            <input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td>
                     </tr>
                     <tr>
                         <td data-label="Order ID">3</td>
@@ -129,13 +132,15 @@
                         <td data-label="Total Amount">3</td>
                         <td data-label="Order Status">Cancelled</td>
                         <td data-label="Update Status">
-                            <form><input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td></form>
+                            <input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td>
                     </tr>
+
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
                 <div style="float:right">Reset Buttons:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderDecline');"></div>     
             </div>
+            </form>
         </div>
         <?php }
             }else{?>
@@ -143,6 +148,7 @@
         <div class="orderPage-table-container">
         <h4>Pending Orders</h4>
         <table class="orderPage-table">
+        <form>
             <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
                 <th style="width:35%">Order Date</th>
@@ -156,10 +162,10 @@
                         <td data-label="Total Amount">1</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <form>
+
                             <input type="radio" id="complete" name="orderPending" value="decline"/>Complete
                             <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
-                            </form>
+
                     </td>                   
                     </tr>
                     <tr>
@@ -169,10 +175,9 @@
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <form>
                             <input type="radio" id="complete" name="orderPending" value="decline"/>Complete
                             <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
-                            </form>
+
                     </td>
                     </tr>
                     <tr>
@@ -182,18 +187,19 @@
                         <td data-label="Total Amount">3</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <form>
                             <input type="radio" id="complete" name="orderPending" value="decline"/>Complete
                             <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
-                            </form>
+         
                     </td>
                     </tr>
                     </tr>
+
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
                 <div style="float:right">Reset Buttons:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderPending');"></div>     
             </div>
+            </form>
         </div>
         <?php }?>
 
