@@ -78,14 +78,20 @@
     			<div class ="flex-box-content">
     				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
 					Cash on Delivery<br>
+<<<<<<< Updated upstream
     				<input class="radio-button" type="radio" name="payment-type-gCash">
     				GCash<br>
     				<input class="radio-button" type="radio" name="payment-type-cash-paymaya">
+=======
+    				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
+    				GCash<br>
+    				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
+>>>>>>> Stashed changes
     				Paymaya<br>
     				<br>
     				<label for="zip">Account Name</label>
     				<input class="textBox-type-1" type="text" name="zip">
-    				<p style="font-size: 10px;">Name as displayed on <br>	Paymaya/GCash account</p>
+    				<p style="font-size: 10px;">Name as displayed on<br>Paymaya/GCash account</p>
     				<label for="phone-Number">Account Number</label>
     				<input class="textBox-type-1" type="number" name="phone-Number">		
     			</div>
@@ -113,13 +119,8 @@
 							<td><a href="../Main/Checkout.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span style="color: #281816;">Remove</span></a></td>
 						</tr>
 						<?php $total = $total + ($values["item_quantity"] * $values["item_price"]);
-								} ?>
-                        <!-- <tr>
-							<td colspan="3"></td>
-							<td style="color: rgb(67 53 52); font-weight: bold;">Php <?php echo number_format(@$total, 2); ?></td>
-							<td colspan="1"></td>
-						</tr> -->
-						<?php } ?>
+								} 
+							}?>
     				</table>
     			</div>
     		<div>

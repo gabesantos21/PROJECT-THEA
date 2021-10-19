@@ -21,7 +21,7 @@
       <?php 
 
       // if true loads registered user navbar else guest navbar
-      $_SESSION['userLogged'] = "false";
+      $_SESSION['userLogged'] = "true";
 
       $dropdown_user = "User"; 
       $dropdown_greet_user = "Hi, " . $dropdown_user;
@@ -174,7 +174,8 @@
               <img src="../../../Assets/img/icons/user.svg" alt="">
             <div class="dropdown-user-control">
               <?php if (@$_SESSION['userLogged'] == "true") { ?>
-                <a href=""class="dropdown-items" style="letter-spacing: 0px" data-toggle="modal" data-target=".user-modal-container"><?php echo $dropdown_greet_user?></a>   
+                <a href=""class="dropdown-items" style="letter-spacing: 0px" data-toggle="modal" data-target=".user-modal-container"><?php echo $dropdown_greet_user?></a>  
+                <a href=""class="dropdown-items" style="letter-spacing: 0px">Check Orders</a> 
                 <form action="">
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" ><?php echo $dropdown_user_logout?></a>
                 </form>
