@@ -32,6 +32,7 @@
       $nav_link_store = "Store";
       $nav_link_contact = "Contact Us";
       $nav_link_about = "About Us";
+      $nav_link_check_orders = "Check Orders";
       $nav_search_placeholder = "Search";
       $modal_login_gmail = "Login with Gmail";
       $modal_login_facebook = "Login with Facebook";      
@@ -53,6 +54,8 @@
       $modal_city = "City";
       $modal_barangay = "Barangay";
       $modal_zip = "ZIP";
+
+      // Add to cart session are stored with this code
 
       if (isset($_POST["add_to_cart"])) {
         if (isset($_SESSION["shopping_cart"])) {
@@ -175,7 +178,7 @@
             <div class="dropdown-user-control">
               <?php if (@$_SESSION['userLogged'] == "true") { ?>
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" data-toggle="modal" data-target=".user-modal-container"><?php echo $dropdown_greet_user?></a>  
-                <a href="OrderStatusPage.php"class="dropdown-items" style="letter-spacing: 0px">Check Orders</a> 
+                <a href="OrderStatusPage.php"class="dropdown-items" style="letter-spacing: 0px"><?php echo $nav_link_check_orders?></a> 
                 <form action="">
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" ><?php echo $dropdown_user_logout?></a>
                 </form>
@@ -189,6 +192,8 @@
           </li>
         </ul>
     </nav>
+
+    <!-- Alerts initialized in the nav -->
 
     <div class="alert-container-nav" id="success-alert">
       <div class="alert alert-success alert-dismissible success-alert-gold">
@@ -225,6 +230,7 @@
       </div>
     </div> -->
 
+    <!-- Hide at start -->
     <script>$("#success-alert").hide();</script>
     <script>$("#checkout-alert").hide();</script>
     <script>$("#success-remove-alert").hide();</script>
@@ -296,6 +302,8 @@
             <button type="button" class="facebook-login"><?php echo $modal_login_facebook ?></button>
           </div>
           <div class="modal-body">
+            <!-- You may do it here or add another php file to do the processing of the login (after successful, redirects to index) -->
+            <!-- if error persists in making changes create an error alert -->
             <form action="" method="post">
               <div class="user-form">
                 <div class="form-group">
@@ -327,6 +335,8 @@
             <button type="button" class="facebook-login"><?php echo $modal_register_facebook ?></button>
           </div>
           <div class="modal-body">
+            <!-- You may do it here or add another php file to do the processing of the Register (after successful, redirects to index) -->
+            <!-- if error persists in making changes create an error alert -->
             <form action="" method="post">
               <div class="user-form">
                 <div class="form-row">
@@ -378,6 +388,7 @@
             <h5 class="modal-title modal-title-size"><?php echo $modal_user ?></h5>
           </div>
           <div class="modal-body">
+            <!-- You may do it here or add another php file to do the processing of the saving user changes (if error persists in making changes create an error alert) -->
             <form action="" method="post">
               <div class="user-form">
                 <div class="form-row">

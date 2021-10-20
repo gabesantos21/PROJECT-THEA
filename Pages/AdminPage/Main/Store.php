@@ -77,7 +77,9 @@
         }
       }
 
-  ?><?php 
+  ?>
+  <!-- If admin searched for a specific product -->
+  <?php 
     
     if(isset($_GET["s"])){
       $productName = $_GET["s"];
@@ -162,6 +164,8 @@
                 ?>
       </div>
     </div>
+
+    <!-- If user selected edit button -->
     <?php }
     
     else if(!(isset($_GET["s"]))){
@@ -194,6 +198,7 @@
                 </form>
         </div>
         <?php }else{ ?>
+    <!-- else if admin just wants to access the store page -->
     <div class="section-page">
       <div class="container-fluid about-header header-division">Store</div>
       <div class="products-container">

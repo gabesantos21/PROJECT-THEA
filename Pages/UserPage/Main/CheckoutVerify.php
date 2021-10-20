@@ -10,11 +10,11 @@ if (!$conn) {
     if(isset($_GET["action"])){
       
         if($_GET['action']=="checkout"){
-          // Code for checkout
+          // Code for checkout - add to db
           header("Location: index.php?action=checkout" );
         }
       }
-    // else
+    // else (if necessary)
     // header("Location: index.php?status=error" );
 
 }

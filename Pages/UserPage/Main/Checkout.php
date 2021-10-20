@@ -16,6 +16,8 @@
 <body>
 
 	<?php 
+	//  gets status and displays alert (alerts are stored in the navbar)
+
 	if (isset($_GET["action"])) {
         if ($_GET["action"] == "delete") {
           echo "<script>
@@ -34,6 +36,7 @@
 <div class = "header-border">
 	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
 </div>
+	<!-- Form to capture user input then refers to CheckoutVerify.php?action=checkout -->
 	<form action="CheckoutVerify.php?action=checkout" method="post" class="checkout-form">
 		<div class="container-main">		
     		<div class="flex-box-1">
@@ -78,15 +81,9 @@
     			<div class ="flex-box-content">
     				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
 					Cash on Delivery<br>
-<<<<<<< Updated upstream
     				<input class="radio-button" type="radio" name="payment-type-gCash">
     				GCash<br>
     				<input class="radio-button" type="radio" name="payment-type-cash-paymaya">
-=======
-    				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
-    				GCash<br>
-    				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
->>>>>>> Stashed changes
     				Paymaya<br>
     				<br>
     				<label for="zip">Account Name</label>
