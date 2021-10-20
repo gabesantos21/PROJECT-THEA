@@ -16,8 +16,9 @@
     </head>
 
     <body>
-
+ 
     <?php 
+    //  gets status and displays alert (alerts are stored in the navbar)
     if (isset($_GET["action"])) {
         if ($_GET["action"] == "delete") {
           echo "<script>
@@ -37,6 +38,7 @@
             <div class="page-banner"><div class="banner-text">ORDERS</div></div>
         </div>
 
+        <!-- buttons that load in the different tables-->
         <div class="order-list-nav">
             <a href="OrderStatusPage.php?list=completed">Completed Orders</a>
             <a href="OrderStatusPage.php">Pending Orders</a>
@@ -44,6 +46,7 @@
         </div>
 
         <!-- TODO for backend - automate the rows -->
+        <!-- TODO for backend - apply buttons should update the tables respective to the chosen change -->
 
         <!-- Completed Order Table -->
         <?php if(isset($_GET["list"])){
@@ -53,7 +56,8 @@
          <div class="orderPage-table-container">
             <h4>Completed Orders</h4>
             <table class="orderPage-table">
-                <form>
+            <!-- form for this table to accept potential change in status of the orders -->
+            <form action="" method="">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
                 <th style="width:35%">Order Date</th>
@@ -90,7 +94,7 @@
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
-                <div style="float:right">Reset Buttons:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderComplete');"></div>     
+                <div style="float:right">Reset Button:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderComplete');"></div>     
             </div>
             </form>
         </div>
@@ -101,7 +105,8 @@
         <div class="orderPage-table-container">
         <h4>Cancelled Orders</h4>
             <table class="orderPage-table">
-                <form>
+            <!-- form for this table to accept potential change in status of the orders -->
+            <form action="" method="">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
                 <th style="width:35%">Order Date</th>
@@ -139,7 +144,7 @@
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
-                <div style="float:right">Reset Buttons:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderDecline');"></div>     
+                <div style="float:right">Reset Button:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderDecline');"></div>     
             </div>
             </form>
         </div>
@@ -149,6 +154,8 @@
         <div class="orderPage-table-container">
             <h4>Pending Orders</h4>
             <table class="orderPage-table">
+            <!-- form for this table to accept potential change in status of the orders -->
+            <form action="" method="">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
                 <th style="width:35%">Order Date</th>
@@ -156,7 +163,7 @@
                 <th style="width:10%">Order Status</th>
                 <th style="width:15%">Update Status</th>
                     <tr>
-                    <td data-label="Order ID">2</td>
+                        <td data-label="Order ID">2</td>
                         <td data-label="Customer ID">2</td>
                         <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
                         <td data-label="Total Amount">2</td>
@@ -195,7 +202,7 @@
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
-                <div style="float:right">Reset Buttons:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderPending');"></div>     
+                <div style="float:right">Reset Button:<input type="button" value="Reset" class="orderPage-table-input" onclick="clearSelection('orderPending');"></div>     
             </div>
             </form>
         </div>

@@ -16,6 +16,8 @@
 <body>
 
 	<?php 
+	//  gets status and displays alert (alerts are stored in the navbar)
+
 	if (isset($_GET["action"])) {
         if ($_GET["action"] == "delete") {
           echo "<script>
@@ -34,6 +36,8 @@
 <div class = "header-border">
 	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
 </div>
+	<!-- Form to capture user input then refers to CheckoutVerify.php?action=checkout -->
+	<!-- Should probably encrypt the personal info also if we have time -->
 	<form action="CheckoutVerify.php?action=checkout" method="post" class="checkout-form">
 		<div class="container-main">		
     		<div class="flex-box-1">
@@ -73,6 +77,8 @@
     					
     			</div>
             </div>	
+
+			<!-- Section of the page that determines the payment method, options should save in a db -->
     		<div class="flex-box-2">	
     			<h4>Payment</h4>
     			<div class ="flex-box-content">
@@ -85,13 +91,15 @@
     				<br>
     				<label for="zip">Account Name</label>
     				<input class="textBox-type-1" type="text" name="zip">
-    				<p style="font-size: 10px;">Name as displayed on <br>	Paymaya/GCash account</p>
+    				<p style="font-size: 10px;">Name as displayed on<br>Paymaya/GCash account</p>
     				<label for="phone-Number">Account Number</label>
     				<input class="textBox-type-1" type="number" name="phone-Number">		
     			</div>
             </div>
+			<!-- table that connects to the hbbns.sql DB that holds a table with the values -->
     		<div class="flex-box-3">		
     			<div class ="flex-box-content-table">
+					<!-- rows should be automated -->
     				<table class="summary-table table table-sm table-hover">
 						<tr>
 							<th>Product Name</th>
@@ -113,17 +121,15 @@
 							<td><a href="../Main/Checkout.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span style="color: #281816;">Remove</span></a></td>
 						</tr>
 						<?php $total = $total + ($values["item_quantity"] * $values["item_price"]);
-								} ?>
-                        <!-- <tr>
-							<td colspan="3"></td>
-							<td style="color: rgb(67 53 52); font-weight: bold;">Php <?php echo number_format(@$total, 2); ?></td>
-							<td colspan="1"></td>
-						</tr> -->
-						<?php } ?>
+								} 
+							}?>
     				</table>
     			</div>
     		<div>
     			</div>
+
+				<!-- Portion of the page that has the button to confirm the checkout -->
+				<!-- Should save the user options in a DB -->
     			<div class="submit-field">	
 					<p style="	display: inline; font-weight: bold;">Total Price: <span style="color: rgb(67 53 52);"><?php echo number_format(@$total, 2); ?></span></p>&nbsp;&nbsp;
 					<input type="button" name="cancel" value="Cancel" class="button" style="background-color: white; color: #120B0A;">
