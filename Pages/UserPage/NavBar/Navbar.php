@@ -175,7 +175,7 @@
             <div class="dropdown-user-control">
               <?php if (@$_SESSION['userLogged'] == "true") { ?>
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" data-toggle="modal" data-target=".user-modal-container"><?php echo $dropdown_greet_user?></a>  
-                <a href=""class="dropdown-items" style="letter-spacing: 0px">Check Orders</a> 
+                <a href="OrderStatusPage.php"class="dropdown-items" style="letter-spacing: 0px">Check Orders</a> 
                 <form action="">
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" ><?php echo $dropdown_user_logout?></a>
                 </form>
