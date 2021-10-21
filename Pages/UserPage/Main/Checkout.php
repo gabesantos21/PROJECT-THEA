@@ -37,6 +37,7 @@
 	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
 </div>
 	<!-- Form to capture user input then refers to CheckoutVerify.php?action=checkout -->
+	<!-- Should probably encrypt the personal info also if we have time -->
 	<form action="CheckoutVerify.php?action=checkout" method="post" class="checkout-form">
 		<div class="container-main">		
     		<div class="flex-box-1">
@@ -76,6 +77,8 @@
     					
     			</div>
             </div>	
+
+			<!-- Section of the page that determines the payment method, options should save in a db -->
     		<div class="flex-box-2">	
     			<h4>Payment</h4>
     			<div class ="flex-box-content">
@@ -93,8 +96,10 @@
     				<input class="textBox-type-1" type="number" name="phone-Number">		
     			</div>
             </div>
+			<!-- table that connects to the hbbns.sql DB that holds a table with the values -->
     		<div class="flex-box-3">		
     			<div class ="flex-box-content-table">
+					<!-- rows should be automated -->
     				<table class="summary-table table table-sm table-hover">
 						<tr>
 							<th>Product Name</th>
@@ -122,6 +127,9 @@
     			</div>
     		<div>
     			</div>
+
+				<!-- Portion of the page that has the button to confirm the checkout -->
+				<!-- Should save the user options in a DB -->
     			<div class="submit-field">	
 					<p style="	display: inline; font-weight: bold;">Total Price: <span style="color: rgb(67 53 52);"><?php echo number_format(@$total, 2); ?></span></p>&nbsp;&nbsp;
 					<input type="button" name="cancel" value="Cancel" class="button" style="background-color: white; color: #120B0A;">
