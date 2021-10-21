@@ -205,7 +205,7 @@
     <?php }
     else{?>
 
-    <!-- Dont forget to set the names -->
+    <!-- Dont forget to set the names of each input -->
 
     <form action="indexVerifyChanges.php?action=edit" method="POST">
     <div class="exit-edit-mode">

@@ -124,6 +124,8 @@
         </ul>
     </nav>
 
+    <!-- Alerts are initialized -->
+
     <div class="alert-container-nav" id="success-alert">
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -159,6 +161,7 @@
       </div>
     </div>
 
+    <!-- Hide at start -->
     <script>$("#add-success").hide();</script>
     <script>$("#delete-success").hide();</script>
     <script>$("#edit-success").hide();</script>
@@ -173,6 +176,9 @@
             <h5 class="modal-title modal-title-size"><?php echo $modal_user ?></h5>
           </div>
           <div class="modal-body">
+
+            <!-- You may do it here or add another php file to do the processing of the admin changes -->
+            <!-- if error persists in making changes create an error alert -->
             <form action="" method="post">
               <div class="user-form">
                 <div class="form-row">

@@ -51,6 +51,8 @@
               </script>";
       }
     }?>
+
+    <!-- if you searched for an item:  -->
     
     <?php 
     
@@ -116,6 +118,9 @@
                 ?>
       </div>
     </div>
+
+    <!-- else if just accessing the store page -->
+    <!-- Notice how values are being transferred through post with the use of hidden forms -->
     <?php 
     }
     else{ ?>
