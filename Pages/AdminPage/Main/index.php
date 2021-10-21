@@ -25,32 +25,39 @@
 
   //initialize this vars into a db
 
-     $carousel_slider1_header = "Try our bestseller!";
-     $carousel_slider1_text = "CHOCOLATE BANANA BREAD";
-     $carousel_slider2_header = "Try our Tasty Cookies!";
-     $carousel_slider2_text = "CHOCOLATE COOKIES";
-     $carousel_slider3_header = "Craving that Nutty Flavor?";
-     $carousel_slider3_text = "Craving that Nutty Flavor?";
-     $cta_store = "Go to Store";
-     $section_header_about = "About us";
-     $header_about = "Quality is our recipe";
-     $text_about = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus doloremque in non? Autem nemo, voluptatum, sequi aliquam eligendi dolore quibusdam a perferendis fugit provident, nesciunt dignissimos neque corporis quo labore?
-     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, quia facere sint, minus explicabo ut modi! Ea, nesciunt minima";
-     $header_contact2 = "Lets Work Together";
-     $contact2_text = "Help us improve your experience by providing feedback.";
-     $contact2_email = "email@email.com";
-     $contact2_number = "999-999-999";
-     $contact2_address = "123 Street, Manila, Metro Manila";
-     $section_header_contact = "Contact us";
-     $header_contact1 = "Shoot us a Message";
-     $contact_name = "Name";
-     $contact_email = "Email";
-     $contact_message = "Message";
-     $cta_submit = "Submit";
-     $product1 = "Chocobananabread.jpg";
-     $product2 = "chococookies.jpg";
-     $product3 = "chococookies.jpg";
-     $product_logo_img = "HomeBakedByNingning.png";
+    $sql = 'SELECT * from index_text;';
+    $result = $conn->query($sql);
+    $results = array();
+
+    while($row = $result->fetch_assoc()){
+      $results[] = $row['text'];
+    }
+
+    $product1 = $results[0];
+    $carousel_slider1_header = $results[1];
+    $carousel_slider1_text = $results[2];
+    $cta_store = $results[3];
+    $product2 = $results[4];
+    $carousel_slider2_header = $results[5];
+    $carousel_slider2_text = $results[6];
+    $product3 = $results[7];
+    $carousel_slider3_header = $results[8];
+    $carousel_slider3_text = $results[9];
+    $section_header_about = $results[10];
+    $about_img = $results[11];
+    $header_about = $results[12];
+    $text_about = $results[13];
+    $section_header_contact = $results[14];
+    $header_contact1 = $results[15];
+    $header_contact2 = $results[16];
+    $contact2_text = $results[17];
+    $contact2_email = $results[18];
+    $contact2_number = $results[19];
+    $contact2_address = $results[20];
+    $cta_submit = $results[21];
+    $contact_name = "Name";
+    $contact_email = "Email";
+    $contact_message = "Message";
 
     //  gets status and displays alert (alerts are stored in the navbar)
      if (isset($_GET["status"])) {
@@ -137,7 +144,7 @@
       <div class="container-fluid about-header header-division"><?php echo $section_header_about ?></div>
       <div class="about-content">
         <div class="about-image">
-          <img src="../../../Assets/img/logo/<?php echo $product_logo_img ?>" alt="" />
+          <img src="../../../Assets/img/logo/<?php echo $about_img ?>" alt="" />
         </div>
         <div class="about-text-container">
           <div class="about-text-header"><?php echo $header_about ?></div>
