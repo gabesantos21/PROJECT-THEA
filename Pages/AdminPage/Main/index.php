@@ -50,6 +50,7 @@
      $product1 = "Chocobananabread.jpg";
      $product2 = "chococookies.jpg";
      $product3 = "chococookies.jpg";
+     $product_logo_img = "HomeBakedByNingning.png";
 
     //  gets status and displays alert (alerts are stored in the navbar)
      if (isset($_GET["status"])) {
@@ -136,7 +137,7 @@
       <div class="container-fluid about-header header-division"><?php echo $section_header_about ?></div>
       <div class="about-content">
         <div class="about-image">
-          <img src="../../../Assets/img/logo/HomeBakedByNingning.png" alt="" />
+          <img src="../../../Assets/img/logo/<?php echo $product_logo_img ?>" alt="" />
         </div>
         <div class="about-text-container">
           <div class="about-text-header"><?php echo $header_about ?></div>
