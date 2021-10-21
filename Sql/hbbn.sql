@@ -48,10 +48,57 @@ INSERT INTO `product_list` (`id`, `name`, `price`, `description`, `image`) VALUE
 -- Indexes for dumped tables
 --
 
+-- 
+-- Table structure for 'index_text'
+--
+
+CREATE TABLE `index_text` (
+  `id` int(11) NOT NULL,
+  `name` varchar(750) NOT NULL,
+  `text` varchar(750) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_list`
+--
+
+INSERT INTO index_text(name, text) VALUES 
+    ('carouselimg1', 'Chocobananabread.jpg'),
+    ('carouseltag1', 'Try our bestseller!'),
+    ('carouselproduct1', 'CHOCOLATE BANANA BREAD'),
+    ('carouselbutton1', 'Go to Store'),
+    ('carouselimg2', 'chococookies.jpg'),
+    ('carouseltag2', 'Try our Tasty Cookies!'),
+    ('carouselproduct2', 'CHOCOLATE COOKIES'),
+    ('carouselbutton2', 'Go to Store'),
+    ('carouselimg3', 'nuttyOats.jpg'),
+    ('carouseltag3', 'Craving that Nutty Flavor?'),
+    ('carouselproduct3', 'NUTTY OATS'),
+    ('carouselbutton3', 'Go to Store'),
+    ('category1', 'ABOUT US'),
+    ('category1img', 'HomeBakedByNingning.png'),
+    ('category1tag', 'Quality is our recipe'),
+    ('category1txt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus doloremque in non? Autem nemo, voluptatum, sequi aliquam eligendi dolore quibusdam a perferendis fugit provident, nesciunt dignissimos neque corporis quo labore?
+     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, quia facere sint, minus explicabo ut modi! Ea, nesciunt minima'),
+    ('category2', 'CONTACT US'),
+    ('category2txt1', 'Shoot us a Message'),
+    ('category2txt2', 'Let''s Work Together'),
+    ('category2txt3', 'Help us improve your experience by providing feed'),
+    ('category2input1', 'email@email.com'),
+    ('category2input2', '999-999-999'),
+    ('category2input3', '123 Street, Manila, Metro Manila');
+
+    
+    
+    
+
 --
 -- Indexes for table `product_list`
 --
 ALTER TABLE `product_list`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `index_text`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -64,6 +111,10 @@ ALTER TABLE `product_list`
 ALTER TABLE `product_list`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
+
+
+ALTER TABLE `index_text`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
