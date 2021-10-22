@@ -70,11 +70,9 @@ INSERT INTO index_text(name, text) VALUES
     ('carouselimg2', 'chococookies.jpg'),
     ('carouseltag2', 'Try our Tasty Cookies!'),
     ('carouselproduct2', 'CHOCOLATE COOKIES'),
-    ('carouselbutton2', 'Go to Store'),
     ('carouselimg3', 'nuttyOats.jpg'),
     ('carouseltag3', 'Craving that Nutty Flavor?'),
     ('carouselproduct3', 'NUTTY OATS'),
-    ('carouselbutton3', 'Go to Store'),
     ('category1', 'ABOUT US'),
     ('category1img', 'HomeBakedByNingning.png'),
     ('category1tag', 'Quality is our recipe'),
@@ -87,6 +85,7 @@ INSERT INTO index_text(name, text) VALUES
     ('category2input1', 'email@email.com'),
     ('category2input2', '999-999-999'),
     ('category2input3', '123 Street, Manila, Metro Manila');
+    ('category2button', 'Submit');
 
     
     

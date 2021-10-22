@@ -228,13 +228,13 @@
       <main>
         <section class="presentation">
           <div class="cover slider1 white-border-cover">
-            <input class="file-slider width-img-submit" id="input-b1" name="productFile1" type="file" class="file" data-browse-on-zone-click="true">
+            <input class="file-slider width-img-submit file" id="input-b1" name="productFile1" type="file" data-browse-on-zone-click="true">
           </div>
           <div class="cover slider2 white-border-cover">
-            <input class="file-slider width-img-submit" id="input-b2" name="productFile2" type="file" class="file" data-browse-on-zone-click="true">
+            <input class="file-slider width-img-submit file" id="input-b2" name="productFile2" type="file" data-browse-on-zone-click="true">
           </div>
           <div class="cover slider3 white-border-cover">
-            <input class="file-slider width-img-submit" id="input-b3" name="productFile3" type="file" class="file" data-browse-on-zone-click="true">
+            <input class="file-slider width-img-submit file" id="input-b3" name="productFile3" type="file" data-browse-on-zone-click="true">
           </div>
           <div class="introduction">
             <div class="intro-text slider-info1">
