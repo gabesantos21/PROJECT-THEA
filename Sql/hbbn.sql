@@ -54,8 +54,8 @@ INSERT INTO `product_list` (`id`, `name`, `price`, `description`, `image`) VALUE
 
 CREATE TABLE `index_text` (
   `id` int(11) NOT NULL,
-  `name` varchar(750) NOT NULL,
-  `text` varchar(750) NOT NULL
+  `name` varchar(750) ,
+  `text` varchar(750) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -70,11 +70,9 @@ INSERT INTO index_text(name, text) VALUES
     ('carouselimg2', 'chococookies.jpg'),
     ('carouseltag2', 'Try our Tasty Cookies!'),
     ('carouselproduct2', 'CHOCOLATE COOKIES'),
-    ('carouselbutton2', 'Go to Store'),
     ('carouselimg3', 'nuttyOats.jpg'),
     ('carouseltag3', 'Craving that Nutty Flavor?'),
     ('carouselproduct3', 'NUTTY OATS'),
-    ('carouselbutton3', 'Go to Store'),
     ('category1', 'ABOUT US'),
     ('category1img', 'HomeBakedByNingning.png'),
     ('category1tag', 'Quality is our recipe'),

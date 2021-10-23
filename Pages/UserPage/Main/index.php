@@ -52,7 +52,7 @@
      $contact2_email = $results[18];
      $contact2_number = $results[19];
      $contact2_address = $results[20];
-     $cta_submit = $results[21];
+     $cta_submit = "Submit";
      $contact_name = "Name";
      $contact_email = "Email";
      $contact_message = "Message";

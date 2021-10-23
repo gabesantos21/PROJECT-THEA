@@ -54,7 +54,7 @@
     $contact2_email = $results[18];
     $contact2_number = $results[19];
     $contact2_address = $results[20];
-    $cta_submit = $results[21];
+    $cta_submit = 'Submit';
     $contact_name = "Name";
     $contact_email = "Email";
     $contact_message = "Message";
@@ -215,7 +215,7 @@
 
     <!-- Dont forget to set the names of each input -->
 
-    <form action="indexVerifyChanges.php?action=edit" method="POST">
+    <form enctype="multipart/form-data" action="indexVerifyChanges.php?action=edit" method="POST">
     <div class="exit-edit-mode">
         <a href="index.php">
         <img src="../../../Assets/img/icons/cancel.svg" alt="">
