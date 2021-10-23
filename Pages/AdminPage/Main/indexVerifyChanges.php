@@ -58,7 +58,7 @@ if (!$conn) {
                 "carouseltag3" => $_POST['slider3Header'],
                 "carouselproduct3" => $_POST['slider3Text'],
                 "category1" => $_POST['categAbout'],
-                "category1img" => $img4 = basename($_FILES["productFile4"]["name"]),
+                "category1img" => basename($_FILES["productFile4"]["name"]),
                 "category1tag" => $_POST['headerAbout'],
                 "category1txt" => $_POST['message'],
                 "category2" => $_POST['categContact'],
