@@ -54,7 +54,7 @@
     $contact2_email = $results[18];
     $contact2_number = $results[19];
     $contact2_address = $results[20];
-    $cta_submit = $results[21];
+    $cta_submit = 'Submit';
     $contact_name = "Name";
     $contact_email = "Email";
     $contact_message = "Message";
@@ -215,7 +215,7 @@
 
     <!-- Dont forget to set the names of each input -->
 
-    <form action="indexVerifyChanges.php?action=edit" method="POST">
+    <form enctype="multipart/form-data" action="indexVerifyChanges.php?action=edit" method="POST">
     <div class="exit-edit-mode">
         <a href="index.php">
         <img src="../../../Assets/img/icons/cancel.svg" alt="">
@@ -238,31 +238,31 @@
           </div>
           <div class="introduction">
             <div class="intro-text slider-info1">
-            <input type="text" class="form-control margin-input width-input" name="" value="<?php echo $carousel_slider1_header ?>">
+            <input type="text" class="form-control margin-input width-input" name="slider1Header" value="<?php echo $carousel_slider1_header ?>">
               <div class="carousel-info">
                 <img src="../../../Assets\img\icons\arrow-left.svg" alt="" class="prev-arrow" onclick="slideFunction(-1)"/>
-                <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $carousel_slider1_text ?>">
+                <input type="text" class="form-control margin-input width-input"  name="slider1Text" value="<?php echo $carousel_slider1_text ?>">
                 <img src="../../../Assets\img\icons\arrow-right.svg" alt="" class="next-arrow" onclick="slideFunction(1)"/>
               </div>
             </div>
             <div class="intro-text slider-info2">
-            <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $carousel_slider2_header ?>">
+            <input type="text" class="form-control margin-input width-input"  name="slider2Header" value="<?php echo $carousel_slider2_header ?>">
               <div class="carousel-info">
                 <img src="../../../Assets\img\icons\arrow-left.svg" alt="" class="prev-arrow" onclick="slideFunction(-1)"/>
-                <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $carousel_slider2_text ?>">
+                <input type="text" class="form-control margin-input width-input"  name="slider2Text" value="<?php echo $carousel_slider2_text ?>">
                 <img src="../../../Assets\img\icons\arrow-right.svg" alt="" class="next-arrow" onclick="slideFunction(1)"/>
               </div>
             </div>
             <div class="intro-text slider-info3">
-            <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $carousel_slider3_header ?>">
+            <input type="text" class="form-control margin-input width-input"  name="slider3Header" value="<?php echo $carousel_slider3_header ?>">
               <div class="carousel-info">
                 <img src="../../../Assets\img\icons\arrow-left.svg" alt="" class="prev-arrow" onclick="slideFunction(-1)"/>
-                <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $carousel_slider3_text ?>">
+                <input type="text" class="form-control margin-input width-input"  name="slider3Text" value="<?php echo $carousel_slider3_text ?>">
                 <img src="../../../Assets\img\icons\arrow-right.svg" alt="" class="next-arrow" onclick="slideFunction(1)"/>
               </div>
             </div>
             <div class="cta">
-              <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $cta_store ?>">
+              <input type="text" class="form-control margin-input width-input"  name="btnStore" value="<?php echo $cta_store ?>">
               <div class="slider-select">
                 <span class="dot active" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
@@ -275,14 +275,14 @@
     </div>
     <div class="section-page" id="AboutUs">
       <div class="container-fluid about-header header-division">
-        <input type="text" class="form-control width-input"  name="" value="<?php echo $section_header_about ?>">
+        <input type="text" class="form-control width-input"  name="categAbout" value="<?php echo $section_header_about ?>">
       </div>
       <div class="about-content">
         <div class="about-image white-border-cover">
           <input class="file-slider width-img-submit" id="input-b4" name="productFile4" type="file" class="file" data-browse-on-zone-click="true">
         </div>
         <div class="about-text-container">
-        <input type="text" class="form-control width-input"  name="" value="<?php echo $header_about ?>">
+        <input type="text" class="form-control width-input"  name="headerAbout" value="<?php echo $header_about ?>">
           <div class="about-text-content">
           <textarea
               class="form-control"
@@ -296,11 +296,11 @@
     </div>
     <div class="section-page" id="ContactUs">
       <div class="container-fluid contact-header header-division">
-      <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $section_header_contact ?>">
+      <input type="text" class="form-control margin-input width-input"  name="categContact" value="<?php echo $section_header_contact ?>">
       </div>
       <div class="about-content">
         <div class="contact-form-container">
-            <input type="text" class="form-control margin-input width-input"  name="" value="<?php echo $header_contact1 ?>">
+            <input type="text" class="form-control margin-input width-input"  name="contactTxt1" value="<?php echo $header_contact1 ?>">
             <div class="contact-form">
                 <label for="inputName"><?php echo $contact_name ?></label>
                 <input
@@ -334,17 +334,17 @@
           <button class="message-btn" type="submit" disabled><?php echo $cta_submit ?></button>
         </div>
         <div class="contact-text-container">
-          <input type="text" class="form-control margin-input width-input" name="" value="<?php echo $header_contact2 ?>">
-          <input type="text" class="form-control margin-input width-input" name="" value="<?php echo $contact2_text ?>">
+          <input type="text" class="form-control margin-input width-input" name="contactTxt2" value="<?php echo $header_contact2 ?>">
+          <input type="text" class="form-control margin-input width-input" name="contactTxt3" value="<?php echo $contact2_text ?>">
           <div class="social-icons">
             <img src="../../../Assets/img/icons/call.svg" alt="" />
             <img src="../../../Assets/img/icons/viber.svg" alt="" />
             <img src="../../../Assets/img/icons/facebook.svg" alt="" />
           </div>
           <div class="contact-information">
-            <input type="text" class="form-control width-input" name=""  value="<?php echo $contact2_email ?>">
-            <input type="text" class="form-control width-input" name="" value="<?php echo $contact2_number ?>">
-            <input type="text" class="form-control width-input" name="" value="<?php echo $contact2_address ?>">
+            <input type="text" class="form-control width-input" name="input1"  value="<?php echo $contact2_email ?>">
+            <input type="text" class="form-control width-input" name="input2" value="<?php echo $contact2_number ?>">
+            <input type="text" class="form-control width-input" name="input3" value="<?php echo $contact2_address ?>">
           </div>
         </div>
       </div>

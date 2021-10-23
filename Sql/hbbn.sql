@@ -54,8 +54,8 @@ INSERT INTO `product_list` (`id`, `name`, `price`, `description`, `image`) VALUE
 
 CREATE TABLE `index_text` (
   `id` int(11) NOT NULL,
-  `name` varchar(750) NOT NULL,
-  `text` varchar(750) NOT NULL
+  `name` varchar(750) ,
+  `text` varchar(750) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
