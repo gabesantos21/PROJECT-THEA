@@ -88,29 +88,34 @@ INSERT INTO index_text(name, text) VALUES
     ('category2button', 'Submit');
 
     
-    
-    
+--
+-- Table Structure for 'user_account'
+--
+    CREATE TABLE `user_account` (
+  `user_id` int(11) NOT NULL,
+  `f_name` varchar(750) ,
+  `l_name` varchar(750) ,
+  `user_name` varchar(750) ,
+  `phone_number` varchar(750) ,
+  `e_mail` varchar(750) ,
+  `password` varchar(750) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for table `product_list`
 --
-ALTER TABLE `product_list`
-  ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `index_text`
+--Use below statement to assign PK to table
+--Table names include: product_list, index_text, user_account
+ALTER TABLE `product_list`
   ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `product_list`
---
-ALTER TABLE `product_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-
+--Use below statements to assign auto increment
+--Table names include: product_list, index_text, user_account
 
 ALTER TABLE `index_text`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

@@ -58,7 +58,19 @@
      $contact_message = "Message";
 
     //  gets status and displays alert (alerts are stored in the navbar)
-
+     if(isset($_POST["submitregister"])){
+        if($passwordConfirmed && !$sameUser){
+          echo "<script>
+        $(document).ready(function() {
+        $('#regsuccess-alert')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#regsuccess-alert').slideUp(500);
+        });
+      });
+              </script>";
+        }
+     }
      if (isset($_GET["action"])) {
       if ($_GET["action"] == "deleteCart") {
         echo "<script>
