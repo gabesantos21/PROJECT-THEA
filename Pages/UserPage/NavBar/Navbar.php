@@ -389,7 +389,7 @@
               <div class="user-form">
               <?php
                     if(isset($_POST['submitregister'])){
-                      
+                        
                       if(!$passwordConfirmed || $sameUser){
                         echo "<script type='text/javascript'>
                         
@@ -481,7 +481,11 @@
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
-                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                  <input type="password" minlength="8" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputConfirmPassword"><?php echo $modal_CPassword ?></label>
+                  <input type="password" minlength="8" class="form-control" id="inputConfirmPassword" name="confirmPassword" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputAddress"><?php echo $modal_address ?></label>

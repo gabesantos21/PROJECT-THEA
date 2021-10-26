@@ -39,10 +39,12 @@
       $modal_register_facebook = "Register with Facebook";
       $modal_email = "Email";
       $modal_password = "Password";
+      $modal_cpassword = "Confirm Password";
       $modal_submit = "Submit";
       $modal_checkout = "Checkout";
       $modal_close = "Close";
       $modal_givenName = "Name";
+      $modal_userName = "User Name";
       $modal_surname = "Surname";
       $modal_CPassword = "Confirm Password";
       $modal_number = "Phone Number";
@@ -181,41 +183,18 @@
             <!-- if error persists in making changes create an error alert -->
             <form action="" method="post">
               <div class="user-form">
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputName"><?php echo $modal_givenName ?></label>
-                    <input type="text" class="form-control" id="inputName" name="name" placeholder="" required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputSurname"><?php echo $modal_surname ?></label>
-                    <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="" required>
-                  </div>
-                </div>
                 <div class="form-group">
-                  <label for="inputEmail"><?php echo $modal_email ?></label>
-                  <input type="email" class="form-control" id="inputEmail" name="email" placeholder="" required>
+                  <label for="username"><?php echo $modal_userName ?></label>
+                  <input type="name" class="form-control" id="inputUsername" name="username" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
-                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                  <input type="password" minlength="8" class="form-control" id="inputPassword" name="password" placeholder="" required>
                 </div>
                 <div class="form-group">
-                  <label for="inputAddress"><?php echo $modal_address ?></label>
-                  <input type="text" class="form-control" id="inputAddress" name="address" placeholder="" required>
+                  <label for="inputPassword2"><?php echo $modal_cpassword ?></label>
+                  <input type="password" minlength="8" class="form-control" id="inputPassword2" name="password2" placeholder="" required>
                 </div>
-                <div class="form-group">
-                  <label for="inputCity"><?php echo $modal_city ?></label>
-                  <input type="text" class="form-control" id="inputCity" name="city" placeholder="" required>
-                </div>
-                <div class="form-group">
-                  <label for="inputBarangay"><?php echo $modal_barangay ?></label>
-                  <input type="text" class="form-control" id="inputAddress" name="barangay" placeholder="" required>
-                </div>
-                <div class="form-group">
-                  <label for="inputZIP"><?php echo $modal_zip ?></label>
-                  <input type="text" class="form-control" id="inputZIP" name="ZIP" placeholder="" required>
-                </div>
-              </div>
               <div class="modal-footer">
                 <button type="submit" class="submit-btn" name="submit"><?php echo $modal_save ?></button>
                 <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
