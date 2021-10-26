@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <?php include '../../../Sql/dbConnection.php'; ?>
 
 <!DOCTYPE html>
@@ -20,11 +20,9 @@
 
       <?php 
 
-      // if true loads registered user navbar else guest navbar
-      $_SESSION['userLogged'] = "false";
+      
 
-      $dropdown_user = "User"; 
-      $dropdown_greet_user = "Hi, " . $dropdown_user;
+      $dropdown_user = "User";
       $dropdown_user_login = "Login";
       $dropdown_user_signup = "Register";
       $dropdown_user_logout = "Logout";
@@ -54,6 +52,39 @@
       $modal_city = "City";
       $modal_barangay = "Barangay";
       $modal_zip = "ZIP";
+
+
+      
+     
+     
+      //Login logic
+          $isAuthenticated =  false;
+          if(isset($_POST['submitlogin'])){
+            $loginUser = $_POST['logname'];
+            $loginPass = $_POST['logpassword'];
+
+            $sql = 'SELECT * from user_account;';
+            $result = $conn->query($sql);
+
+            while($row = $result->fetch_assoc()){
+            
+              if($row['user_name'] == $loginUser && password_verify($loginPass, $row['password'])){
+                $_SESSION['userLogged'] = "true";
+                $_SESSION['userName'] = $loginUser;
+                $isAuthenticated = true;
+                break;
+              }
+              
+            }
+          }
+
+          if(isset($_SESSION['userName'])){
+            
+            $dropdown_greet_user = "Hi, " . $_SESSION['userName'];
+
+          }
+
+     
 
       // Add to cart session are stored with this code
 
@@ -176,11 +207,11 @@
           <li class="nav-user">
               <img src="../../../Assets/img/icons/user.svg" alt="">
             <div class="dropdown-user-control">
-              <?php if (@$_SESSION['userLogged'] == "true") { ?>
+              <?php if (isset($_SESSION['userLogged'])) { ?>
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" data-toggle="modal" data-target=".user-modal-container"><?php echo $dropdown_greet_user?></a>  
                 <a href="OrderStatusPage.php"class="dropdown-items" style="letter-spacing: 0px"><?php echo $nav_link_check_orders?></a> 
-                <form action="">
-                <a href=""class="dropdown-items" style="letter-spacing: 0px" ><?php echo $dropdown_user_logout?></a>
+                <form action="../Main/Logout.php?action=logout" method="post">
+                <input type="submit"class="dropdown-items" style="letter-spacing: 0px" value="<?php echo $dropdown_user_logout?>">
                 </form>
                     <?php
                 }
@@ -201,11 +232,24 @@
         Successfully added to cart!
       </div>
     </div>
+    <div class="alert-container-nav" id="success-logout">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Logged out of your account!
+      </div>
+    </div>
 
     <div class="alert-container-nav" id="regsuccess-alert">
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Successfully created your account!
+      </div>
+    </div>
+
+    <div class="alert-container-nav" id="loginsuccess-alert">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?php echo "Successfully logged in! Hi, " . $_SESSION['userName'] . "!";?>
       </div>
     </div>
 
@@ -239,7 +283,9 @@
 
     <!-- Hide at start -->
     <script>$("#success-alert").hide();</script>
+    <script>$("#success-logout").hide();</script>
     <script>$("#regsuccess-alert").hide();</script>
+    <script>$("#loginsuccess-alert").hide();</script>
     <script>$("#checkout-alert").hide();</script>
     <script>$("#success-remove-alert").hide();</script>
     <script>$("#success-remove-alert-cart").hide();</script>
@@ -300,6 +346,8 @@
       </div>
     </div>
 
+    
+
      <!-- Login Modal -->
      <div class="modal fade bd-example-modal login-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal modal-dialog-centered">
@@ -314,13 +362,32 @@
             <!-- if error persists in making changes create an error alert -->
             <form action="" method="post">
               <div class="user-form">
+              <?php
+                    if(isset($_POST['submitlogin'])){
+                        
+                      if(!$isAuthenticated){
+                        echo "<script type='text/javascript'>
+                        
+                          $(document).ready(function(){
+                            jQuery.noConflict();
+                            $('.login-modal-container').modal('show');
+                            });
+                       </script>";
+                        
+                        echo "<p style='color:red;'>Username or Password is incorrect!</p>";
+                        
+                      }
+                      
+
+                    }
+                ?>
                 <div class="form-group">
                   <label for="inputUsername"><?php echo $modal_username ?></label>
-                  <input type="text" class="form-control" id="inputUsername" name="name" placeholder="" required>
+                  <input type="text" class="form-control" id="inputUsername" name="logname" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
-                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                  <input type="password" class="form-control" id="inputPassword" name="logpassword" placeholder="" required>
                 </div>
               </div>
               <div class="modal-footer">
@@ -362,12 +429,15 @@
             if($password != $password2){
               $passwordConfirmed = false;
             }
+              
+            
 
             if(!$sameUser && $passwordConfirmed){
+              $hashed = password_hash($password, PASSWORD_DEFAULT);
               $sql = "INSERT INTO user_account(f_name, l_name, user_name, phone_number, e_mail, password) 
               VALUES (?, ?, ?, ?, ?, ?);";
               $stmt = $conn->prepare($sql);
-              $stmt->bind_param("ssssss", $fname, $sname, $uname, $number, $email, $password);
+              $stmt->bind_param("ssssss", $fname, $sname, $uname, $number, $email, $hashed);
               $stmt->execute();
             }
             

@@ -57,7 +57,22 @@
      $contact_email = "Email";
      $contact_message = "Message";
 
+
+     
     //  gets status and displays alert (alerts are stored in the navbar)
+     if(isset($_POST["submitlogin"])){
+        if($isAuthenticated){
+          echo "<script>
+        $(document).ready(function() {
+        $('#loginsuccess-alert')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#loginsuccess-alert').slideUp(500);
+        });
+      });
+              </script>";
+        }
+     }
      if(isset($_POST["submitregister"])){
         if($passwordConfirmed && !$sameUser){
           echo "<script>
@@ -71,6 +86,19 @@
               </script>";
         }
      }
+     if (!isset($_SESSION["userName"])) {
+      if(isset($_GET['logout']) && $_GET['logout'] = 'success'){
+        echo "<script>
+        $(document).ready(function() {
+        $('#success-logout')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#success-logout').slideUp(500);
+        });
+      });
+              </script>";
+      }
+    }
      if (isset($_GET["action"])) {
       if ($_GET["action"] == "deleteCart") {
         echo "<script>
