@@ -170,7 +170,7 @@
       </div>
     </div>
 
-    <!-- Contact us Section -->
+    <!-- Contact us! Section -->
     
     <div class="section-page last-section" id="ContactUs">
       <div class="container-fluid contact-header header-division">
