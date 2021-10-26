@@ -39,7 +39,6 @@
       $modal_register_facebook = "Register with Facebook";
       $modal_email = "Email";
       $modal_password = "Password";
-      $modal_cpassword = "Confirm Password";
       $modal_submit = "Submit";
       $modal_checkout = "Checkout";
       $modal_close = "Close";
@@ -184,17 +183,18 @@
             <form action="" method="post">
               <div class="user-form">
                 <div class="form-group">
-                  <label for="username"><?php echo $modal_userName ?></label>
-                  <input type="name" class="form-control" id="inputUsername" name="username" placeholder="" required>
+                  <label for="inputUserName"><?php echo $modal_userName ?></label>
+                  <input type="text" class="form-control" id="inputUserName" name="username" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
                   <input type="password" minlength="8" class="form-control" id="inputPassword" name="password" placeholder="" required>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword2"><?php echo $modal_cpassword ?></label>
+                  <label for="inputPassword2"><?php echo $modal_CPassword ?></label>
                   <input type="password" minlength="8" class="form-control" id="inputPassword2" name="password2" placeholder="" required>
                 </div>
+              </div>
               <div class="modal-footer">
                 <button type="submit" class="submit-btn" name="submit"><?php echo $modal_save ?></button>
                 <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
