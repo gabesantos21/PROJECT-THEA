@@ -82,6 +82,7 @@
     		<div class="flex-box-2">	
     			<h4>Payment</h4>
     			<div class ="flex-box-content">
+					<form>
     				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
 					Cash on Delivery<br>
     				<input class="radio-button" type="radio" name="payment-type-gCash">
@@ -93,7 +94,8 @@
     				<input class="textBox-type-1" type="text" name="zip">
     				<p style="font-size: 10px;">Name as displayed on<br>Paymaya/GCash account</p>
     				<label for="phone-Number">Account Number</label>
-    				<input class="textBox-type-1" type="number" name="phone-Number">		
+    				<input class="textBox-type-1" type="number" name="phone-Number">
+					</form>		
     			</div>
             </div>
 			<!-- table that connects to the hbbns.sql DB that holds a table with the values -->
