@@ -19,12 +19,8 @@
   <body>
 
       <?php 
-
-      // if true loads registered user navbar else guest navbar
-      $_SESSION['userLogged'] = "true";
-
-      $dropdown_user = "Admin"; //must be retrieved from database
-      $dropdown_greet_user = "Hi, " . $dropdown_user;
+      
+      
       $dropdown_user_login = "Login";
       $dropdown_user_signup = "Register";
       $dropdown_user_logout = "Logout";
@@ -55,6 +51,62 @@
       $modal_zip = "ZIP";
       ?>
       
+      <!-- Admin User modal logic -->
+    <?php
+    
+      
+    if(isset($_POST['usersubmit'])){
+      $uname = $_POST['username'];
+      $uname2 = $_SESSION['userName']; 
+      $password1 = $_POST['password'];
+      $password2 = $_POST['password2'];
+      $passwordConfirmed = true;
+      if(isset($password1) && isset($password2) && !empty($password1) && !empty($password2)){
+        if($password1 == $password2){
+          $passwordConfirmed = true;
+          $hashed = password_hash($password1, PASSWORD_DEFAULT);
+
+          $userSql = "UPDATE user_account SET user_name = ? , password = ?
+          WHERE user_name = ? ;";
+          $stmt = $conn->prepare($userSql);
+          $stmt->bind_param("sss", $uname, $hashed, $uname2);
+          $stmt->execute();
+          $_SESSION['userName'] = $uname;
+          $dropdown_user = $_SESSION['userName'];
+          $dropdown_greet_user = "Hi, " . $_SESSION['userName'];
+        }else{
+          $passwordConfirmed = false;
+        }
+        
+      }else{
+        $userSql = "UPDATE user_account SET user_name = ?
+        WHERE user_name = ? ;";
+        $stmt = $conn->prepare($userSql);
+        $stmt->bind_param("ss", $uname, $uname2);
+        $stmt->execute();
+        $_SESSION['userName'] = $uname;
+        $dropdown_user = $_SESSION['userName'];
+        $dropdown_greet_user = "Hi, " . $_SESSION['userName'];
+      }
+      
+    }
+    
+    $userName = '';
+      
+      if(isset($_SESSION['userName'])){
+        $userSql = "SELECT * from user_account WHERE user_name = '" . $_SESSION['userName'] . "';";
+        $userResult = $conn->query($userSql);
+        if($userRow = $userResult->fetch_assoc()){
+          $userName = $userRow['user_name'];
+          $_SESSION['userName'] = $userName;
+          $dropdown_user = $_SESSION['userName'];
+          $dropdown_greet_user = "Hi, " . $_SESSION['userName'];
+        }
+        
+      }
+    
+  
+  ?>
     <nav>
       <div class="burger">
             <div class="line1"></div>
@@ -181,56 +233,7 @@
     <script>$("#success-update").hide();</script>
     <script>$("#error-alert").hide();</script>
     
-    <!-- Admin User modal logic -->
-    <?php
     
-      
-      
-      
-      if(isset($_POST['usersubmit'])){
-        $uname = $_POST['username'];
-        $uname2 = $_SESSION['userName']; 
-        $password1 = $_POST['password'];
-        $password2 = $_POST['password2'];
-        $passwordConfirmed = true;
-        if(isset($password1) && isset($password2) && !empty($password1) && !empty($password2)){
-          if($password1 == $password2){
-            $passwordConfirmed = true;
-            $hashed = password_hash($password1, PASSWORD_DEFAULT);
-
-            $userSql = "UPDATE user_account SET user_name = ? , password = ?
-            WHERE user_name = ? ;";
-            $stmt = $conn->prepare($userSql);
-            $stmt->bind_param("sss", $uname, $hashed, $uname2);
-            $stmt->execute();
-          }else{
-            $passwordConfirmed = false;
-          }
-          
-        }else{
-          $userSql = "UPDATE user_account SET user_name = ?
-          WHERE user_name = ? ;";
-          $stmt = $conn->prepare($userSql);
-          $stmt->bind_param("ss", $uname, $uname2);
-          $stmt->execute();
-
-        }
-        
-      }
-      $userName = '';
-      if(isset($_SESSION['userName'])){
-        $userSql = "SELECT * from user_account WHERE user_name = '" . $_SESSION['userName'] . "';";
-        $userResult = $conn->query($userSql);
-        if($userRow = $userResult->fetch_assoc()){
-          $userName = $userRow['user_name'];
-          
-          
-        }
-        
-      }
-      
-    
-    ?>
 
     <!-- User Modal -->
     <div class="modal fade bd-example-modal user-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
