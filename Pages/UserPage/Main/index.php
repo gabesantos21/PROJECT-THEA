@@ -50,6 +50,7 @@
      $product3 = "chococookies.jpg";
 
     //  gets status and displays alert (alerts are stored in the navbar)
+
      if (isset($_GET["action"])) {
       if ($_GET["action"] == "deleteCart") {
         echo "<script>
@@ -75,6 +76,8 @@
       }
     }
   ?>
+
+  <!-- Sliders / Carousel -->
 
     <div class="section-page">
       <main>
@@ -130,6 +133,8 @@
       </main>
     </div>
 
+    <!-- About Section -->
+
     <div class="section-page" id="AboutUs">
       <div class="container-fluid about-header header-division"><?php echo $section_header_about ?></div>
       <div class="about-content">
@@ -145,6 +150,8 @@
       </div>
     </div>
 
+    <!-- Contact us Section -->
+    
     <div class="section-page last-section" id="ContactUs">
       <div class="container-fluid contact-header header-division">
       <?php echo $section_header_contact ?>
