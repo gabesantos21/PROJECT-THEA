@@ -73,8 +73,8 @@
           </script>";
     
  }
-    if(isset($_POST["submitlogin"])){
-      if($isAuthenticated){
+    if(isset($_GET['login']) && !isset($_POST['usersubmit'])){
+      if($_GET['login'] = 'success'){
         echo "<script>
       $(document).ready(function() {
       $('#loginsuccess-alert')
