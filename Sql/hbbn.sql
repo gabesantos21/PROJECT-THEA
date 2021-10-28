@@ -98,9 +98,16 @@ INSERT INTO index_text(name, text) VALUES
   `user_name` varchar(750) ,
   `phone_number` varchar(750) ,
   `e_mail` varchar(750) ,
-  `password` varchar(750) 
+  `password` varchar(750)
+  `address` varchar(750) ,
+  `city` varchar(750) ,
+  `barangay` varchar(750) ,
+  `zip` varchar(750)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- insert admin account
+-- password is heavenlybaked
+INSERT INTO user_account (user_name, password) VALUES ('admin', '$2y$10$0tHuS8biwsiQDA2J6Af1t.MUoyr.sdqvWHP.OMMoavvDD3.0gROxC');
 --
 -- Indexes for table `product_list`
 --
