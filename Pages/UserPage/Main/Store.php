@@ -52,6 +52,19 @@
             </script>";
       }
    }
+   if(isset($_POST["usersubmit"]) && $passwordConfirmed){
+      
+        echo "<script>
+      $(document).ready(function() {
+      $('#success-update')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#loginsuccess-alert').slideUp(500);
+      });
+    });
+            </script>";
+  
+    }
    if(isset($_POST["submitregister"])){
       if($passwordConfirmed && !$sameUser){
         echo "<script>
