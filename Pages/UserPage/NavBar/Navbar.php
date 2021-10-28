@@ -85,7 +85,7 @@
           }
 
           if($isAdmin){
-            header("Location: ../../AdminPage/Main/index.php" );
+            header("Location: ../../AdminPage/Main/index.php?login=success" );
           }
 
           if(isset($_SESSION['userName'])){
