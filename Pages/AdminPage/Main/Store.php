@@ -132,7 +132,7 @@
               echo "<div class='no-product'><p>The product '<span class='product-search'>". $productName."</span>' does not exist!</p></div>";
             }
             else{
-                echo "         <form action='ProductVerify.php?action=add' method='post' class='card'>";
+                echo "         <form action='ProductVerify.php?action=add' method='post' class='card' enctype='multipart/form-data'>";
                 echo "            <div class='product-image-container'> ";
                 echo "              <img";
                 echo "                class='card-img-top product-image'";
@@ -170,7 +170,7 @@
                       echo "                 ".$row['description']."";
                       echo "              </p>";
                       echo "              <div class='action-container'>";
-                      echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart'>";
+                      echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart' enctype='multipart/form-data'>";
                       echo "                    <input type='hidden' name='id' value='" . $row['id'] . "'>";
                       echo "                    <input type='hidden' name='name' value='" . $row['name'] . "'>";
                       echo "                    <input type='hidden' name='price' value='" . $row['price'] . "'>";
@@ -202,7 +202,7 @@
         if((isset($_GET["action"]) && $_GET["action"] == "edit")){ ?>
         <div class="section-page">
             <div class="container-fluid about-header header-division">Product</div>
-                <form action="ProductVerify.php?action=edit" method="post" class="products-container">
+                <form action="ProductVerify.php?action=edit" method="post" class="products-container" enctype='multipart/form-data'>
                     <?php   echo "          <div class='card'>";
                             echo "            <div class='product-image-container'> ";
                             echo "              <img";
@@ -233,7 +233,7 @@
       <div class="container-fluid about-header header-division">Store</div>
       <div class="products-container">
         <?php
-                      echo "         <form action='ProductVerify.php?action=add' method='post' class='card'>";
+                      echo "         <form action='ProductVerify.php?action=add' method='post' class='card' enctype='multipart/form-data'>";
                       echo "            <div class='product-image-container'> ";
                       echo "              <img";
                       echo "                class='card-img-top product-image'";
@@ -274,7 +274,7 @@
                     echo "                 ".$row['description']."";
                     echo "              </p>";
                     echo "              <div class='action-container'>";
-                    echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart'>";
+                    echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart' enctype='multipart/form-data'>";
                     echo "                    <input type='hidden' name='id' value='" . $row['id'] . "'>";
                     echo "                    <input type='hidden' name='name' value='" . $row['name'] . "'>";
                     echo "                    <input type='hidden' name='price' value='" . $row['price'] . "'>";

@@ -84,7 +84,7 @@ INSERT INTO index_text(name, text) VALUES
     ('category2txt3', 'Help us improve your experience by providing feed'),
     ('category2input1', 'email@email.com'),
     ('category2input2', '999-999-999'),
-    ('category2input3', '123 Street, Manila, Metro Manila');
+    ('category2input3', '123 Street, Manila, Metro Manila'),
     ('category2button', 'Submit');
 
     
@@ -98,7 +98,7 @@ INSERT INTO index_text(name, text) VALUES
   `user_name` varchar(750) ,
   `phone_number` varchar(750) ,
   `e_mail` varchar(750) ,
-  `password` varchar(750)
+  `password` varchar(750),
   `address` varchar(750) ,
   `city` varchar(750) ,
   `barangay` varchar(750) ,
@@ -107,7 +107,7 @@ INSERT INTO index_text(name, text) VALUES
 
 -- insert admin account
 -- password is heavenlybaked
-INSERT INTO user_account (user_name, password) VALUES ('admin', '$2y$10$0tHuS8biwsiQDA2J6Af1t.MUoyr.sdqvWHP.OMMoavvDD3.0gROxC');
+  INSERT INTO user_account (user_name, password) VALUES ('admin', '$2y$10$0tHuS8biwsiQDA2J6Af1t.MUoyr.sdqvWHP.OMMoavvDD3.0gROxC');
 --
 -- Indexes for table `product_list`
 --

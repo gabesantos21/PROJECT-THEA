@@ -22,7 +22,7 @@ if (!$conn) {
             $img1 = basename($_FILES["productFile1"]["name"]);
             $target_file1 = $folderProduct . $img1;
             $upload1 = move_uploaded_file($_FILES["productFile1"]["tmp_name"], $target_file1);
-            echo $img2;
+            
           }
           if(isset($_FILES["productFile2"]["name"])){
             $img2 = basename($_FILES["productFile2"]["name"]);
