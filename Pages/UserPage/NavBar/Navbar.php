@@ -390,9 +390,9 @@
                             $('.login-modal-container').modal('show');
                             });
                        </script>";
-                        
-                        echo "<p style='color:red;'>Username or Password is incorrect!</p>";
-                        
+                        echo "<div class='alert alert-danger' role='alert'> 
+                        Username or Password is incorrect!
+                        </div>";
                       }
                       
 
