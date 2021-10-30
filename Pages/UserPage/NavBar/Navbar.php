@@ -600,10 +600,10 @@
           $userFname = $userRow['f_name'];
           $userLname = $userRow['l_name'];
           $userEmail = $userRow['e_mail'];
-          $userAddress = $userRow['address'];
-          $userCity = $userRow['city'];
-          $userBarangay = $userRow['barangay'];
-          $userZip = $userRow['zip'];
+          @$userAddress = $userRow['address'];
+          @$userCity = $userRow['city'];
+          @$userBarangay = $userRow['barangay'];
+          @$userZip = $userRow['zip'];
           
         }
         
