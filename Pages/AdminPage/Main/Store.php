@@ -81,10 +81,10 @@
                   });
                 </script>";
         } else{
-            echo "<script>$('#error-alert')
+            echo "<script>$('#editerror-alert')
                   .fadeTo(2000, 500)
                   .slideUp(500, function () {
-                    $('#error-alert').slideUp(500);
+                    $('#editerror-alert').slideUp(500);
                   });
                 </script>";
         }
