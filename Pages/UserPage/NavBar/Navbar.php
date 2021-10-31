@@ -19,9 +19,11 @@
   <body>
 
       <?php 
-
-      
-
+      if(isset($_GET["action"]) && $_GET["action"] == 'checkout'){
+          if(!isset($_SESSION['userName'])){
+            header("Location: index.php?checkout=fail" );
+          }
+        }
       $dropdown_user = "User";
       $dropdown_user_login = "Login";
       $dropdown_user_signup = "Register";
@@ -95,7 +97,6 @@
           }
 
      
-
       // Add to cart session are stored with this code
 
       if (isset($_POST["add_to_cart"])) {
@@ -242,6 +243,7 @@
         Successfully added to cart!
       </div>
     </div>
+    
     <div class="alert-container-nav" id="success-update">
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -353,7 +355,7 @@
                 </div>
             <?php } ?>
             <div class="modal-footer">
-              <form action="Checkout.php" method="post">
+              <form action="Checkout.php?action=checkout" method="post">
                   <button type="submit" class="submit-btn" name="submitcart"><?php echo  $modal_checkout ?></button>
               </form>
                   <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
@@ -396,6 +398,18 @@
                       }
                       
 
+                    }
+                    if(isset($_GET['checkout']) && $_GET['checkout'] == 'fail' && !isset($_POST['submitlogin'])){
+                      echo "<script type='text/javascript'>
+                                      
+                                        $(document).ready(function(){
+                                          jQuery.noConflict();
+                                          $('.login-modal-container').modal('show');
+                                          });
+                                     </script>";
+                                      echo "<div class='alert' role='alert'> 
+                                      Please log in before checking out.
+                                      </div>";
                     }
                 ?>
                 <div class="form-group">
