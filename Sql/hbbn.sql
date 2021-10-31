@@ -109,8 +109,31 @@ INSERT INTO index_text(name, text) VALUES
 -- password is heavenlybaked
   INSERT INTO user_account (user_name, password) VALUES ('admin', '$2y$10$0tHuS8biwsiQDA2J6Af1t.MUoyr.sdqvWHP.OMMoavvDD3.0gROxC');
 --
--- Indexes for table `product_list`
+-- Table structure for orders table
+-- no need to manually add primary key and auto increment
+  CREATE TABLE `orders` (
+    `order_id` varchar(20) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `order_date` DATETIME ,
+    `status` varchar(10) ,
+    `f_address` varchar(750),
+    `total_price` int(11),
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (user_id) REFERENCES user_account(user_id)  
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 --
+-- Table structure for order items table
+-- no need to manually add primary key and auto increment
+CREATE TABLE `order_items` (
+    `order_id` VARCHAR(20) NOT NULL,
+    `product_id` int(11) NOT NULL,
+    `quantity` int(11), 
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES product_list(id)  
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --Use below statement to assign PK to table
 --Table names include: product_list, index_text, user_account

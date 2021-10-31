@@ -36,43 +36,60 @@
 <div class = "header-border">
 	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
 </div>
+
+<?php
+	$sql = "SELECT * from user_account where user_name = '" . $_SESSION['userName'] ."';";
+	$result = $conn->query($sql);
+	
+
+	if($row = $result->fetch_assoc()){
+	  $gname = $row['f_name'];
+	  $sname = $row['l_name'];
+	  $address = $row['address'];
+	  $city = $row['city'];
+	  $barangay = $row['barangay'];
+	  $zip = $row['zip'];
+	  $number = $row['phone_number'];
+	}
+?>
+
 	<!-- Form to capture user input then refers to CheckoutVerify.php?action=checkout -->
 	<!-- Should probably encrypt the personal info also if we have time -->
-	<form action="CheckoutVerify.php?action=checkout" method="post" class="checkout-form">
+	<form enctype="multipart/form-data" action="CheckoutVerify.php?action=checkout" method="post" class="checkout-form">
 		<div class="container-main">		
     		<div class="flex-box-1">
     			<h4>Billing Address</h4>
     			<div class ="flex-box-content">
     				<div class="sub-container">
     					<label for="given-Name">Given Name</label>
-    					<input class="textBox-type-1" type="text" name="given-Name" required>
+    					<input class="textBox-type-1" type="text" name="given-Name" value='<?php echo $gname ?>' required>
     				</div>
     				<div class="sub-container">
     					<label for="surname">Surname</label>
-    					<input class="textBox-type-1" type="text" name="surname" required>
+    					<input class="textBox-type-1" type="text" name="surname" value='<?php echo $sname ?>' required>
     				</div>
     				<label for="address">Address</label>
-    				<input class="textBox-type-2" type="text" name="address" required>
+    				<input class="textBox-type-2" type="text" name="address" value='<?php echo $address ?>' required>
     				<label for="address-2">Address 2</label>
     				<input class="textBox-type-2" type="text" name="address-2">
     				<div class="sub-container">
     					<label for="city">City</label>
-    					<input class="textBox-type-1" type="text" name="city" required>
+    					<input class="textBox-type-1" type="text" name="city" value='<?php echo $city ?>' required>
     				</div>
     				<div class="sub-container">
     					<label for="barangay">Barangay</label>
-    					<input class="textBox-type-1" type="text" name="barangay" required>
+    					<input class="textBox-type-1" type="text" name="barangay" value='<?php echo $barangay ?>' required>
     				</div>
     				<br>
     				<br>
     				<br>
     				<div class="sub-container">
     					<label for="zip">ZIP</label>
-    					<input class="textBox-type-1" type="number" name="zip required">
+    					<input class="textBox-type-1" type="text" name="zip" value='<?php echo $zip ?>' required>
     				</div>
     				<div class="sub-container">
     					<label for="phone-Number">Phone Number</label>
-    					<input class="textBox-type-1" type="number" name="phone-Number" required>
+    					<input class="textBox-type-1" type="tel" name="phone-Number" value='<?php echo $number ?>' required>
     				</div>
     					
     			</div>
@@ -89,11 +106,11 @@
     				<input class="radio-button" type="radio" name="payment-type-cash-paymaya">
     				Paymaya<br>
     				<br>
-    				<label for="zip">Account Name</label>
-    				<input class="textBox-type-1" type="text" name="zip">
+    				<label for="aname">Account Name</label>
+    				<input class="textBox-type-1" type="text" name="aname">
     				<p style="font-size: 10px;">Name as displayed on<br>Paymaya/GCash account</p>
-    				<label for="phone-Number">Account Number</label>
-    				<input class="textBox-type-1" type="number" name="phone-Number">		
+    				<label for="pay-number">Account Number</label>
+    				<input class="textBox-type-1" type="number" name="pay-number">		
     			</div>
             </div>
 			<!-- table that connects to the hbbns.sql DB that holds a table with the values -->
@@ -133,6 +150,7 @@
     			<div class="submit-field">	
 					<p style="	display: inline; font-weight: bold;">Total Price: <span style="color: rgb(67 53 52);"><?php echo number_format(@$total, 2); ?></span></p>&nbsp;&nbsp;
 					<input type="button" name="cancel" value="Cancel" class="button" style="background-color: white; color: #120B0A;">
+					<input type="hidden" name="tprice" value="<?php echo @$total; ?>">
 					<input type="Submit" name="Checkout" value="Checkout" class="button">			
     			</div>
     		</div>
