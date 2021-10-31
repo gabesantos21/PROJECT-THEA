@@ -23,7 +23,9 @@ if (!$conn) {
       }
       else if($_GET['action']=="edit"){
         // Code for updating latest product info
-           $key = $_POST["id"];
+          
+
+          $key = $_POST["id"];
            $productName = $_POST["name"];
           $productPrice = $_POST["price"];
           $productDescription = $_POST["description"];
@@ -34,14 +36,19 @@ if (!$conn) {
             $target_file = $folderProduct . $img;
             $upload = move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
           }
-          echo $img;
+          
+          if(empty($key) || empty($productName) || empty($productPrice) || empty($productDescription) || empty($img)){
+            header("Location: store.php?edit=fail");
+
+          }
+          else{
           $sql = "UPDATE product_list SET name = ?, price = ?, description = ?, image = ? WHERE id = ?";
           $stmt = $conn->prepare($sql);
           $stmt->bind_param("sissi", $productName, $productPrice, $productDescription, $img, $key);
           $stmt->execute();
-
           
-        header("Location: store.php?edit=success");
+          header("Location: store.php?edit=success");
+          }
       }
       else if($_GET['action']=="add"){
         // Code for adding product on db
