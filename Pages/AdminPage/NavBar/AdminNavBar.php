@@ -203,6 +203,13 @@
       </div>
     </div>
 
+    <div class="alert-container-nav" id="editerror-alert">
+      <div class="alert alert-danger alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Please do not leave the fields blank, especially the image!
+      </div>
+    </div>
+
     <div class="alert-container-nav" id="delete-success">
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -232,6 +239,7 @@
     <script>$("#success-alert").hide();</script>
     <script>$("#success-update").hide();</script>
     <script>$("#error-alert").hide();</script>
+    <script>$("#editerror-alert").hide();</script>
     
     
 
