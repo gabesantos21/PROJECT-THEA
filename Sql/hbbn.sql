@@ -122,9 +122,7 @@ INSERT INTO index_text(name, text) VALUES
     FOREIGN KEY (user_id) REFERENCES user_account(user_id)  
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---Change the data type of the column to double so it can hold the data for price
-  ALTER TABLE orders
-modify total_price Double;
+
 --
 -- Table structure for order items table
 -- no need to manually add primary key and auto increment
