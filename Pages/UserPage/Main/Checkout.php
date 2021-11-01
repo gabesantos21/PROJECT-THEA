@@ -37,7 +37,7 @@
 	<div class="page-banner"><div class="banner-text">CHECKOUT</div></div>
 </div>
 
-<?php
+ <?php
 	$sql = "SELECT * from user_account where user_name = '" . $_SESSION['userName'] ."';";
 	$result = $conn->query($sql);
 	
@@ -70,8 +70,6 @@
     				</div>
     				<label for="address">Address</label>
     				<input class="textBox-type-2" type="text" name="address" value='<?php echo $address ?>' required>
-    				<label for="address-2">Address 2</label>
-    				<input class="textBox-type-2" type="text" name="address-2">
     				<div class="sub-container">
     					<label for="city">City</label>
     					<input class="textBox-type-1" type="text" name="city" value='<?php echo $city ?>' required>
@@ -99,12 +97,11 @@
     		<div class="flex-box-2">	
     			<h4>Payment</h4>
     			<div class ="flex-box-content">
-					<form>
-    				<input class="radio-button" type="radio" name="payment-type-cash-on-delivery">
+    				<input class="radio-button" type="radio" name="payment-type" value="cash-on-delivery">
 					Cash on Delivery<br>
-    				<input class="radio-button" type="radio" name="payment-type-gCash">
+    				<input class="radio-button" type="radio" name="payment-type" value="GCash">
     				GCash<br>
-    				<input class="radio-button" type="radio" name="payment-type-cash-paymaya">
+    				<input class="radio-button" type="radio" name="payment-type" value="Paymaya">
     				Paymaya<br>
     				<br>
     				<label for="aname">Account Name</label>
@@ -112,7 +109,6 @@
     				<p style="font-size: 10px;">Name as displayed on<br>Paymaya/GCash account</p>
     				<label for="pay-number">Account Number</label>
     				<input class="textBox-type-1" type="number" name="pay-number">		
-
     			</div>
             </div>
 			<!-- table that connects to the hbbns.sql DB that holds a table with the values -->
