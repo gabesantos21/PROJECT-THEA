@@ -22,6 +22,7 @@
   <body onload="onload()">
 
   <?php 
+    
     $store_header = "Shop";
 
     // if (isset($_SESSION["shopping_cart"])) {
@@ -38,6 +39,45 @@
     // }
 
     //  gets status and displays alert (alerts are stored in the navbar)
+    if(isset($_POST["submitlogin"])){
+      if($isAuthenticated){
+        echo "<script>
+      $(document).ready(function() {
+      $('#loginsuccess-alert')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#loginsuccess-alert').slideUp(500);
+      });
+    });
+            </script>";
+      }
+   }
+   if(isset($_POST["usersubmit"]) && $passwordConfirmed){
+      
+        echo "<script>
+      $(document).ready(function() {
+      $('#success-update')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#loginsuccess-alert').slideUp(500);
+      });
+    });
+            </script>";
+  
+    }
+   if(isset($_POST["submitregister"])){
+      if($passwordConfirmed && !$sameUser){
+        echo "<script>
+      $(document).ready(function() {
+      $('#regsuccess-alert')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#regsuccess-alert').slideUp(500);
+      });
+    });
+            </script>";
+      }
+   }
     if (isset($_GET["action"])) {
       if ($_GET["action"] == "add") {
         echo "<script>

@@ -173,8 +173,8 @@
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <input type="radio" id="complete" name="orderPending" value="complete"/>Complete
-                            <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
+                            <input type="radio" id="complete" name="orderPending" value="complete"/>Completed
+                            <input type="radio" id="decline" name="orderPending" value="decline"/>Cancelled
 
                     </tr>
                     <tr>
@@ -184,8 +184,8 @@
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <input type="radio" id="complete" name="orderPending" value="complete"/>Complete
-                            <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
+                            <input type="radio" id="complete" name="orderPending" value="complete"/>Completed
+                            <input type="radio" id="decline" name="orderPending" value="decline"/>Cancelled
 
                     </td>
                     </tr>
@@ -196,8 +196,8 @@
                         <td data-label="Total Amount">3</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <input type="radio" id="complete" name="orderPending" value="complete"/>Complete
-                            <input type="radio" id="decline" name="orderPending" value="decline"/>Decline
+                            <input type="radio" id="complete" name="orderPending" value="complete"/>Completed
+                            <input type="radio" id="decline" name="orderPending" value="decline"/>Cancelled
          
                     </td>
                     </tr>

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <?php include '../../../Sql/dbConnection.php'; ?>
 
 <!DOCTYPE html>
@@ -19,12 +19,12 @@
   <body>
 
       <?php 
-
-      // if true loads registered user navbar else guest navbar
-      $_SESSION['userLogged'] = "true";
-
-      $dropdown_user = "User"; 
-      $dropdown_greet_user = "Hi, " . $dropdown_user;
+      if(isset($_GET["action"]) && $_GET["action"] == 'checkout'){
+          if(!isset($_SESSION['userName'])){
+            header("Location: index.php?checkout=fail" );
+          }
+        }
+      $dropdown_user = "User";
       $dropdown_user_login = "Login";
       $dropdown_user_signup = "Register";
       $dropdown_user_logout = "Logout";
@@ -55,6 +55,48 @@
       $modal_barangay = "Barangay";
       $modal_zip = "ZIP";
 
+
+      
+     
+     
+      //Login logic
+          $isAuthenticated =  false;
+          $isAdmin = false;
+          if(isset($_POST['submitlogin'])){
+            $loginUser = $_POST['logname'];
+            $loginPass = $_POST['logpassword'];
+
+            $sql = 'SELECT * from user_account;';
+            $result = $conn->query($sql);
+
+            while($row = $result->fetch_assoc()){
+            
+              if($row['user_name'] == $loginUser && password_verify($loginPass, $row['password'])){
+                $_SESSION['userLogged'] = "true";
+                $_SESSION['userName'] = $loginUser;
+                $isAuthenticated = true;
+                if(is_null($row['f_name']) && is_null($row['l_name']) && is_null($row['phone_number']) && is_null($row['e_mail'])){
+                  $isAdmin = true;
+                }
+                break;
+              }
+              
+              
+            }
+            
+          }
+
+          if($isAdmin){
+            header("Location: ../../AdminPage/Main/index.php?login=success" );
+          }
+
+          if(isset($_SESSION['userName'])){
+            
+            $dropdown_greet_user = "Hi, " . $_SESSION['userName'];
+
+          }
+
+     
       // Add to cart session are stored with this code
 
       if (isset($_POST["add_to_cart"])) {
@@ -176,11 +218,11 @@
           <li class="nav-user">
               <img src="../../../Assets/img/icons/user.svg" alt="">
             <div class="dropdown-user-control">
-              <?php if (@$_SESSION['userLogged'] == "true") { ?>
+              <?php if (isset($_SESSION['userLogged'])) { ?>
                 <a href=""class="dropdown-items" style="letter-spacing: 0px" data-toggle="modal" data-target=".user-modal-container"><?php echo $dropdown_greet_user?></a>  
                 <a href="OrderStatusPage.php"class="dropdown-items" style="letter-spacing: 0px"><?php echo $nav_link_check_orders?></a> 
-                <form action="">
-                <a href=""class="dropdown-items" style="letter-spacing: 0px" ><?php echo $dropdown_user_logout?></a>
+                <form action="../Main/Logout.php?action=logout" method="post">
+                <input type="submit"class="dropdown-items" style="letter-spacing: 0px" value="<?php echo $dropdown_user_logout?>">
                 </form>
                     <?php
                 }
@@ -199,6 +241,33 @@
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Successfully added to cart!
+      </div>
+    </div>
+    
+    <div class="alert-container-nav" id="success-update">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully updated your credentials!
+      </div>
+    </div>
+    <div class="alert-container-nav" id="success-logout">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Logged out of your account!
+      </div>
+    </div>
+
+    <div class="alert-container-nav" id="regsuccess-alert">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully created your account!
+      </div>
+    </div>
+
+    <div class="alert-container-nav" id="loginsuccess-alert">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?php echo "Successfully logged in! Hi, " . $_SESSION['userName'] . "!";?>
       </div>
     </div>
 
@@ -232,6 +301,10 @@
 
     <!-- Hide at start -->
     <script>$("#success-alert").hide();</script>
+    <script>$("#success-logout").hide();</script>
+    <script>$("#success-update").hide();</script>
+    <script>$("#regsuccess-alert").hide();</script>
+    <script>$("#loginsuccess-alert").hide();</script>
     <script>$("#checkout-alert").hide();</script>
     <script>$("#success-remove-alert").hide();</script>
     <script>$("#success-remove-alert-cart").hide();</script>
@@ -282,8 +355,8 @@
                 </div>
             <?php } ?>
             <div class="modal-footer">
-              <form action="Checkout.php" method="post">
-                  <button type="submit" class="submit-btn" name="submit"><?php echo  $modal_checkout ?></button>
+              <form action="Checkout.php?action=checkout" method="post">
+                  <button type="submit" class="submit-btn" name="submitcart"><?php echo  $modal_checkout ?></button>
               </form>
                   <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
             </div>
@@ -291,6 +364,8 @@
         </div>
       </div>
     </div>
+
+    
 
      <!-- Login Modal -->
      <div class="modal fade bd-example-modal login-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -306,17 +381,48 @@
             <!-- if error persists in making changes create an error alert -->
             <form action="" method="post">
               <div class="user-form">
+              <?php
+                    if(isset($_POST['submitlogin'])){
+                        
+                      if(!$isAuthenticated){
+                        echo "<script type='text/javascript'>
+                        
+                          $(document).ready(function(){
+                            jQuery.noConflict();
+                            $('.login-modal-container').modal('show');
+                            });
+                       </script>";
+                        echo "<div class='alert alert-danger' role='alert'> 
+                        Username or Password is incorrect!
+                        </div>";
+                      }
+                      
+
+                    }
+                    if(isset($_GET['checkout']) && $_GET['checkout'] == 'fail' && !isset($_POST['submitlogin'])){
+                      echo "<script type='text/javascript'>
+                                      
+                                        $(document).ready(function(){
+                                          jQuery.noConflict();
+                                          $('.login-modal-container').modal('show');
+                                          });
+                                     </script>";
+                                      echo "<div class='alert' role='alert'> 
+                                      Please log in before checking out.
+                                      </div>";
+                    }
+                ?>
                 <div class="form-group">
                   <label for="inputUsername"><?php echo $modal_username ?></label>
-                  <input type="text" class="form-control" id="inputUsername" name="name" placeholder="" required>
+                  <input type="text" class="form-control" id="inputUsername" name="logname" placeholder="" required>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
-                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                  <input type="password" class="form-control" id="inputPassword" name="logpassword" placeholder="" required>
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="submit-btn" name="submit"><?php echo  $modal_submit ?></button>
+                <button type="submit" class="submit-btn" name="submitlogin"><?php echo  $modal_submit ?></button>
                 <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
               </div>
             </form>
@@ -324,7 +430,51 @@
         </div>
       </div>
     </div>
+      
 
+      <!--Registration Logic -->
+    <?php
+
+      if(isset($_POST['submitregister'])){
+            $fname = $_POST['name'];
+            $sname = $_POST['surname'];
+            $uname = $_POST['username'];
+            $number = $_POST['number'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $password2 = $_POST['confirmPassword'];
+
+
+            $sql = 'SELECT * from user_account;';
+            $result = $conn->query($sql);
+            $sameUser = false;
+            $passwordConfirmed = true;
+
+            while($row = $result->fetch_assoc()){
+              if($row['user_name'] == $uname){
+                $sameUser = true;
+                break;
+              }
+            }
+            
+            if($password != $password2){
+              $passwordConfirmed = false;
+            }
+              
+            
+
+            if(!$sameUser && $passwordConfirmed){
+              $hashed = password_hash($password, PASSWORD_DEFAULT);
+              $sql = "INSERT INTO user_account(f_name, l_name, user_name, phone_number, e_mail, password) 
+              VALUES (?, ?, ?, ?, ?, ?);";
+              $stmt = $conn->prepare($sql);
+              $stmt->bind_param("ssssss", $fname, $sname, $uname, $number, $email, $hashed);
+              $stmt->execute();
+            }
+            
+      }
+
+    ?>
       <!-- Register Modal -->
       <div class="modal fade bd-example-modal register-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal modal-dialog-centered">
@@ -335,10 +485,33 @@
             <button type="button" class="facebook-login"><?php echo $modal_register_facebook ?></button>
           </div>
           <div class="modal-body">
-            <!-- You may do it here or add another php file to do the processing of the Register (after successful, redirects to index) -->
-            <!-- if error persists in making changes create an error alert -->
+            
             <form action="" method="post">
               <div class="user-form">
+              <?php
+                    if(isset($_POST['submitregister'])){
+                        
+                      if(!$passwordConfirmed || $sameUser){
+                        echo "<script type='text/javascript'>
+                        
+                          $(document).ready(function(){
+                            jQuery.noConflict();
+                            $('.register-modal-container').modal('show');
+                            });
+                       </script>";
+                        
+                        
+                      }
+                      if($sameUser){
+                        echo "<p style='color:red;'>An account with the username " . $uname;
+                        echo " already exists!</p>";
+                      }
+                      if(!$passwordConfirmed){
+                        echo "<p style='color:red;'>The passwords you entered are not the same!</p>";
+                      }
+
+                    }
+                ?>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputName"><?php echo $modal_givenName ?></label>
@@ -370,8 +543,9 @@
                   <input type="password" class="form-control" id="inputConfirmPassword" name="confirmPassword" placeholder="" required>
                 </div>
               </div>
+              
               <div class="modal-footer">
-                <button type="submit" class="submit-btn" name="submit"><?php echo $modal_submit ?></button>
+                <button type="submit" class="submit-btn" name="submitregister"><?php echo $modal_submit ?></button>
                 <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close?></button>
               </div>
             </form>
@@ -379,6 +553,78 @@
         </div>
       </div>
     </div>
+
+    <!-- User Modal Logic -->
+    <?php
+    
+      $userFname = '';
+      $userLname = '';
+      $userEmail = '';
+      $userAddress ='';
+      $userCity = '';
+      $userBarangay = '';
+      $userZip = '';
+      
+      
+      if(isset($_POST['usersubmit'])){
+        $uname = $_SESSION['userName'];
+        $userFname = $_POST['name'];
+        $userLname = $_POST['surname'];
+        $userEmail = $_POST['email'];
+        $userAddress = $_POST['address'];
+        $userCity = $_POST['city'];
+        $userBarangay = $_POST['barangay'];
+        $userZip = $_POST['ZIP'];
+        $password1 = $_POST['password'];
+        $password2 = $_POST['confirmPassword'];
+        $passwordConfirmed = true;
+        if(isset($password1) && isset($password2) && !empty($password1) && !empty($password2)){
+          if($password1 == $password2){
+            $passwordConfirmed = true;
+            $hashed = password_hash($password1, PASSWORD_DEFAULT);
+
+            $userSql = "UPDATE user_account SET f_name = ? , l_name = ? , e_mail = ? , 
+            address = ? , city = ? , barangay = ? , zip = ? , password = ?
+            WHERE user_name = ? ;";
+            $stmt = $conn->prepare($userSql);
+            $stmt->bind_param("sssssssss", $userFname, $userLname, $userEmail, 
+            $userAddress, $userCity, $userBarangay, $userZip, $hashed, $uname);
+            $stmt->execute();
+          }else{
+            $passwordConfirmed = false;
+          }
+          
+        }else{
+          $userSql = "UPDATE user_account SET f_name = ? , l_name = ? , e_mail = ? , 
+          address = ? , city = ? , barangay = ? , zip = ? 
+          WHERE user_name = ? ;";
+          $stmt = $conn->prepare($userSql);
+          $stmt->bind_param("ssssssss", $userFname, $userLname, $userEmail, 
+          $userAddress, $userCity, $userBarangay, $userZip, $uname);
+          $stmt->execute();
+
+        }
+        
+      }
+
+      if(isset($_SESSION['userName'])){
+        $userSql = "SELECT * from user_account WHERE user_name = '" . $_SESSION['userName'] . "';";
+        $userResult = $conn->query($userSql);
+        if($userRow = $userResult->fetch_assoc()){
+          $userFname = $userRow['f_name'];
+          $userLname = $userRow['l_name'];
+          $userEmail = $userRow['e_mail'];
+          @$userAddress = $userRow['address'];
+          @$userCity = $userRow['city'];
+          @$userBarangay = $userRow['barangay'];
+          @$userZip = $userRow['zip'];
+          
+        }
+        
+      }
+      
+    
+    ?>
 
     <!-- User Modal -->
     <div class="modal fade bd-example-modal user-modal-container" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -391,43 +637,66 @@
             <!-- You may do it here or add another php file to do the processing of the saving user changes (if error persists in making changes create an error alert) -->
             <form action="" method="post">
               <div class="user-form">
+              <?php
+                    if(isset($_POST['usersubmit'])){
+                        
+                      if(!$passwordConfirmed){
+                        echo "<script type='text/javascript'>
+                        
+                          $(document).ready(function(){
+                            jQuery.noConflict();
+                            $('.user-modal-container').modal('show');
+                            });
+                       </script>";
+                        
+                        echo "<p style='color:red;'>The passwords you entered are not the same!</p>";
+                        
+                      }
+                    
+
+                    }
+                ?>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputName"><?php echo $modal_givenName ?></label>
-                    <input type="text" class="form-control" id="inputName" name="name" placeholder="" required>
+                    <input type="text" class="form-control" id="inputName" name="name" value="<?php echo  $userFname ?>" placeholder="">
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputSurname"><?php echo $modal_surname ?></label>
-                    <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="" required>
+                    <input type="text" class="form-control" id="inputSurname" name="surname" value="<?php echo  $userLname ?>" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail"><?php echo $modal_email ?></label>
-                  <input type="email" class="form-control" id="inputEmail" name="email" placeholder="" required>
+                  <input type="email" class="form-control" id="inputEmail" name="email" value="<?php echo  $userEmail ?>" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="inputPassword"><?php echo $modal_password ?></label>
-                  <input type="password" class="form-control" id="inputPassword" name="password" placeholder="" required>
+                  <input type="password" minlength="8" class="form-control" id="inputPassword" name="password" placeholder="" >
+                </div>
+                <div class="form-group">
+                  <label for="inputConfirmPassword"><?php echo $modal_CPassword ?></label>
+                  <input type="password" minlength="8" class="form-control" id="inputConfirmPassword" name="confirmPassword" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="inputAddress"><?php echo $modal_address ?></label>
-                  <input type="text" class="form-control" id="inputAddress" name="address" placeholder="" required>
+                  <input type="text" class="form-control" id="inputAddress" name="address" value="<?php echo  $userAddress ?>" placeholder="" >
                 </div>
                 <div class="form-group">
                   <label for="inputCity"><?php echo $modal_city ?></label>
-                  <input type="text" class="form-control" id="inputCity" name="city" placeholder="" required>
+                  <input type="text" class="form-control" id="inputCity" name="city" value="<?php echo  $userCity ?>" placeholder="" >
                 </div>
                 <div class="form-group">
                   <label for="inputBarangay"><?php echo $modal_barangay ?></label>
-                  <input type="text" class="form-control" id="inputAddress" name="barangay" placeholder="" required>
+                  <input type="text" class="form-control" id="inputAddress" name="barangay" value="<?php echo  $userBarangay ?>" placeholder="">
                 </div>
                 <div class="form-group">
                   <label for="inputZIP"><?php echo $modal_zip ?></label>
-                  <input type="text" class="form-control" id="inputZIP" name="ZIP" placeholder="" required>
+                  <input type="text" class="form-control" id="inputZIP" name="ZIP" value="<?php echo  $userZip ?>" placeholder="" >
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="submit-btn" name="submit"><?php echo $modal_save ?></button>
+                <button type="submit" class="submit-btn" name="usersubmit"><?php echo $modal_save ?></button>
                 <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
               </div>
             </form>

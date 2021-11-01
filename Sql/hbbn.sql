@@ -48,9 +48,95 @@ INSERT INTO `product_list` (`id`, `name`, `price`, `description`, `image`) VALUE
 -- Indexes for dumped tables
 --
 
+-- 
+-- Table structure for 'index_text'
 --
--- Indexes for table `product_list`
+
+CREATE TABLE `index_text` (
+  `id` int(11) NOT NULL,
+  `name` varchar(750) ,
+  `text` varchar(750) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
+-- Dumping data for table `product_list`
+--
+
+INSERT INTO index_text(name, text) VALUES 
+    ('carouselimg1', 'Chocobananabread.jpg'),
+    ('carouseltag1', 'Try our bestseller!'),
+    ('carouselproduct1', 'CHOCOLATE BANANA BREAD'),
+    ('carouselbutton1', 'Go to Store'),
+    ('carouselimg2', 'chococookies.jpg'),
+    ('carouseltag2', 'Try our Tasty Cookies!'),
+    ('carouselproduct2', 'CHOCOLATE COOKIES'),
+    ('carouselimg3', 'nuttyOats.jpg'),
+    ('carouseltag3', 'Craving that Nutty Flavor?'),
+    ('carouselproduct3', 'NUTTY OATS'),
+    ('category1', 'ABOUT US'),
+    ('category1img', 'HomeBakedByNingning.png'),
+    ('category1tag', 'Quality is our recipe'),
+    ('category1txt', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus doloremque in non? Autem nemo, voluptatum, sequi aliquam eligendi dolore quibusdam a perferendis fugit provident, nesciunt dignissimos neque corporis quo labore?
+     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, quia facere sint, minus explicabo ut modi! Ea, nesciunt minima'),
+    ('category2', 'CONTACT US'),
+    ('category2txt1', 'Shoot us a Message'),
+    ('category2txt2', 'Let''s Work Together'),
+    ('category2txt3', 'Help us improve your experience by providing feed'),
+    ('category2input1', 'email@email.com'),
+    ('category2input2', '999-999-999'),
+    ('category2input3', '123 Street, Manila, Metro Manila'),
+    ('category2button', 'Submit');
+
+    
+--
+-- Table Structure for 'user_account'
+--
+    CREATE TABLE `user_account` (
+  `user_id` int(11) NOT NULL,
+  `f_name` varchar(750) ,
+  `l_name` varchar(750) ,
+  `user_name` varchar(750) ,
+  `phone_number` varchar(750) ,
+  `e_mail` varchar(750) ,
+  `password` varchar(750),
+  `address` varchar(750) ,
+  `city` varchar(750) ,
+  `barangay` varchar(750) ,
+  `zip` varchar(750)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- insert admin account
+-- password is heavenlybaked
+  INSERT INTO user_account (user_name, password) VALUES ('admin', '$2y$10$0tHuS8biwsiQDA2J6Af1t.MUoyr.sdqvWHP.OMMoavvDD3.0gROxC');
+--
+-- Table structure for orders table
+-- no need to manually add primary key and auto increment
+  CREATE TABLE `orders` (
+    `order_id` varchar(20) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `order_date` DATETIME ,
+    `status` varchar(10) ,
+    `f_address` varchar(750),
+    `total_price` int(11),
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (user_id) REFERENCES user_account(user_id)  
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for order items table
+-- no need to manually add primary key and auto increment
+CREATE TABLE `order_items` (
+    `order_id` VARCHAR(20) NOT NULL,
+    `product_id` int(11) NOT NULL,
+    `quantity` int(11), 
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES product_list(id)  
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--Use below statement to assign PK to table
+--Table names include: product_list, index_text, user_account
 ALTER TABLE `product_list`
   ADD PRIMARY KEY (`id`);
 
@@ -58,12 +144,11 @@ ALTER TABLE `product_list`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `product_list`
---
-ALTER TABLE `product_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
+--Use below statements to assign auto increment
+--Table names include: product_list, index_text, user_account
+
+ALTER TABLE `index_text`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

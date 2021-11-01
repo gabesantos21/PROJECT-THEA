@@ -23,34 +23,95 @@
 
   <?php 
 
-     $carousel_slider1_header = "Try our bestseller!";
-     $carousel_slider1_text = "CHOCOLATE BANANA BREAD";
-     $carousel_slider2_header = "Try our Tasty Cookies!";
-     $carousel_slider2_text = "CHOCOLATE COOKIES";
-     $carousel_slider3_header = "Craving that Nutty Flavor?";
-     $carousel_slider3_text = "Craving that Nutty Flavor?";
-     $cta_store = "Go to Store";
-     $section_header_about = "About us";
-     $header_about = "Quality is our recipe";
-     $text_about = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus doloremque in non? Autem nemo, voluptatum, sequi aliquam eligendi dolore quibusdam a perferendis fugit provident, nesciunt dignissimos neque corporis quo labore?
-     Lorem ipsum dolor sit, amet consectetur adipisicing elit. In ipsum eum commodi placeat aspernatur nulla id eos aliquam dolorem ex, quia facere sint, minus explicabo ut modi! Ea, nesciunt minima";
-     $header_contact2 = "Lets Work Together";
-     $contact2_text = "Help us improve your experience by providing feedback.";
-     $contact2_email = "email@email.com";
-     $contact2_number = "999-999-999";
-     $contact2_address = "123 Street, Manila, Metro Manila";
-     $section_header_contact = "Contact us";
-     $header_contact1 = "Shoot us a Message";
+     $sql = 'SELECT * from index_text;';
+     $result = $conn->query($sql);
+     $results = array();
+
+     while($row = $result->fetch_assoc()){
+       $results[] = $row['text'];
+     }
+
+     $product1 = $results[0];
+     $carousel_slider1_header = $results[1];
+     $carousel_slider1_text = $results[2];
+     $cta_store = $results[3];
+     $product2 = $results[4];
+     $carousel_slider2_header = $results[5];
+     $carousel_slider2_text = $results[6];
+     $product3 = $results[7];
+     $carousel_slider3_header = $results[8];
+     $carousel_slider3_text = $results[9];
+     $section_header_about = $results[10];
+     $about_img = $results[11];
+     $header_about = $results[12];
+     $text_about = $results[13];
+     $section_header_contact = $results[14];
+     $header_contact1 = $results[15];
+     $header_contact2 = $results[16];
+     $contact2_text = $results[17];
+     $contact2_email = $results[18];
+     $contact2_number = $results[19];
+     $contact2_address = $results[20];
+     $cta_submit = "Submit";
      $contact_name = "Name";
      $contact_email = "Email";
      $contact_message = "Message";
-     $cta_submit = "Submit";
-     $product1 = "Chocobananabread.jpg";
-     $product2 = "chococookies.jpg";
-     $product3 = "chococookies.jpg";
 
+
+     
     //  gets status and displays alert (alerts are stored in the navbar)
-
+     if(isset($_POST["submitlogin"])){
+        if($isAuthenticated){
+          echo "<script>
+        $(document).ready(function() {
+        $('#loginsuccess-alert')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#loginsuccess-alert').slideUp(500);
+        });
+      });
+              </script>";
+        }
+     }
+     if(isset($_POST["usersubmit"]) && $passwordConfirmed){
+      
+        echo "<script>
+      $(document).ready(function() {
+      $('#success-update')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#success-update').slideUp(500);
+      });
+    });
+            </script>";
+      
+   }
+     if(isset($_POST["submitregister"])){
+        if($passwordConfirmed && !$sameUser){
+          echo "<script>
+        $(document).ready(function() {
+        $('#regsuccess-alert')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#regsuccess-alert').slideUp(500);
+        });
+      });
+              </script>";
+        }
+     }
+     if (!isset($_SESSION["userName"])) {
+      if(isset($_GET['logout']) && $_GET['logout'] = 'success'){
+        echo "<script>
+        $(document).ready(function() {
+        $('#success-logout')
+        .fadeTo(2000, 500)
+        .slideUp(500, function () {
+          $('#success-logout').slideUp(500);
+        });
+      });
+              </script>";
+      }
+    }
      if (isset($_GET["action"])) {
       if ($_GET["action"] == "deleteCart") {
         echo "<script>
@@ -139,7 +200,7 @@
       <div class="container-fluid about-header header-division"><?php echo $section_header_about ?></div>
       <div class="about-content">
         <div class="about-image">
-          <img src="../../../Assets/img/logo/HomeBakedByNingning.png" alt="" />
+          <img src="../../../Assets/img/logo/<?php echo $about_img ?>" alt="" />
         </div>
         <div class="about-text-container">
           <div class="about-text-header"><?php echo $header_about ?></div>
@@ -150,7 +211,7 @@
       </div>
     </div>
 
-    <!-- Contact us Section -->
+    <!-- Contact us! Section -->
     
     <div class="section-page last-section" id="ContactUs">
       <div class="container-fluid contact-header header-division">

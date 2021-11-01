@@ -22,6 +22,36 @@
   </head>
   <body onload="onload()">
 
+  <!-- Alerts -->
+  <?php
+    if(isset($_POST["usersubmit"]) && $passwordConfirmed){
+      
+      echo "<script>
+    $(document).ready(function() {
+    $('#success-update')
+    .fadeTo(2000, 500)
+    .slideUp(500, function () {
+      $('#success-update').slideUp(500);
+    });
+  });
+          </script>";
+    
+ }
+    if(isset($_POST["submitlogin"])){
+      if($isAuthenticated){
+        echo "<script>
+      $(document).ready(function() {
+      $('#loginsuccess-alert')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#loginsuccess-alert').slideUp(500);
+      });
+    });
+            </script>";
+      }
+   }
+  ?>
+
   <?php 
     $store_header = "Shop";
 
@@ -51,10 +81,10 @@
                   });
                 </script>";
         } else{
-            echo "<script>$('#error-alert')
+            echo "<script>$('#editerror-alert')
                   .fadeTo(2000, 500)
                   .slideUp(500, function () {
-                    $('#error-alert').slideUp(500);
+                    $('#editerror-alert').slideUp(500);
                   });
                 </script>";
         }
@@ -102,20 +132,20 @@
               echo "<div class='no-product'><p>The product '<span class='product-search'>". $productName."</span>' does not exist!</p></div>";
             }
             else{
-                echo "         <form action='ProductVerify.php?action=add' method='post' class='card'>";
+                echo "         <form action='ProductVerify.php?action=add' method='post' class='card' enctype='multipart/form-data'>";
                 echo "            <div class='product-image-container'> ";
                 echo "              <img";
                 echo "                class='card-img-top product-image'";
                 echo "                src='../../../Assets/img/backgrounds/placeholder-img.jpg'";
                 echo "                alt='Card image cap'";
                 echo "               />";
-                echo "                <input class='file-slider width-img-submit' style='color:white' id='input-b1' name='image' type='file' class='file' data-browse-on-zone-click='true'>";
+                echo "                <input class='file-slider width-img-submit' style='color:white' id='input-b1' name='image' type='file' class='file' data-browse-on-zone-click='true' required>";
                 echo "             </div>";
                 echo "            <div class='card-body card-product-container'>";  
                 echo "              <div class='column-direction card-text center-title' style='height:auto;'>";
-                echo "              <input type='text' class='column-margin form-control width-input' name='name' placeholder='Add Product Name'>";
-                echo "              <input type='number' class='column-margin form-control width-input' name='price' placeholder='Add Price'>";
-                echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value='' placeholder='Add Description'></textarea>";
+                echo "              <input type='text' class='column-margin form-control width-input' name='name' placeholder='Add Product Name' required>";
+                echo "              <input type='number' class='column-margin form-control width-input' name='price' placeholder='Add Price' required>";
+                echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value='' placeholder='Add Description' required></textarea>";
                 echo "              <div class='action-container' style='width: 40%;'>";
                 echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add' name='add_product'/>";
                 echo "              </div>";
@@ -140,7 +170,7 @@
                       echo "                 ".$row['description']."";
                       echo "              </p>";
                       echo "              <div class='action-container'>";
-                      echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart'>";
+                      echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart' enctype='multipart/form-data'>";
                       echo "                    <input type='hidden' name='id' value='" . $row['id'] . "'>";
                       echo "                    <input type='hidden' name='name' value='" . $row['name'] . "'>";
                       echo "                    <input type='hidden' name='price' value='" . $row['price'] . "'>";
@@ -172,7 +202,7 @@
         if((isset($_GET["action"]) && $_GET["action"] == "edit")){ ?>
         <div class="section-page">
             <div class="container-fluid about-header header-division">Product</div>
-                <form action="ProductVerify.php?action=edit" method="post" class="products-container">
+                <form action="ProductVerify.php?action=edit" method="post" class="products-container" enctype='multipart/form-data'>
                     <?php   echo "          <div class='card'>";
                             echo "            <div class='product-image-container'> ";
                             echo "              <img";
@@ -203,20 +233,20 @@
       <div class="container-fluid about-header header-division">Store</div>
       <div class="products-container">
         <?php
-                      echo "         <form action='ProductVerify.php?action=add' method='post' class='card'>";
+                      echo "         <form action='ProductVerify.php?action=add' method='post' class='card' enctype='multipart/form-data'>";
                       echo "            <div class='product-image-container'> ";
                       echo "              <img";
                       echo "                class='card-img-top product-image'";
                       echo "                src='../../../Assets/img/backgrounds/placeholder-img.jpg'";
                       echo "                alt='Card image cap'";
                       echo "               />";
-                      echo "                <input class='file-slider width-img-submit' style='color:white' id='input-b1' name='image' type='file' class='file' data-browse-on-zone-click='true'>";
+                      echo "                <input class='file-slider width-img-submit' style='color:white' id='input-b1' name='image' type='file' class='file' data-browse-on-zone-click='true' required>";
                       echo "             </div>";
                       echo "            <div class='card-body card-product-container'>";  
                       echo "              <div class='column-direction card-text center-title' style='height:auto;'>";
-                      echo "              <input type='text' class='column-margin form-control width-input' name='name' placeholder='Add Product Name'>";
-                      echo "              <input type='number' class='column-margin form-control width-input' name='price' placeholder='Add Price'>";
-                      echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value='' placeholder='Add Description'></textarea>";
+                      echo "              <input type='text' class='column-margin form-control width-input' name='name' placeholder='Add Product Name' required>";
+                      echo "              <input type='number' class='column-margin form-control width-input' name='price' placeholder='Add Price' required>";
+                      echo "              <textarea type='text' class='column-margin form-control width-input' name='description' rows='5' value='' placeholder='Add Description' required></textarea>";
                       echo "              <div class='action-container' style='width: 40%;'>";
                       echo "                    <input type='submit' class='cta-product add-to-cart-btn' value='Add' name='add_product'/>";
                       echo "              </div>";
@@ -244,7 +274,7 @@
                     echo "                 ".$row['description']."";
                     echo "              </p>";
                     echo "              <div class='action-container'>";
-                    echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart'>";
+                    echo "                  <form action='Store.php?action=edit' method='post' class='form-add-to-cart' enctype='multipart/form-data'>";
                     echo "                    <input type='hidden' name='id' value='" . $row['id'] . "'>";
                     echo "                    <input type='hidden' name='name' value='" . $row['name'] . "'>";
                     echo "                    <input type='hidden' name='price' value='" . $row['price'] . "'>";
