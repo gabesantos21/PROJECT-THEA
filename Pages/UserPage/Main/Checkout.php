@@ -112,7 +112,7 @@
     				<p style="font-size: 10px;">Name as displayed on<br>Paymaya/GCash account</p>
     				<label for="pay-number">Account Number</label>
     				<input class="textBox-type-1" type="number" name="pay-number">		
-
+					</form>
     			</div>
             </div>
 			<!-- table that connects to the hbbns.sql DB that holds a table with the values -->
