@@ -38,19 +38,19 @@
 </div>
 
  <?php
-	// $sql = "SELECT * from user_account where user_name = '" . $_SESSION['userName'] ."';";
-	// $result = $conn->query($sql);
+	$sql = "SELECT * from user_account where user_name = '" . $_SESSION['userName'] ."';";
+	$result = $conn->query($sql);
 	
 
-	// if($row = $result->fetch_assoc()){
-	//   $gname = $row['f_name'];
-	//   $sname = $row['l_name'];
-	//   $address = $row['address'];
-	//   $city = $row['city'];
-	//   $barangay = $row['barangay'];
-	//   $zip = $row['zip'];
-	//   $number = $row['phone_number'];
-	// }
+	if($row = $result->fetch_assoc()){
+	  $gname = $row['f_name'];
+	  $sname = $row['l_name'];
+	  $address = $row['address'];
+	  $city = $row['city'];
+	  $barangay = $row['barangay'];
+	  $zip = $row['zip'];
+	  $number = $row['phone_number'];
+	}
 ?>
 
 	<!-- Form to capture user input then refers to CheckoutVerify.php?action=checkout -->
