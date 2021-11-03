@@ -440,7 +440,7 @@ Order Status Page
 
 .orderPage-table-container {
   display: flex;
-  flex-grow:1;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: center;
   border: solid;
@@ -470,11 +470,11 @@ Order Status Page
   background-color: #f2f2f2;
 }
 
-.orderPage-table-foot{
+.orderPage-table-foot {
   background-color: #a6a6a6;
   color: white;
   font-family: "Alata", sans-serif;
-  padding-right:5px;
+  padding-right: 5px;
 }
 
 .orderPage-table tr:hover td {
@@ -490,28 +490,28 @@ Order Status Page
   border-bottom: none;
 }
 
-.orderPage-table-container h4{
+.orderPage-table-container h4 {
   text-align: center;
   color: #f2f2f2;
-  background-color:#c8b8b2;
+  background-color: #c8b8b2;
   padding: 4px;
 }
 
-.orderPage-table input{
+.orderPage-table input {
   display: inline;
   margin: 5px;
 }
 
-.orderPage-table-input{
+.orderPage-table-input {
   display: inline;
-  margin: 3px;  
+  margin: 3px;
   padding: 2px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 input.radio {
-   display: inline;
+  display: inline;
 }
 
 /*media adjustments for order page*/
@@ -532,11 +532,6 @@ input.radio {
 
   .orderPage-table-container {
     border-width: 0px;
-  }
-
-  .orderPage-table {
-    margin-left: 10%;
-    margin-right: 10%;
   }
 
   .orderPage-table th {
@@ -576,52 +571,47 @@ input.radio {
     font-family: "Alata", sans-serif;
     text-align: left;
   }
-  
-  .orderPage-table-foot{
-    border:solid;
+
+  .orderPage-table-foot {
+    border: solid;
     border-color: white;
     border-width: 30px;
     border-top-width: 15px;
   }
 
-  .orderPage-table-container h4{
+  .orderPage-table-container h4 {
     border: solid;
-    border-width: 30px;
     border-color: white;
     border-top-width: 15px;
     border-bottom-width: 15px;
   }
-
-
 }
-
 
 /*//////////////////////////////////////
 Error Page
 //////////////////////////////////////*/
 
-.error-screen{
+.error-screen {
   display: flex;
   border: solid;
   border-width: 30px;
   border-color: white;
   background-color: #c8b8b2;
   justify-content: center;
-  padding:30px;
+  padding: 30px;
   height: 100vh;
 }
 
-.error-screen-logo{ 
-  width:35%;
-  height:60%;
+.error-screen-logo {
+  width: 35%;
+  height: 60%;
   margin-top: 10%;
 }
 
 @media all and (max-width: 550px) {
-  .error-screen-logo{
-    margin-top: 50%;  
-    width:100%;
-    height:43%;
- }
+  .error-screen-logo {
+    margin-top: 50%;
+    width: 100%;
+    height: 43%;
+  }
 }
-

@@ -58,25 +58,11 @@
                 <th style="width:35%">Order Date</th>
                 <th style="width:10%">Total Amount</th>
                 <th style="width:10%">Order Status</th>
-                    <tr>
-                        <td data-label="Order ID">1</td>
-                        <td data-label="Customer ID">1</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">1</td>
-                        <td data-label="Order Status">Completed</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">2</td>
+                <tr class='clickable-row' data-href='OrderStatusPage.php?order=1'>
+                        <td data-label="Order ID">click me</td>
                         <td data-label="Customer ID">2</td>
                         <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
                         <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Completed</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">3</td>
-                        <td data-label="Customer ID">3</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">3</td>
                         <td data-label="Order Status">Completed</td>
                     </tr>
             </table>
@@ -93,28 +79,17 @@
                 <th style="width:35%">Order Date</th>
                 <th style="width:10%">Total Amount</th>
                 <th style="width:10%">Order Status</th>
-                    <tr>
-                        <td data-label="Order ID">1</td>
-                        <td data-label="Customer ID">1</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">1</td>
-                        <td data-label="Order Status">Cancelled</td>
-                    <tr>
-                        <td data-label="Order ID">2</td>
+                    <tr class='clickable-row' data-href='OrderStatusPage.php?order=1'>
+                        <td data-label="Order ID">click me</td>
                         <td data-label="Customer ID">2</td>
                         <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Cancelled</td>
-                    <tr>
-                        <td data-label="Order ID">3</td>
-                        <td data-label="Customer ID">3</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">3</td>
-                        <td data-label="Order Status">Cancelled</td>
+                    </tr>
             </table>
         </div>
         <?php }
-            }else{?>
+            }else if (!isset($_GET["list"]) && !isset($_GET["order"])){?>
             <!-- Pending Orders Table -->
         <div class="orderPage-table-container">
             <h4>Pending Orders</h4>
@@ -124,29 +99,31 @@
                 <th style="width:35%">Order Date</th>
                 <th style="width:10%">Total Amount</th>
                 <th style="width:10%">Order Status</th>
-                    <tr>
-                    <td data-label="Order ID">2</td>
+                <!-- Automate rows -->
+                    <tr class='clickable-row' data-href='OrderStatusPage.php?order=1'>
+                        <td data-label="Order ID">click me</td>
                         <td data-label="Customer ID">2</td>
                         <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Pending</td>
                     </tr>
+            </table>
+        </div>
+        <?php } else if (isset($_GET["order"])){?>
+            <!-- Specific Order Table -->
+        <div class="orderPage-table-container">
+            <h4>Order id : <?php echo $_GET['order']?></h4>
+            <table class="orderPage-table">
+                <th style="width:10%">Product</th>
+                <th style="width:10%">Price</th>
+                <th style="width:10%">Quantity</th>
+                <th style="width:10%">Total Amount</th>
                     <tr>
-                        <td data-label="Order ID">2</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Pending</td>
+                        <td data-label="Product Name">Choco cookies</td>
+                        <td data-label="Price">10$</td>
+                        <td data-label="Quantity">3</td>
+                        <td data-label="Total Amount">30$</td>
                     </tr>
-                    <tr>
-                        <td data-label="Order ID">3</td>
-                        <td data-label="Customer ID">3</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">3</td>
-                        <td data-label="Order Status">Pending</td>
-                    </tr>
-                    </tr>
-
             </table>
         </div>
         <?php }?>
@@ -160,6 +137,12 @@
                 if(radio.checked === true)radio.checked = false;
             });
         };
+
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
     </script>
     </body>
 </html>

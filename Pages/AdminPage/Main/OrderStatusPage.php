@@ -61,28 +61,11 @@
             <form action="" method="">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
-                <th style="width:35%">Order Date</th>
+                <th style="width:20%">Order Date</th>
                 <th style="width:10%">Total Amount</th>
                 <th style="width:10%">Order Status</th>
                 <th style="width:15%">Update Status</th>
-                    <tr>
-                        <td data-label="Order ID">1</td>
-                        <td data-label="Customer ID">1</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">1</td>
-                        <td data-label="Order Status">Completed</td>
-                        <td data-label="Update Status">
-                            <input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">2</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Completed</td>
-                        <td data-label="Update Status">
-                            <input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td>
-                    </tr>
+                <th style="width:15%">Action</th>
                     <tr>
                         <td data-label="Order ID">3</td>
                         <td data-label="Customer ID">3</td>
@@ -91,7 +74,8 @@
                         <td data-label="Order Status">Completed</td>
                         <td data-label="Update Status">
                             <input type="radio" id="revert" name="orderComplete" value="revert"/>Revert</td>
-                    </tr>
+                        <td data-label="View"><a href="OrderStatusPage.php?order=1'">View Order</a></td>
+                        </tr>
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
@@ -109,12 +93,13 @@
 
             <!-- form for this table to accept potential change in status of the orders -->
             <form action="" method="">
-                <th style="width:15%">Order ID</th>
+                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
-                <th style="width:35%">Order Date</th>
+                <th style="width:20%">Order Date</th>
                 <th style="width:10%">Total Amount</th>
                 <th style="width:10%">Order Status</th>
                 <th style="width:15%">Update Status</th>
+                <th style="width:15%">Action</th>
                     <tr>
                         <td data-label="Order ID">1</td>
                         <td data-label="Customer ID">1</td>
@@ -122,27 +107,10 @@
                         <td data-label="Total Amount">1</td>
                         <td data-label="Order Status">Cancelled</td>
                         <td data-label="Update Status">
-                            <input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td>
+                            <input type="radio" id="revert" name="orderDecline" value="Revert"/>Revert
+                        </td>
+                        <td data-label="View"><a href="OrderStatusPage.php?order=1'">View Order</a></td>
                     </tr>
-                    <tr>
-                        <td data-label="Order ID">2</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Cancelled</td>
-                        <td data-label="Update Status">
-                            <input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">3</td>
-                        <td data-label="Customer ID">3</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">3</td>
-                        <td data-label="Order Status">Cancelled</td>
-                        <td data-label="Update Status">
-                            <input type="radio" id="revert" name="orderDecline" value="revert"/>Revert</td>
-                    </tr>
-
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
@@ -150,10 +118,10 @@
             </div>
             </form>
         </div>
+
         <?php }
-            }else{?>
-            <!-- Pending Orders Table -->
-        <div class="orderPage-table-container">
+            }else if (!isset($_GET["list"]) && !isset($_GET["order"])){?>
+            <div class="orderPage-table-container">
             <h4>Pending Orders</h4>
             <table class="orderPage-table">
 
@@ -162,10 +130,11 @@
             <form action="" method="">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
-                <th style="width:35%">Order Date</th>
+                <th style="width:20%">Order Date</th>
                 <th style="width:10%">Total Amount</th>
                 <th style="width:10%">Order Status</th>
                 <th style="width:15%">Update Status</th>
+                <th style="width:15%">Action</th>
                     <tr>
                         <td data-label="Order ID">2</td>
                         <td data-label="Customer ID">2</td>
@@ -173,36 +142,11 @@
                         <td data-label="Total Amount">2</td>
                         <td data-label="Order Status">Pending</td>
                         <td data-label="Update Status">
-                            <input type="radio" id="complete" name="orderPending" value="complete"/>Completed
-                            <input type="radio" id="decline" name="orderPending" value="decline"/>Cancelled
-
+                            <input type="radio" id="complete" name="orderPending" value="complete"/>
+                            <input type="radio" id="decline" name="orderPending" value="decline"/>
+                        </td>
+                        <td data-label="View"><a href="OrderStatusPage.php?order=1'">View Order</a></td>
                     </tr>
-                    <tr>
-                        <td data-label="Order ID">2</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Pending</td>
-                        <td data-label="Update Status">
-                            <input type="radio" id="complete" name="orderPending" value="complete"/>Completed
-                            <input type="radio" id="decline" name="orderPending" value="decline"/>Cancelled
-
-                    </td>
-                    </tr>
-                    <tr>
-                        <td data-label="Order ID">3</td>
-                        <td data-label="Customer ID">3</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">3</td>
-                        <td data-label="Order Status">Pending</td>
-                        <td data-label="Update Status">
-                            <input type="radio" id="complete" name="orderPending" value="complete"/>Completed
-                            <input type="radio" id="decline" name="orderPending" value="decline"/>Cancelled
-         
-                    </td>
-                    </tr>
-                    </tr>
-
             </table>
             <div class="orderPage-table-foot">
                 <div style="float:right">Apply Change:<input type="submit" value="Apply" class="orderPage-table-input"></div>
@@ -210,8 +154,24 @@
             </div>
             </form>
         </div>
+        <?php } else if (isset($_GET["order"])){?>
+            <!-- Specific Order Table -->
+        <div class="orderPage-table-container">
+            <h4>Order id : <?php echo $_GET['order']?></h4>
+            <table class="orderPage-table">
+                <th style="width:10%">Product</th>
+                <th style="width:10%">Price</th>
+                <th style="width:10%">Quantity</th>
+                <th style="width:10%">Total Amount</th>
+                    <tr>
+                        <td data-label="Product Name">Choco cookies</td>
+                        <td data-label="Price">10$</td>
+                        <td data-label="Quantity">3</td>
+                        <td data-label="Total Amount">30$</td>
+                    </tr>
+            </table>
+        </div>
         <?php }?>
-
 
     <!-- Resets radio buttons -->
     <script>
@@ -221,6 +181,12 @@
                 if(radio.checked === true)radio.checked = false;
             });
         };
+
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
     </script>
     </body>
 </html>
