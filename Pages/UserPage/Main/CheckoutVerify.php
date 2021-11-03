@@ -21,12 +21,7 @@ if (!$conn) {
         $tprice = $_POST['tprice'];
         $orderid = uniqid('hbn');
         
-        $sql = "SELECT * from user_account where user_name = '" . $_SESSION['userName'] ."';";
-        $result = $conn->query($sql);
-      
-        if($row = $result->fetch_assoc()){
-          $userid = $row['user_id'];
-        }
+        $userid = $_SESSION['userId'];
 
         $fAddress = $userAddress . ', ' . $userCity . ', ' . $userBarangay . ', ' . $userZip; 
 
