@@ -210,6 +210,13 @@
       </div>
     </div>
 
+    <div class="alert-container-nav" id="updatestatuserror-alert">
+      <div class="alert alert-danger alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Failed to update status! Please make sure to select an option!
+      </div>
+    </div>
+
     <div class="alert-container-nav" id="delete-success">
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -231,6 +238,13 @@
       </div>
     </div>
 
+    <div class="alert-container-nav" id="update-status-success">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully updated order status!
+      </div>
+    </div>
+
     <!-- Hide at start -->
     <script>$("#add-success").hide();</script>
     <script>$("#loginsuccess-alert").hide();</script>
@@ -240,6 +254,8 @@
     <script>$("#success-update").hide();</script>
     <script>$("#error-alert").hide();</script>
     <script>$("#editerror-alert").hide();</script>
+    <script>$("#update-status-success").hide();</script>
+    <script>$("#updatestatuserror-alert").hide();</script>
     
     
 
