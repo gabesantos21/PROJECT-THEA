@@ -49,6 +49,10 @@
       $modal_city = "City";
       $modal_barangay = "Barangay";
       $modal_zip = "ZIP";
+
+          if(isset($_SESSION['isAdmin']) && !$_SESSION['isAdmin']){
+            header("Location: ../../UserPage/Main/index.php" );
+          }
       ?>
       
       <!-- Admin User modal logic -->
