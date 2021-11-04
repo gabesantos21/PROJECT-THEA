@@ -61,7 +61,7 @@
      
       //Login logic
           $isAuthenticated =  false;
-          $isAdmin = false;
+          
           if(isset($_POST['submitlogin'])){
             $loginUser = $_POST['logname'];
             $loginPass = $_POST['logpassword'];
@@ -75,9 +75,10 @@
                 $_SESSION['userLogged'] = "true";
                 $_SESSION['userName'] = $loginUser;
                 $_SESSION['userId'] = $row['user_id'];
+                $_SESSION['isAdmin'] = false;
                 $isAuthenticated = true;
                 if(is_null($row['f_name']) && is_null($row['l_name']) && is_null($row['phone_number']) && is_null($row['e_mail'])){
-                  $isAdmin = true;
+                  $_SESSION['isAdmin'] = true;
                 }
                 break;
               }
@@ -86,10 +87,10 @@
             }
             
           }
-
-          if($isAdmin){
-            header("Location: ../../AdminPage/Main/index.php?login=success" );
+          if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin']){
+              header("Location: ../../AdminPage/Main/index.php?login=success" );
           }
+          
 
           if(isset($_SESSION['userName'])){
             
