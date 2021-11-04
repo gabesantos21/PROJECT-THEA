@@ -90,7 +90,7 @@ INSERT INTO index_text(name, text) VALUES
     
 --
 -- Table Structure for 'user_account'
---
+-- IMPORTANT : DONT FORGET TO SET AFTER AUTO INCREMENT AND PK TO 'user_id'
     CREATE TABLE `user_account` (
   `user_id` int(11) NOT NULL,
   `f_name` varchar(750) ,

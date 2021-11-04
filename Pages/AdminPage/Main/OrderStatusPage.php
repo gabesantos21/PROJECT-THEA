@@ -120,7 +120,8 @@
                         <td data-label="Order Status"><?php echo $row['status']; ?></td>
                         <td data-label="Update Status">
                             <label style="color: black;" for="revert" >Revert</label>
-                            <input type="radio" id="revert" name="status" value="Pending,<?php echo $row['order_id']; ?>"/>Revert</td>
+                            <input type="radio" id="revert" name="status" value="Pending,<?php echo $row['order_id']; ?>"/>
+                        </td>
                             
                         <td data-label="View"><a href="OrderStatusPage.php?order=<?php echo $row['order_id'] ?>">View Order</a></td>
                         </tr>
