@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php @session_start();?>
 <?php include '../../../Sql/dbConnection.php'; ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
 
       
      
-     
+      
       //Login logic
           $isAuthenticated =  false;
           
@@ -414,7 +414,7 @@
                                       Please log in before checking out.
                                       </div>";
                     }
-                    if(isset($_GET['order']) && $_GET['order'] == 'fail' && !isset($_POST['submitlogin'])){
+                    if(isset($_GET['guest']) && $_GET['guest'] == 'fail' && !isset($_POST['submitlogin'])){
                       echo "<script type='text/javascript'>
                                       
                                         $(document).ready(function(){

@@ -1,6 +1,7 @@
 <?php 
+session_start();
 if(!isset($_SESSION['userName'])){
-    header("Location: index.php?order=fail" );
+    header("Location: index.php?guest=fail" );
 }
 include '../../UserPage/NavBar/Navbar.php' ?>
 <html>
@@ -22,7 +23,6 @@ include '../../UserPage/NavBar/Navbar.php' ?>
     <body>
 
     <?php 
-
 
     if (isset($_GET["action"])) {
         if ($_GET["action"] == "delete") {

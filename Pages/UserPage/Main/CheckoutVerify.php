@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['userName'])){
+    header("Location: ../../UserPage/Main/index.php" );
+}
 include '../../../Sql/dbConnection.php'; 
 
 if (!$conn) {
