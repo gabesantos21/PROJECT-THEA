@@ -1,4 +1,9 @@
-<?php include '../NavBar/Navbar.php' ?>
+<?php 
+session_start();
+if(!isset($_SESSION['userName'])){
+    header("Location: ../../UserPage/Main/index.php?guest=fail" );
+}
+include '../NavBar/Navbar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
