@@ -1,4 +1,8 @@
-<?php include '../../UserPage/NavBar/Navbar.php' ?>
+<?php 
+if(!isset($_SESSION['userName'])){
+    header("Location: index.php?order=fail" );
+}
+include '../../UserPage/NavBar/Navbar.php' ?>
 <html>
     <head>
         <title>ORDERS</title>
@@ -18,6 +22,8 @@
     <body>
 
     <?php 
+
+
     if (isset($_GET["action"])) {
         if ($_GET["action"] == "delete") {
           echo "<script>
