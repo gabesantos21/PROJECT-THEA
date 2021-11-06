@@ -31,6 +31,8 @@
                 </script>";
         }
       }
+
+
     ?>
 
         <div class = "header-border">
@@ -45,9 +47,20 @@
 
         <!-- TODO for backend - automate the rows -->
 
+
         <!-- Completed Order Table -->
         <?php if(isset($_GET["list"])){
             if ($_GET["list"] == "completed"){
+
+                $sql1 = "SELECT user_id from user_account where user_name = '" .  $_SESSION['userName'] . "';"; 
+                $thisUser = $conn->query($sql1);
+                $userID;
+                if($userRow = $thisUser->fetch_assoc()){
+                    $userID = $userRow['user_id'];
+                }
+                $sql = "SELECT * from orders where status = 'Completed' AND user_id = '". $userID ."';";
+                $result = $conn->query($sql);
+                
         ?>
 
          <div class="orderPage-table-container">
@@ -55,20 +68,50 @@
             <table class="orderPage-table">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
-                <th style="width:35%">Order Date</th>
-                <th style="width:10%">Total Amount</th>
+                <th style="width:20%">Order Date</th>
+                <th style="width:20%">Full Address</th>
+                <th style="width:10%;text-align: center;" >Total Amount</th>
                 <th style="width:10%">Order Status</th>
-                <tr class='clickable-row' data-href='OrderStatusPage.php?order=1'>
-                        <td data-label="Order ID">click me</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Completed</td>
+                <th style="width:15%">Action</th>
+                
+                        <?php 
+                            while($row = $result->fetch_assoc()){
+                            $sql2 = "SELECT * from order_items where order_id = '". $row['order_id'] . "';";
+                            $result1 = $conn->query($sql2);
+                            $count = 0;
+
+                            while($row1 = $result1->fetch_assoc()){
+                                $count += $row1['quantity'];
+                            }
+                        
+                        ?>
+
+
+                        <tr>
+                        <td data-label="Order ID"><?php echo $row['order_id']; ?></td>
+                        <td data-label="Customer ID"><?php echo $row['user_id']; ?></td>
+                        <td data-label="Order Date"><?php echo $row['order_date']; ?></td>
+                        <td data-label="Full Address"><?php echo $row['f_address']; ?></td>
+                        <td data-label="Total Amount" style="text-align: center;"><?php echo $count; ?></td>
+                        <td data-label="Order Status"><?php echo $row['status']; ?></td>
+                            
+                        <td data-label="View"><a href="OrderStatusPage.php?order=<?php echo $row['order_id'] ?>">View Order</a></td>
                     </tr>
+                    <?php }?>
             </table>
         </div>
         <?php
             } else if ($_GET["list"] == "declined"){
+
+                    $sql1 = "SELECT user_id from user_account where user_name = '" .  $_SESSION['userName'] . "';"; 
+                    $thisUser = $conn->query($sql1);
+                    $userID;
+                    if($userRow = $thisUser->fetch_assoc()){
+                        $userID = $userRow['user_id'];
+                    }
+                    $sql = "SELECT * from orders where status = 'Cancelled' AND user_id = '". $userID ."';";
+                    $result = $conn->query($sql);
+                    
         ?>
             <!-- Declined Orders Table -->
         <div class="orderPage-table-container">
@@ -76,40 +119,91 @@
             <table class="orderPage-table">
                 <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
-                <th style="width:35%">Order Date</th>
-                <th style="width:10%">Total Amount</th>
+                <th style="width:20%">Order Date</th>
+                <th style="width:20%">Full Address</th>
+                <th style="width:10%;text-align: center;" >Total Amount</th>
                 <th style="width:10%">Order Status</th>
-                    <tr class='clickable-row' data-href='OrderStatusPage.php?order=1'>
-                        <td data-label="Order ID">click me</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Cancelled</td>
+                <th style="width:15%">Action</th>
+                <?php 
+                            while($row = $result->fetch_assoc()){
+                            $sql2 = "SELECT * from order_items where order_id = '". $row['order_id'] . "';";
+                            $result1 = $conn->query($sql2);
+                            $count = 0;
+
+                            while($row1 = $result1->fetch_assoc()){
+                                $count += $row1['quantity'];
+                            }
+                        
+                        ?>
+
+
+                        <tr>
+                        <td data-label="Order ID"><?php echo $row['order_id']; ?></td>
+                        <td data-label="Customer ID"><?php echo $row['user_id']; ?></td>
+                        <td data-label="Order Date"><?php echo $row['order_date']; ?></td>
+                        <td data-label="Full Address"><?php echo $row['f_address']; ?></td>
+                        <td data-label="Total Amount" style="text-align: center;"><?php echo $count; ?></td>
+                        <td data-label="Order Status"><?php echo $row['status']; ?></td>
+                            
+                        <td data-label="View"><a href="OrderStatusPage.php?order=<?php echo $row['order_id'] ?>">View Order</a></td>
                     </tr>
+                    <?php }?>
             </table>
         </div>
         <?php }
-            }else if (!isset($_GET["list"]) && !isset($_GET["order"])){?>
+            }else if (!isset($_GET["list"]) && !isset($_GET["order"])){
+                $sql1 = "SELECT user_id from user_account where user_name = '" .  $_SESSION['userName'] . "';"; 
+                $thisUser = $conn->query($sql1);
+                $userID;
+                if($userRow = $thisUser->fetch_assoc()){
+                    $userID = $userRow['user_id'];
+                }
+                $sql = "SELECT * from orders where status = 'Pending' AND user_id = '". $userID ."';";
+                $result = $conn->query($sql);
+                ?>
             <!-- Pending Orders Table -->
         <div class="orderPage-table-container">
             <h4>Pending Orders</h4>
             <table class="orderPage-table">
-                <th style="width:15%">Order ID</th>
+            <th style="width:15%">Order ID</th>
                 <th style="width:15%">Customer ID</th>
-                <th style="width:35%">Order Date</th>
-                <th style="width:10%">Total Amount</th>
+                <th style="width:20%">Order Date</th>
+                <th style="width:20%">Full Address</th>
+                <th style="width:10%;text-align: center;" >Total Amount</th>
                 <th style="width:10%">Order Status</th>
-                <!-- Automate rows -->
-                    <tr class='clickable-row' data-href='OrderStatusPage.php?order=1'>
-                        <td data-label="Order ID">click me</td>
-                        <td data-label="Customer ID">2</td>
-                        <td data-label="Order Date">06:06:30 PM, 3rd July 2021</td>
-                        <td data-label="Total Amount">2</td>
-                        <td data-label="Order Status">Pending</td>
+                <th style="width:15%">Action</th>
+                <?php 
+                            while($row = $result->fetch_assoc()){
+                            $sql2 = "SELECT * from order_items where order_id = '". $row['order_id'] . "';";
+                            $result1 = $conn->query($sql2);
+                            $count = 0;
+
+                            while($row1 = $result1->fetch_assoc()){
+                                $count += $row1['quantity'];
+                            }
+                        
+                        ?>
+
+
+                        <tr>
+                        <td data-label="Order ID"><?php echo $row['order_id']; ?></td>
+                        <td data-label="Customer ID"><?php echo $row['user_id']; ?></td>
+                        <td data-label="Order Date"><?php echo $row['order_date']; ?></td>
+                        <td data-label="Full Address"><?php echo $row['f_address']; ?></td>
+                        <td data-label="Total Amount" style="text-align: center;"><?php echo $count; ?></td>
+                        <td data-label="Order Status"><?php echo $row['status']; ?></td>
+                            
+                        <td data-label="View"><a href="OrderStatusPage.php?order=<?php echo $row['order_id'] ?>">View Order</a></td>
                     </tr>
+                    <?php }?>
             </table>
         </div>
-        <?php } else if (isset($_GET["order"])){?>
+        <?php } else if (isset($_GET["order"])){
+                   $sql2 = "SELECT order_id, name, price, quantity 
+                FROM order_items INNER JOIN product_list 
+                ON order_items.product_id = product_list.id WHERE order_id = '" . $_GET['order'] . "';";
+                 $result1 = $conn->query($sql2);
+            ?>
             <!-- Specific Order Table -->
         <div class="orderPage-table-container">
             <h4>Order id : <?php echo $_GET['order']?></h4>
@@ -118,12 +212,18 @@
                 <th style="width:10%">Price</th>
                 <th style="width:10%">Quantity</th>
                 <th style="width:10%">Total Amount</th>
+                <?php 
+                
+                    while($row = $result1->fetch_assoc()){
+                        $total = $row['price'] * $row['quantity'];
+                ?>
                     <tr>
-                        <td data-label="Product Name">Choco cookies</td>
-                        <td data-label="Price">10$</td>
-                        <td data-label="Quantity">3</td>
-                        <td data-label="Total Amount">30$</td>
+                        <td data-label="Product Name"><?php echo $row['name']; ?></td>
+                        <td data-label="Price"><?php echo $row['price']; ?> PHP</td>
+                        <td data-label="Quantity"><?php echo $row['quantity']; ?></td>
+                        <td data-label="Total Amount"><?php echo $total; ?> PHP</td>
                     </tr>
+                <?php } ?>
             </table>
         </div>
         <?php }?>
