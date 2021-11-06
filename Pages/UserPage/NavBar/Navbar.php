@@ -24,6 +24,7 @@
             header("Location: index.php?checkout=fail" );
           }
         }
+      
       $dropdown_user = "User";
       $dropdown_user_login = "Login";
       $dropdown_user_signup = "Register";
@@ -412,6 +413,16 @@
                                       echo "<div class='alert' role='alert'> 
                                       Please log in before checking out.
                                       </div>";
+                    }
+                    if(isset($_GET['order']) && $_GET['order'] == 'fail' && !isset($_POST['submitlogin'])){
+                      echo "<script type='text/javascript'>
+                                      
+                                        $(document).ready(function(){
+                                          jQuery.noConflict();
+                                          $('.login-modal-container').modal('show');
+                                          });
+                                     </script>";
+                                      
                     }
                 ?>
                 <div class="form-group">
