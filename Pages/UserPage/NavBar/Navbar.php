@@ -375,7 +375,7 @@
             <?php } ?>
             <div class="modal-footer">
               <form action="Checkout.php?action=checkout" method="post">
-                  <button type="submit" class="submit-btn" name="submitcart"><?php echo  $modal_checkout ?></button>
+                  <input  <?php if(!isset($_SESSION['shopping_cart']) || empty($_SESSION['shopping_cart'])){ echo " disabled=\"disabled\"  style=\"cursor: default;\""; } ?> type="submit" class="submit-btn" name="submitcart" value="<?php echo  $modal_checkout ?>"">
               </form>
                   <button type="button" class="submit-btn" style="color: #433534; background: #fbfdfe;" data-dismiss="modal"><?php echo $modal_close ?></button>
             </div>
