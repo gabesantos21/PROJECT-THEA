@@ -154,7 +154,7 @@ include '../NavBar/Navbar.php' ?>
 					<p style="	display: inline; font-weight: bold;">Total Price: <span style="color: rgb(67 53 52);"><?php echo number_format(@$total, 2); ?></span></p>&nbsp;&nbsp;
 					<input type="button" name="cancel" value="Cancel" class="button" style="background-color: white; color: #120B0A;">
 					<input type="hidden" name="tprice" value="<?php echo @$total; ?>">
-					<input type="Submit" name="Checkout" value="Checkout" class="button">			
+					<input <?php if(!isset($_SESSION['shopping_cart']) || empty($_SESSION['shopping_cart'])){ echo " disabled=\"disabled\" style=\"cursor: default;\""; } ?> type="Submit" name="Checkout" value="Checkout" class="button">			
     			</div>
     		</div>
     	</div>
