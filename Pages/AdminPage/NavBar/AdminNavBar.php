@@ -186,6 +186,13 @@
       </div>
     </div>
 
+    <div class="alert-container-nav" id="success-delete-orderitem">
+      <div class="alert alert-success alert-dismissible success-alert-gold">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Successfully deleted order item!
+      </div>
+    </div>
+
     <div class="alert-container-nav" id="loginsuccess-alert">
       <div class="alert alert-success alert-dismissible success-alert-gold">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -204,6 +211,13 @@
       <div class="alert alert-danger alert-dismissible ">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Error! Failed to do task.
+      </div>
+    </div>
+
+    <div class="alert-container-nav" id="error-delete-orderitem">
+      <div class="alert alert-danger alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Error! Failed to delete order item from order.
       </div>
     </div>
 
@@ -255,8 +269,10 @@
     <script>$("#delete-success").hide();</script>
     <script>$("#edit-success").hide();</script>
     <script>$("#success-alert").hide();</script>
+    <script>$("#success-delete-orderitem").hide();</script>
     <script>$("#success-update").hide();</script>
     <script>$("#error-alert").hide();</script>
+    <script>$("#error-delete-orderitem").hide();</script>
     <script>$("#editerror-alert").hide();</script>
     <script>$("#update-status-success").hide();</script>
     <script>$("#updatestatuserror-alert").hide();</script>

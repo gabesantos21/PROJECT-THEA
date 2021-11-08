@@ -55,6 +55,28 @@
         });
                 </script>";
         }
+
+        if (isset($_GET['delete']) && $_GET['delete'] == "success") {
+            echo "<script>
+            $(document).ready(function() {
+            $('#success-delete-orderitem')
+            .fadeTo(2000, 500)
+            .slideUp(500, function () {
+              $('#success-delete-orderitem').slideUp(500);
+            });
+          });
+                  </script>";
+          }else if (isset($_GET['delete']) &&  $_GET['delete'] == 'fail'){
+              echo "<script>
+            $(document).ready(function() {
+            $('#error-delete-orderitem')
+            .fadeTo(2000, 500)
+            .slideUp(500, function () {
+              $('#error-delete-orderitem').slideUp(500);
+            });
+          });
+                  </script>";
+          }
       
     ?>
 
@@ -252,7 +274,7 @@
             </form>
         </div>
         <?php } else if (isset($_GET["order"])){
-                $sql = "SELECT order_id, name, price, quantity 
+                $sql = "SELECT order_id, product_id, name, price, quantity 
                         FROM order_items INNER JOIN product_list 
                         ON order_items.product_id = product_list.id WHERE order_id = '" . $_GET['order'] . "';";
                 $result = $conn->query($sql);
@@ -276,7 +298,7 @@
                         <td data-label="Price"><?php echo $row['price']; ?> PHP</td>
                         <td data-label="Quantity"><?php echo $row['quantity']; ?></td>
                         <td data-label="Total Amount"><?php echo $total; ?> PHP</td>
-                        <td data-label="Action"><a href="index.php">Remove Item</a></td>
+                        <td data-label="Action"><a href="DeleteOrderItem.php?productid=<?php echo $row['product_id']; ?>&orderid=<?php echo $row['order_id']; ?>">Remove Item</a></td>
                     </tr>
                 <?php } ?>
             </table>
