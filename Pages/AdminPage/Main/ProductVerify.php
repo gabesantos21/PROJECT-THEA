@@ -20,7 +20,7 @@ if (!$conn) {
           $key = $_POST["id"];
           $sql="DELETE FROM product_list WHERE id = ?";
           $stmt = $conn->prepare($sql);
-          $stmt->bind_param("s", $key);
+          $stmt->bind_param("i", $key);
           $stmt->execute();
 
         header("Location: store.php?delete=success");
