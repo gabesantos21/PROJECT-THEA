@@ -69,7 +69,7 @@ if (!$conn) {
             
             
           }
-          
+          unset($_SESSION['shopping_cart']);
           header("Location: index.php?action=checkout" );
         }
         }
