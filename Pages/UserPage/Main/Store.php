@@ -63,6 +63,17 @@
                   });
                           </script>";
  }
+ if(isset($_GET["checkout"]) && $_GET['checkout'] == "ready"){
+  echo "<script>
+                  $(document).ready(function() {
+                  $('#checkout-error')
+                  .fadeTo(2000, 500)
+                  .slideUp(500, function () {
+                    $('#checkout-error').slideUp(500);
+                  });
+                });
+                        </script>";
+}
    
    if(isset($_POST["submitlogin"])){
       if($isAuthenticated){
