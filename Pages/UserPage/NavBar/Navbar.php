@@ -116,7 +116,7 @@
                 );
                 $_SESSION["shopping_cart"][$count] = $item_array;
             } else{
-            echo '<script>alert("Item Already Added")</script>';
+              header("Location: ../Main/store.php?addcart=fail" );
             }
         } else {
             $item_array = array(
@@ -273,6 +273,13 @@
         <?php echo "Successfully logged in! Hi, " . $_SESSION['userName'] . "!";?>
       </div>
     </div>
+    
+    <div class="alert-container-nav" id="addcart-error">
+      <div class="alert alert-danger alert-dismissible ">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Item already inside the cart!
+      </div>
+    </div>
 
     <div class="alert-container-nav" id="checkout-alert">
       <div class="alert alert-success alert-dismissible success-alert-gold">
@@ -304,6 +311,7 @@
 
     <!-- Hide at start -->
     <script>$("#success-alert").hide();</script>
+    <script>$("#addcart-error").hide();</script>
     <script>$("#success-logout").hide();</script>
     <script>$("#success-update").hide();</script>
     <script>$("#regsuccess-alert").hide();</script>

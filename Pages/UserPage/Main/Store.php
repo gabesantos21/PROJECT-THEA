@@ -52,6 +52,31 @@
             </script>";
       }
    }
+   if(isset($_GET["addcart"]) && $_GET['addcart'] == "fail"){
+    echo "<script>
+                    $(document).ready(function() {
+                    $('#addcart-error')
+                    .fadeTo(2000, 500)
+                    .slideUp(500, function () {
+                      $('#addcart-error').slideUp(500);
+                    });
+                  });
+                          </script>";
+ }
+   
+   if(isset($_POST["submitlogin"])){
+      if($isAuthenticated){
+        echo "<script>
+      $(document).ready(function() {
+      $('#loginsuccess-alert')
+      .fadeTo(2000, 500)
+      .slideUp(500, function () {
+        $('#loginsuccess-alert').slideUp(500);
+      });
+    });
+            </script>";
+      }
+   }                       
    if(isset($_POST["usersubmit"]) && $passwordConfirmed){
       
         echo "<script>
