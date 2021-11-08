@@ -126,13 +126,14 @@ INSERT INTO index_text(name, text) VALUES
 --
 -- Table structure for order items table
 -- no need to manually add primary key and auto increment
+-- Drop and recreate order_items with this statement and delete all records in orders table
 CREATE TABLE `order_items` (
     `order_id` VARCHAR(20) NOT NULL,
     `product_id` int(11) NOT NULL,
     `quantity` int(11), 
     PRIMARY KEY (order_id, product_id),
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (product_id) REFERENCES product_list(id)  
+    FOREIGN KEY (product_id) REFERENCES product_list(id) ON DELETE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --Use below statement to assign PK to table
