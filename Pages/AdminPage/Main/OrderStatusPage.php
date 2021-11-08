@@ -265,6 +265,7 @@
                 <th style="width:10%">Price</th>
                 <th style="width:10%">Quantity</th>
                 <th style="width:10%">Total Amount</th>
+                <th style="width:10%">Action</th>
                 <?php 
                 
                     while($row = $result->fetch_assoc()){
@@ -275,6 +276,7 @@
                         <td data-label="Price"><?php echo $row['price']; ?> PHP</td>
                         <td data-label="Quantity"><?php echo $row['quantity']; ?></td>
                         <td data-label="Total Amount"><?php echo $total; ?> PHP</td>
+                        <td data-label="Action"><a href="index.php">Remove Item</a></td>
                     </tr>
                 <?php } ?>
             </table>
